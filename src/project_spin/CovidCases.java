@@ -74,14 +74,14 @@ public class CovidCases  {
 	protected static ArrayList<CovidCases> cases = new ArrayList<CovidCases>();
 	protected ArrayList<FirstContact> firstContact = new ArrayList<FirstContact>();
 	private static ArrayList<String> location = new ArrayList<String>();
-	private static int [] ssn; // ��� �� ����� � ���� ��������� ��� ����������
+	protected static int [] ssn; // ��� �� ����� � ���� ��������� ��� ����������
 	private static ArrayList<String> password = new ArrayList<String>();
-	protected static ArrayList<String> patientEmails = new ArrayList<String>();
-	protected String email;
+	protected static ArrayList<String> email = new ArrayList<String>();
+	protected String patientEmail;
 	private int patientSsn;
 	protected static int patientCounter;
 	private String patientLocation;
-	
+	private string patientPassword;
 	
 	
 	
