@@ -76,7 +76,7 @@ public class CovidCases  {
 	private static ArrayList<String> location = new ArrayList<String>();
 	private static int [] ssn; // ��� �� ����� � ���� ��������� ��� ����������
 	private static ArrayList<String> password = new ArrayList<String>();
-	protected static ArrayList<String> patinentEmails = new ArrayList<String>();
+	protected static ArrayList<String> patientEmails = new ArrayList<String>();
 	protected String email;
 	private int patientSsn;
 	protected static int patientCounter;
