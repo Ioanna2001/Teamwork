@@ -74,7 +74,7 @@ public class CovidCases  {
 	protected static ArrayList<CovidCases> cases = new ArrayList<CovidCases>();
 	protected ArrayList<FirstContact> firstContact = new ArrayList<FirstContact>();
 	private static ArrayList<String> location = new ArrayList<String>();
-	private static int [] ssn; // εδω θα ειναι η βαση δεδομενων των κρουσματων
+	private static int [] ssn; // οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½ οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 	private static ArrayList<String> password = new ArrayList<String>();
 	protected static ArrayList<String> patinentEmails = new ArrayList<String>();
 	protected String email;
