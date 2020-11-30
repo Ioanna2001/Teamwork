@@ -1,6 +1,7 @@
 package project_spin;
 
-import.java.util.Scanner;
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Corona {
 	public static void main(Strings[] args) {
