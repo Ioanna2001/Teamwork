@@ -74,4 +74,49 @@ public class CovidCases extends User {
 			patientEmail = null;
 			addEmail(null);
 	}
+//methodoi gia eisagvgh timwn stis listes
+	private static void addLocation( String l) {
+		location.add(l);
+	}
+
+	private static void addSsn( Integer s) {
+		ssn.add(s);
+	}
+
+	private static void addEmail( String e) {
+		email.add(e);
+	}
+
+	private static void addPhone(int p) {
+		phone.add(p);
+	}
+
+	private static void addCase( CovidCases c) {
+		cases.add(c);
+	}
+//checking if the user entered email of phone
+	protected boolean checkEmailOrPhone() {
+		if (super.phone == null ) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+//counter sunolikwn symptwmatwn kroysmatwn
+	protected static  void addSymptoms_Counter(int[] s) {
+		for(int i=0;i<13;i++) {
+			symptoms_counter[i] += s[i];
+		}
+	}
+	
+	
+
+
+
+	
+	
+
+}
 
