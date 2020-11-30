@@ -43,9 +43,13 @@ public class CovidCases extends User {
 		if (checkEmailOrPhone == false)
 			addEmail(super.email);
 		 	patientEmail = User.email;
+			patientPhone = null;
+			addPhone(null);
 		else
 			patientPhone = User.phone;
 			addPhone(super.phone);
+			patientEmail = null;
+			addEmail(null);
     }
 //katakseyasths gia osous den ebalan topothesia
 
@@ -62,8 +66,12 @@ public class CovidCases extends User {
 		if (checkEmailOrPhone == false)
 			addEmail(super.email);
 		 	patientEmail = User.email;
+			patientPhone = null;
+			addPhone(null);
 		else
 			patientPhone = User.phone;
 			addPhone(super.phone);
+			patientEmail = null;
+			addEmail(null);
 	}
 
