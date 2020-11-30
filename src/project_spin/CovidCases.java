@@ -19,9 +19,6 @@ public class CovidCases extends User {
 	private int patientSsn;
 	private int[] patientSymptoms;
 	private String patientLocation;
-	private String patientPassword;
-	private int patientEmail;
-	private int patientPhone;
 //kataskeyh kataskeyastwn 
 //kataskeyasths gia osous eisagoyn location
 	
@@ -40,16 +37,8 @@ public class CovidCases extends User {
 		addLocation( location);
 		addSsn(ssn);
 		//eisagei email h thlefwno 
-		if (checkEmailOrPhone == false)
-			addEmail(super.email);
-		 	patientEmail = User.email;
-			patientPhone = null;
-			addPhone(null);
-		else
-			patientPhone = User.phone;
-			addPhone(super.phone);
-			patientEmail = null;
-			addEmail(null);
+		addPhone(super.phone);
+		addEmail(super.email);
     }
 //katakseyasths gia osous den ebalan topothesia
 
@@ -60,19 +49,10 @@ public class CovidCases extends User {
 		patientSsn = ssn;
 		addSsn(ssn);
 		addSymptoms_Counter(super.symptoms);
-		patientPassword = User.password;
 		patientSymptoms = User.symptoms;
 		addSsn(ssn);
-		if (checkEmailOrPhone == false)
-			addEmail(super.email);
-		 	patientEmail = User.email;
-			patientPhone = null;
-			addPhone(null);
-		else
-			patientPhone = User.phone;
-			addPhone(super.phone);
-			patientEmail = null;
-			addEmail(null);
+		addPhone(super.phone);
+		addEmail(super.email);
 	}
 //methodoi gia eisagvgh timwn stis listes
 	private static void addLocation( String l) {
