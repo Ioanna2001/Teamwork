@@ -3,7 +3,7 @@ package project_spin;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Corona {
+final public class Corona {
 	public static void main(Strings[] args) {
 		// if you want to log in
 		Scanner obj = new Scanner(System.in);
