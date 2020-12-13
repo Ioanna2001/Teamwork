@@ -43,7 +43,7 @@ public class InputMenu {
 		printContacts();
 		break;
 		case 3: //A user becomes a Covid case
-		System.out.println("Please enter your location to continue");
+		//System.out.println("Please enter your location to continue");
 		System.out.println("Please enter your SSN");
 		Scanner c = new Scanner(System.in);
 		try {
@@ -64,7 +64,6 @@ public class InputMenu {
 		default:
 		System.err.println("Unrecognized option");
 		break;
-		}
-    
+		}    
 	}
 }
