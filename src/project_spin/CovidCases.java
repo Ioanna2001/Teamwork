@@ -15,8 +15,9 @@ public class CovidCases extends User {
 	//statikes listes gia na kratame dedomena
 	//bash dedomenwn twn amka twn asthenwn
 	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
+	//metraei posa krousmata exei kathe perifereia
 	protected static ArrayList<String> email = new ArrayList<String>();
-	private static ArrayList<String> location = new ArrayList<String>();
+	private static int location_counter = new int[13];
 	private static ArrayList<Integer> phone = new ArrayList<Integer>();
 	//pedia
 	private int patientSsn;
@@ -75,16 +76,17 @@ public class CovidCases extends User {
 		ssn.add(s);
 	}
 
-//methodoi gia eisagvgh timwn stis listes
+//methodos gia ayjhsh toy counter twn perioxwn
 	private static void addLocation( String l) {
-		if (location.contains(l)) {
-			return;
-		} else {
-			location.add(l);
+		int i = 0;
+		for (Location loc : Location.values()) {
+			if (loc.equals(l)) {
+				location_counter[i] ++;
+			}
+			i++
 		}
-		
 	}
-
+//methodoi gia eisagwgh timwn stis listes
 	private static void addEmail( String e) {
 		email.add(e);
 	}
