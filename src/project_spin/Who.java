@@ -16,7 +16,7 @@ public static class Who {
 		System.out.println(getPatientCounter());
 	}
 	
-	public void sufficinetSample() {
+	public void sufficientSample() {
 		//pou tha to kaloume??
 		//elegxei kai proeidopoiei an ta krousmata tis efarmogis mas einai liga
 		// etsi vste na einai aksiopista ta statistika
