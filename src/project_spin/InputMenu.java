@@ -9,7 +9,7 @@ public class InputMenu {
 	public void question() {
 		System.out.println("Would you like to proceed or quit?");
 		System.out.println("To proceed enter 9");
-		System.out.println("If you wish to quit enter 0.");
+		System.out.println("If you wish to quit enter 0");
 		Scanner q = new Scanner(System.in);
 		switch(q.nextInt())
 		{
