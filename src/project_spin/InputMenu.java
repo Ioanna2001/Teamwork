@@ -32,8 +32,7 @@ public class InputMenu {
 	public InputMenu() {
 	Scanner in = new Scanner(System.in);
 	display_menu();
-	
-	
+		
 		switch (in.nextInt()) {
 		case 1: //Update symptom list
 		symptomsListing(); 
