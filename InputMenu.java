@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class InputMenu {
 	public void display_menu() {
@@ -9,7 +9,7 @@ public class InputMenu {
 	public void question() {
 		System.out.println("Would you like to proceed or quit?");
 		System.out.println("To proceed enter 9");
-		System.out.println("If you wish to quit enter 0.");
+		System.out.println("If you wish to quit enter 0");
 		Scanner q = new Scanner(System.in);
 		switch(q.nextInt())
 		{
@@ -26,15 +26,13 @@ public class InputMenu {
 			System.err.println("Unrecognized option");
 			break;
 		}
-
 	}
 
-	public InputMenu() {
-	Scanner in = new Scanner(System.in);
-	display_menu();
-	
-	
-		switch (in.nextInt()) {
+	public InputMenu() {			
+		display_menu();
+		Scanner in = new Scanner(System.in);		
+		switch (in.nextInt()) 
+		{
 		case 1: //Update symptom list
 		symptomsListing(); 
 		break;
@@ -43,19 +41,11 @@ public class InputMenu {
 		printContacts();
 		break;
 		case 3: //A user becomes a Covid case
-		//System.out.println("Please enter your location to continue");
+		System.out.println("Please enter your location to continue");
+		String location = in.nextLine(); 
 		System.out.println("Please enter your SSN");
-		Scanner c = new Scanner(System.in);
-		try {
-			if (checkSsn(c)) {
-			CovidCases cc = new CovidCases(c);
-			} else {
-			throw new Exception();
-			}
-		} catch (Exception w) {
-			System.err.println("This SSN doesn't exist");
-			System.err.println("Please try again");
-		}
+		int c = in.nextInt();
+		CovidCases cc = new CovidCases(location, c);
 		symptomsListing();
 		editContactList();
 		printContacts();
