@@ -29,9 +29,9 @@ public class InputMenu {
 
 	}
 
-	public InputMenu() {
+	public InputMenu() {			
 		display_menu();
-		Scanner in = new Scanner(System.in);
+		Scanner in = new Scanner(System.in);		
 		switch (in.nextInt()) {
 		case 1: //Update symptom list
 		symptomsListing(); 
@@ -41,19 +41,11 @@ public class InputMenu {
 		printContacts();
 		break;
 		case 3: //A user becomes a Covid case
-		//System.out.println("Please enter your location to continue");
+		System.out.println("Please enter your location to continue");
+		String location = in.nextLine(); 
 		System.out.println("Please enter your SSN");
-		Scanner c = new Scanner(System.in);
-		try {
-			if (checkSsn(c)) {
-			CovidCases cc = new CovidCases(c);
-			} else {
-			throw new Exception();
-			}
-		} catch (Exception w) {
-			System.err.println("This SSN doesn't exist");
-			System.err.println("Please try again");
-		}
+		int c = in.nextInt();
+		CovidCases cc = new CovidCases(location, c);
 		symptomsListing();
 		editContactList();
 		printContacts();
