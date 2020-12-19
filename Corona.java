@@ -1,9 +1,8 @@
-package project_spin;
+package det2020;
 
-import java.util.Scanner;
-import java.util.ArrayList;
+import.java.util.Scanner;
 
-final public class Corona {
+public class Corona {
 	public static void main(Strings[] args) {
 		// if you want to log in
 		Scanner obj = new Scanner(System.in);
@@ -16,7 +15,7 @@ final public class Corona {
 			if (place >= 0) {
 				if (password = password.get(place)) { // stoixeio pinaka
 					System.out.println("Successful log in");
-					question(); // eisodos sto susthma
+					// eisodos sto susthma
 				} else {
 					throw new Exception();
 				}
