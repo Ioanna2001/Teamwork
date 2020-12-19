@@ -16,7 +16,7 @@ final public class Corona {
 			if (place >= 0) {
 				if (password = password.get(place)) { // stoixeio pinaka
 					System.out.println("Successful log in");
-					// eisodos sto susthma
+					question(); // eisodos sto susthma
 				} else {
 					throw new Exception();
 				}
