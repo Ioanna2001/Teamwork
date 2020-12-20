@@ -17,7 +17,7 @@ public class CovidCases extends User {
 	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
 	//metraei posa krousmata exei kathe perifereia
 	protected static ArrayList<String> email = new ArrayList<String>();
-	private static int location_counter = new int[13];
+	private static int[] location_counter = new int[13];
 	private static ArrayList<Integer> phone = new ArrayList<Integer>();
 	//pedia
 	private int patientSsn;
