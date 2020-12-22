@@ -42,7 +42,7 @@ final public class Corona {
 		//katagrafh symptwmatwn
 		symptomsListing();
 		// katagrafh close contacts
-		System.out.print("Close contact can mean:" +
+		System.out.print("Close contact means:" +
 				" 1) spending more than 15 minutes of face-to-face contact" +
 				"within 2 metres of someone who has COVID-19, indoors or outdoors" +
 				" 2) living in the same house or shared accommodation as someone who has COVID-19" +
