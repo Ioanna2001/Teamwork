@@ -1,11 +1,16 @@
 package project_spin;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ArrayList;
 /* @Ioanna2001
  *@VasilisLazaridis
  */
-public class CovidCases extends User {
+class CovidCases extends User {
+	//san kleidi exei to ssn toy xrhsth 
+	/*h boolean timh einai true an to kroysma exei kanei sign up 
+	kai exei tsekaristei to ssn toy*/
+	private static HashMap<Integer, Boolean> checkedSsn = new HashMap<Integer, Boolean>();
 	private static int cured;
 	private static int deaths;
 	protected static int[] symptoms_counter = new int[13];
@@ -44,9 +49,8 @@ public class CovidCases extends User {
 		//arxikopoiei ta pedia kai tis listes
 		addCase(this);
 		patientSsn = ssn;
-		addSsn(ssn);
+		ssn.add(s);
 		addSymptoms_Counter(super.symptoms);
-		addSsn(ssn);
 		addPhone(super.phone);
 		addEmail(super.email);
 	}
@@ -55,6 +59,7 @@ public class CovidCases extends User {
 	protected boolean checkSsn(int s) {
 		for (int i:ssn) {
 			if (i == s) {
+				checkedSsn.put(s, true);
 				return true;
 			}
 		}
@@ -73,7 +78,11 @@ public class CovidCases extends User {
 	}
 //protected gia na thn xeirizetai kai o eody
 	protected static void addSsn( Integer s) {
-		ssn.add(s);
+		
+		Ssn.writeSsn(s);
+		if (checkedSsn.containsValue(s) == false) {
+			checkedSsn.put(s, false);
+		}
 	}
 
 //methodos gia ayjhsh toy counter twn perioxwn
@@ -83,7 +92,7 @@ public class CovidCases extends User {
 			if (loc.equals(l)) {
 				location_counter[i] ++;
 			}
-			i++
+			i++;
 		}
 	}
 //methodoi gia eisagwgh timwn stis listes
