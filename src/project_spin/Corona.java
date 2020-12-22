@@ -65,7 +65,7 @@ final public class Corona {
 			String phonenumber = obj.nextLine();
 			System.out.print("Please enter you region");
 			String region = obj.nextLine();
-				if (region = null ) {
+				if (region = null) {
 					CovidCases patient = new CovidCases(region, ssn);
 				} else {
 					CovidCases patient = new CovidCases(ssn);
