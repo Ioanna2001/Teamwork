@@ -35,7 +35,7 @@ final public class Corona {
 		Scanner obj= new Scanner(System.in);
 		System.out.print("Please enter your name");
 		String name = obj.nextLine();
-		System.out.print("Please enter your status:C for covid patient for P proti epafi");
+		System.out.print("Please enter your status:/nC for covid patient/nP for proti epafi");
 		String status = obj.nextLine();
 		//date eggrafhs
 		LocalDateTime signupdate = LocalDateTime.now();  
