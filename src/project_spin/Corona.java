@@ -63,7 +63,7 @@ final public class Corona {
 			String email = obj.nextLine();
 			System.out.print("Please enter your phone number");
 			String phonenumber = obj.nextLine();
-			System.out.print("Residence Region?");
+			System.out.print("Please enter you region");
 			String region = obj.nextLine();
 				if (region = null ) {
 					CovidCases patient = new CovidCases(region, ssn);
