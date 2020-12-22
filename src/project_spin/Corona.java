@@ -67,7 +67,7 @@ final public class Corona {
 			String region = obj.nextLine();
 				if (region = null ) {
 					CovidCases patient = new CovidCases(region, ssn);
-				}else {
+				} else {
 					CovidCases patient = new CovidCases(ssn);
 				}
 			//stelnoume password
@@ -78,9 +78,9 @@ final public class Corona {
 			String phonenumber = obj.nextLine();
 			System.out.print("Please enter your email");
 			String email = obj.nextLine();
-			if (ssn = null ) {
+			if (ssn = null) {
 				User us = new User(ver_code, name, name);
-			}else {
+			} else {
 				User us = new User(ver_code, name, ssn, name);
 			}	
 			//stelnoume password
