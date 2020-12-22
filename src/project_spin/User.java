@@ -35,7 +35,6 @@ public class User {
 		symptomsList[10] = "Difficulty breathing or shortness of breath";
 		symptomsList[11] = "Cheast pain or pressure";
 		symptomsList[12] = "Loss of speech or movement";
-
 	}
 
 	//constructor
