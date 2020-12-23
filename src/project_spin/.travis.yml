@@ -1,5 +1,7 @@
 language: java
+java: Java SE 8 Update 261
 os: windows
+script: gulp travis
 before_install:
 - |-
     case $TRAVIS_OS_NAME in
