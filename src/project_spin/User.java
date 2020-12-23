@@ -5,7 +5,7 @@ import java.time.LocalDateTime; // pws douleuei?
 import java.util.Date; //pws douleuei?
 import java.time.format.DateTimeFormatter; //pws douleuei?
 
-public class User {
+class User {
 
 	//attributes
 	int [] symptoms;
@@ -20,7 +20,7 @@ public class User {
 	protected static String[] symptomsList;
 	private static String answer;
 
-	public static void makeSymptomsList() {
+	public static String[] makeSymptomsList() {
 
 		symptomsList[0] = "Fever";
 		symptomsList[1] = "Dry cough";
@@ -35,6 +35,7 @@ public class User {
 		symptomsList[10] = "Difficulty breathing or shortness of breath";
 		symptomsList[11] = "Cheast pain or pressure";
 		symptomsList[12] = "Loss of speech or movement";
+		return symptomsList;
 	}
 
 	//constructor

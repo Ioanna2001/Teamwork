@@ -26,14 +26,14 @@ class CovidCases extends User {
 	private static ArrayList<Integer> phone = new ArrayList<Integer>();
 	//pedia
 	private int patientSsn;
-	private String patientLocation;
+	private Location patientLocation;
 	//status=0 patient cured; status=1 patient passed away
 	//gia xeirismo apo eody
 	private int status;
 //kataskeyh kataskeyastwn 
 //kataskeyasths gia osous eisagoyn location
 	
-	public CovidCases(String location, int ssn) {
+	public CovidCases(Location location, int ssn) {
 		//kalesma toy kataskeyasth ths yperklashs
 		CovidCases(ssn);
 		addLocation( location);
@@ -86,7 +86,7 @@ class CovidCases extends User {
 	}
 
 //methodos gia ayjhsh toy counter twn perioxwn
-	private static void addLocation( String l) {
+	private static void addLocation(Location l) {
 		int i = 0;
 		for (Location loc : Location.values()) {
 			if (loc.equals(l)) {
@@ -167,31 +167,44 @@ class CovidCases extends User {
 		return patientCounter;
 	}
 
-	protected int casesPerLocation(String l) {
+	protected int casesPerLocation(Location l) {
 		int counter = 0;
 		for (CovidCases cc: cases) {
-			if (cc.patientLocation.contentEquals(l)) {
+			if (cc.patientLocation.equals(l)) {
 				counter++;
 			}
 		}
 		return counter;
 	}
 
-	protected int[] casesFoAllLocations() {
+	protected int[] casesForAllLocations() {
 		int i = 0;
-		int counter[] = new int[location.size()];
-		for (String l:location) {
+		int counter[] = new int[location_counter.length];
+		for (Location l:Location.values()) {
 			counter[i] = casesPerLocation(l);
 			i++;
 		}
 		return counter;
 	}
 
-	
-	
+	protected String[] symptomsFrequency() {
+		String[] symptoms = super.makeSymptomsList();
+		int[] counter = symptoms_counter;
+		int[] max = new int [13];
+		for (int i = 0; i < counter.length; i++) {
+			for (int j = i+1; j < counter.length; j++) {
+				if (counter[j] > counter[i]) {
+					int temp;
+					temp = counter[i];
+					counter[i] = counter[j];
+					counter[j] = temp;
+					max[i] = j;
+				}
+			}
+		}
+		
+	}
 }
-
-
 
 
 
