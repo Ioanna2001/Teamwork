@@ -2,6 +2,7 @@ package project_spin;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 final public class Corona {
 	public static void main(Strings[] args) {
@@ -30,8 +31,56 @@ final public class Corona {
 			System.err.println("This mail or phone does not exist");
 			System.err.println("Please try again");
 		}
-
-
+		// if you want to sing up
+		Scanner obj= new Scanner(System.in);
+		System.out.print("Please enter your name");
+		String name = obj.nextLine();
+		System.out.println("Please enter your status:/nC for covid patient/nF for first contact");
+		String status = obj.nextLine();
+		//date eggrafhs
+		LocalDateTime signupdate = LocalDateTime.now();  
+		
+		// katagrafh close contacts
+		System.out.print("Close contact means:" +
+				" 1) spending more than 15 minutes of face-to-face contact" +
+				"within 2 metres of someone who has COVID-19, indoors or outdoors" +
+				" 2) living in the same house or shared accommodation as someone who has COVID-19" +
+				" 3) sitting within 2 seats of someone who has COVID-19 on public transport or an airplane");
+		System.out.print("How many close contacts do you have?");
+		String ccg = obj.nextLine();
+		int ccnum = Integer.parseInt(ccg);
+		if ccnum != 0 {
+			for (int i = 0; i < ccnum; i++) {
+				addContact();
+			}
+		}
+		if (status == "C") {
+			try {
+				System.out.print("Please enter your SSN *")
+				int ssn = obg.nextInt();
+				System.out.print("Please enter your email or phone *");
+				String email = obj.nextLine(); 
+			} catch (NullPointerException e) 
+				System.out.print("Please enter you region");
+				String region = obj.nextLine();
+				if (region = null) {
+					CovidCases patient = new CovidCases(region, ssn);
+				} else {
+					CovidCases patient = new CovidCases(ssn);
+				}
+				symptomsListing(); //katagrafh symptwmatwn
+				//stelnoume password
+		} else if (status == "F") {
+			System.out.print("Please enter your verification code");
+			String ver_code = obj.nextLine();
+			System.out.print("Please enter your email or phone");
+			String email = obj.nextLine();
+			if (ssn = null) {
+				User us = new User(ver_code, name, name);
+			} else {
+				User us = new User(ver_code, name, ssn, name);
+			}	
+			//stelnoume password
 	}
 }
 	
