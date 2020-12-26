@@ -202,7 +202,6 @@ class CovidCases extends User {
 				}
 			}
 		}
-		
 	}
 }
 
