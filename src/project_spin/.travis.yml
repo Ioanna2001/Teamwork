@@ -1,2 +1,16 @@
 language: java
+script: mvn test -f ./source/pom.xml
 script: gulp travis
+before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+- git lfs pull
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk8
+  addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      os: windows
+      
