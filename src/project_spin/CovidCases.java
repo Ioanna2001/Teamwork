@@ -190,7 +190,7 @@ class CovidCases extends User {
 	protected String[] symptomsFrequency() {
 		String[] symptoms = super.makeSymptomsList();
 		int[] counter = symptoms_counter;
-		int[] max = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+		int[] max = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 		for (int i = 0; i < counter.length; i++) {
 			for (int j = i+1; j < counter.length; j++) {
 				if (counter[j] > counter[i]) {
