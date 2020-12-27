@@ -1,14 +1,14 @@
 package project_spin;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.time.LocalDateTime; // pws douleuei?
-import java.util.Date; //pws douleuei?
-import java.time.format.DateTimeFormatter; //pws douleuei?
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
-class User {
+public class User {
 
 	//attributes
-	int [] symptoms;
+	protected int [] symptoms;
 	String password;
 	String name;
 	String userSsn;
@@ -16,11 +16,11 @@ class User {
 	ArrayList<String> contactName;
 	ArrayList<String> contactPhone;
 	ArrayList<String> contactEmail;
-	ArrayList<String> contactDate;
+	ArrayList<Date> contactDate;
 	protected static String[] symptomsList;
 	private static String answer;
 
-	public static String[] makeSymptomsList() {
+	public static void makeSymptomsList() {
 
 		symptomsList[0] = "Fever";
 		symptomsList[1] = "Dry cough";
@@ -35,10 +35,10 @@ class User {
 		symptomsList[10] = "Difficulty breathing or shortness of breath";
 		symptomsList[11] = "Cheast pain or pressure";
 		symptomsList[12] = "Loss of speech or movement";
-		return symptomsList;
+
 	}
 
-	//constructor
+	//constructors
 	public User(String password, String name, String ssn, String username) {
 
 		this.password = password;
@@ -61,9 +61,8 @@ class User {
 	//methods
 	Scanner sc = new Scanner(System.in);
 
-	public int[] symptomsListing() {
+	public int[] addSymptoms () {
 
-		int [] symptoms = new int [13];
 		System.out.println("Do you have any symptoms of the following?\n" + 
 				"1. Fever \n" + "2. Dry cough\n" + "3. Tiredness\n" + "4. Aches and pains\n" +
 				"5. Sore throat\n" + "6. Diarrhoea\n" + "7. Conjuctivitis\n" + "8. Headache\n" +
@@ -72,15 +71,34 @@ class User {
 				"13. Loss of speech or movement\n" + "If you you don't have any symptoms press 0\n" + 
 				"Please write the symptoms' code numbers separated by blank spaces");
 		answer = sc.nextLine();
-		if (answer != "0") {
-			String [] parts = answer.split(" ");
-			int size = parts.length;
-			int [] codes = new int [size];
-			for (int i = 0; i <= size - 1; i++) {
-				codes[i] = Integer.parseInt(parts[i]);
+		String [] parts = answer.split(" ");
+		int size = parts.length;
+		int [] codes = new int [size];
+		for (int i = 0; i <= size - 1; i++) {
+			codes[i] = Integer.parseInt(parts[i]);
+		}
+		try {
+			for (int i=0; i<=codes.length; i++) {
+				if (codes[i] == 0 && codes.length != 1) {
+					throw new WrongAnswerException();
+				}
 			}
-			for (int i=0 ; i<=size ; i++) {
-				symptoms[codes[i]-1] = 1;
+		} catch (WrongAnswerException x) {
+			addSymptoms(); //kanei anadromh kai ksanapairnei apanthsh apo ton xrhsth
+		}
+		if (answer != "0") {
+			System.out.println("Are you sure you want to register these?");
+			for (int i=0; i<=codes.length; i++) {
+				System.out.println(symptomsList[codes[i]]);
+			}
+			System.out.print("Press 1 for Yes\n" + "Press 2 for No\n");
+			String ans = sc.next();
+			if (ans == "1") {
+				for (int i=0; i<=size; i++) {
+					symptoms[codes[i]-1] = 1;
+				}
+			} else {
+				addSymptoms(); //anadromh giati mallon evale lathos symptwmata
 			}
 		}
 		return symptoms;
@@ -115,13 +133,11 @@ class User {
 		System.out.println("Do you want to add a new contact?\n" + "Press 1 for Yes\n" + "Press 2 for No\n");
 		answer = sc.next();
 		String ans;
-		while (answer == "1"){
+		while (answer == "1") {
 
 			System.out.println("Enter name");
 			String name = sc.next();
-			System.out.println("Enter the date you had contact with them. Use this pattern: DD-MM-YYYY");
-			String tempDate = sc.nextLine();
-			Date date = new Date(); // πρέπει να δούμε πως δουλεύει το Date
+			Date date = registerDate();
 			System.out.println("Do you want to give their email or phone?\n" + "Press 1 for email\n" + "Press 2 for phone number\n");
 			ans = sc.next();
 			String email = null;
@@ -136,12 +152,25 @@ class User {
 			contactName.add(name);
 			contactPhone.add(phone);
 			contactEmail.add(email);
+			contactDate.add(date);
 			System.out.println("Do you have any more contacts you want to register?\n" + "Press 1 for yes\n" + 
 			"Press 2 for no");
 			answer = sc.next();
 
 		}
+	}
 
+	private Date registerDate() {
+		System.out.println("Enter the date you had contact with them. Use this pattern: DD/MM/YYYY");
+		String tempDate = sc.nextLine();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("dd/MM/yyyy").parse(tempDate);
+		} catch (ParseException e) {
+			System.out.println("The format of the date was not right. Please enter the right format.");
+			registerDate();
+		}
+		return date;
 	}
 
 	private void deleteContact() {
