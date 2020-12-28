@@ -1,6 +1,7 @@
 package project_spin;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ public class User {
 	protected static String[] symptomsList;
 	private static String answer;
 
+	//ftiaxnei ton pinaka me ta symptoms
 	public static void makeSymptomsList() {
 
 		symptomsList[0] = "Fever";
@@ -61,48 +63,59 @@ public class User {
 	//methods
 	Scanner sc = new Scanner(System.in);
 
-	public int[] addSymptoms () {
+	public void addSymptoms () { //to allaksame se void - epestrefe ton pinaka me ta symptoms
 
-		System.out.println("Do you have any symptoms of the following?\n" + 
-				"1. Fever \n" + "2. Dry cough\n" + "3. Tiredness\n" + "4. Aches and pains\n" +
-				"5. Sore throat\n" + "6. Diarrhoea\n" + "7. Conjuctivitis\n" + "8. Headache\n" +
-				"9. Loss of taste or smell\n" + "10. A rash on skin, or discolouration of fingers or toes\n" +
-				"11. Difficulty breathing or shortness of breath\n" + "12. Chest pain or pressure\n" + 
-				"13. Loss of speech or movement\n" + "If you you don't have any symptoms press 0\n" + 
-				"Please write the symptoms' code numbers separated by blank spaces");
-		answer = sc.nextLine();
-		String [] parts = answer.split(" ");
-		int size = parts.length;
-		int [] codes = new int [size];
-		for (int i = 0; i <= size - 1; i++) {
-			codes[i] = Integer.parseInt(parts[i]);
-		}
-		try {
-			for (int i=0; i<=codes.length; i++) {
-				if (codes[i] == 0 && codes.length != 1) {
-					throw new WrongAnswerException();
+		boolean wrongAnswer;
+		do {
+			System.out.println("Do you have any symptoms of the following?");
+			for (int i = 1; i < 14; i++) {
+				System.out.println(i + ". " + symptomsList[i-1]); //emfanizei ta symptwmata apo ton pinaka
+			}
+			System.out.println("Please write the symptoms' code numbers separated by blank spaces\n" + 
+			"If you you don't have any symptoms press 0");
+			answer = sc.nextLine();
+			String [] parts = answer.split(" "); //pairnei ksexwrista ta symptom codes
+			wrongAnswer = wrongAnswer(answer, parts); 
+			if (wrongAnswer) {
+				System.out.println("You seem to have pressed 0 and a different symptom code. Please reenter your answer");
+				continue; //lathos apanthsh opote paei sto telos tou loop
+			}
+			int size = parts.length;
+			int [] codes = new int [size];
+			for (int i = 0; i <= size - 1; i++) {
+				codes[i] = Integer.parseInt(parts[i]); // codes apo string se int
+			}
+			if (answer != "0") {
+				System.out.println("Are you sure you want to register these?");
+				for (int i=0; i<=codes.length; i++) {
+					System.out.println(symptomsList[codes[i]-1]); //tsekarei oti evale swsta stoixeia
+				}
+				System.out.print("Press 1 for Yes\n" + "Press 2 for No\n");
+				String ans = sc.next();
+				if (ans == "1") {
+					for (int i=0; i<=size; i++) {
+						symptoms[codes[i]-1] = 1;
+					}
+				} else {
+					wrongAnswer = true;
 				}
 			}
-		} catch (WrongAnswerException x) {
-			addSymptoms(); //kanei anadromh kai ksanapairnei apanthsh apo ton xrhsth
-		}
-		if (answer != "0") {
-			System.out.println("Are you sure you want to register these?");
-			for (int i=0; i<=codes.length; i++) {
-				System.out.println(symptomsList[codes[i]]);
-			}
-			System.out.print("Press 1 for Yes\n" + "Press 2 for No\n");
-			String ans = sc.next();
-			if (ans == "1") {
-				for (int i=0; i<=size; i++) {
-					symptoms[codes[i]-1] = 1;
-				}
-			} else {
-				addSymptoms(); //anadromh giati mallon evale lathos symptwmata
-			}
-		}
-		return symptoms;
+		} while (wrongAnswer) ;
 
+	}
+
+	private static boolean wrongAnswer(String s, String [] p) {
+
+		boolean wrong = (s.contains("0") && (p.length > 1)); //tsek an exei 0 enw den einai to mono stoixeio
+	    int len = s.length();
+	    for (int i = 0; i < len; i++) {
+
+	    	if ((Character.isLetter(s.charAt(i)))) {
+	            wrong = true; //tsek an exei grammata h apanthsh
+	        }
+
+	    }
+	    return wrong;
 	}
 
 	public void editContactList() {
@@ -161,16 +174,22 @@ public class User {
 	}
 
 	private Date registerDate() {
-		System.out.println("Enter the date you had contact with them. Use this pattern: DD/MM/YYYY");
-		String tempDate = sc.nextLine();
+		
+		boolean check = false;
 		Date date = null;
-		try {
-			date = new SimpleDateFormat("dd/MM/yyyy").parse(tempDate);
-		} catch (ParseException e) {
-			System.out.println("The format of the date was not right. Please enter the right format.");
-			registerDate();
-		}
+		do {
+			try {
+				System.out.println("Enter the date you had contact with them. Use this pattern: DD/MM/YYYY");
+				String tempDate = sc.nextLine();
+				date = new SimpleDateFormat("dd/MM/yyyy").parse(tempDate); 
+				check = false;
+			} catch (ParseException e) {
+				System.out.println("The format of the date was not right. Please enter the right format.");
+				check = true;
+			}
+		} while (check); //mexri na einai swsto to format
 		return date;
+
 	}
 
 	private void deleteContact() {
