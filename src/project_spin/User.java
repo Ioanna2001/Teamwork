@@ -23,6 +23,7 @@ public class User {
 	//ftiaxnei ton pinaka me ta symptoms
 	public static void makeSymptomsList() {
 
+		symptomsList = new String[13];
 		symptomsList[0] = "Fever";
 		symptomsList[1] = "Dry cough";
 		symptomsList[2] = "Tiredness";
