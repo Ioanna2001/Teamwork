@@ -1,4 +1,4 @@
-package project_spin;
+package det2020;
 
 import java.util.Scanner;
 import java.util.ArrayList;
