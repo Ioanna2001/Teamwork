@@ -17,28 +17,28 @@ public class User {
 	ArrayList<String> contactPhone;
 	ArrayList<String> contactEmail;
 	ArrayList<Date> contactDate;
-	protected static String[] symptomsList;
+	protected static final String[] symptomsList = {"Fever", "Dry cough", "Tiredness", "Aches and pains", "Sore throat", 
+			"Diarrhoea", "Conjuctivitis", "Headache", "Loss of taste or smell", 
+			"A rash on skin, or discolouration of fingers or toes", "Difficulty breathing or shortness of breath", 
+			"Cheast pain or pressure", "Loss of speech or movement"};
 	private static String answer;
 
-	//ftiaxnei ton pinaka me ta symptoms
-	public static void makeSymptomsList() {
-
-		symptomsList = new String[13];
-		symptomsList[0] = "Fever";
-		symptomsList[1] = "Dry cough";
-		symptomsList[2] = "Tiredness";
-		symptomsList[3] = "Aches and pains";
-		symptomsList[4] = "Sore throat";
-		symptomsList[5] = "Diarrhoea";
-		symptomsList[6] = "Conjuctivitis";
-		symptomsList[7] = "Headache";
-		symptomsList[8] = "Loss of taste or smell";
-		symptomsList[9] = "A rash on skin, or discolouration of fingers or toes";
-		symptomsList[10] = "Difficulty breathing or shortness of breath";
-		symptomsList[11] = "Cheast pain or pressure";
-		symptomsList[12] = "Loss of speech or movement";
-
-	}
+	/* PINAKAS SYMPTWMATWN
+	symptomsList = new String[13];
+	symptomsList[0] = "Fever";
+	symptomsList[1] = "Dry cough";
+	symptomsList[2] = "Tiredness";
+	symptomsList[3] = "Aches and pains";
+	symptomsList[4] = "Sore throat";
+	symptomsList[5] = "Diarrhoea";
+	symptomsList[6] = "Conjuctivitis";
+	symptomsList[7] = "Headache";
+	symptomsList[8] = "Loss of taste or smell";
+	symptomsList[9] = "A rash on skin, or discolouration of fingers or toes";
+	symptomsList[10] = "Difficulty breathing or shortness of breath";
+	symptomsList[11] = "Cheast pain or pressure";
+	symptomsList[12] = "Loss of speech or movement";
+	*/
 
 	//constructors
 	public User(String password, String name, String ssn, String username) {
@@ -87,7 +87,7 @@ public class User {
 			}
 			if (answer != "0") {
 				System.out.println("Are you sure you want to register these?");
-				for (int i=0; i<=codes.length; i++) {
+				for (int i = 0; i <= codes.length - 1; i++) {
 					System.out.println(symptomsList[codes[i]-1]); //tsekarei oti evale swsta stoixeia
 				}
 				System.out.print("Press 1 for Yes\n" + "Press 2 for No\n");
@@ -104,6 +104,7 @@ public class User {
 
 	}
 
+	// xrhsimopoieitai sthn addSymptoms
 	private static boolean wrongAnswer(String s, String [] p) {
 
 		boolean wrong = (s.contains("0") && (p.length > 1)); //tsek an exei 0 enw den einai to mono stoixeio
