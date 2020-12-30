@@ -2,25 +2,26 @@ package project_spin;
 
 import java.util.Arrays;
 import java.util.Collections;
+import project_spin.*;
 
-public static class Who {
+public class Who {
 
 	int countDead; //posoi nekroi
 	int countCured; //posoi therapeumenoi
 	int agd[]; // age group dead
-	String agegroups[] = {"0-19", "20-39", "40-59", "60-79", "80+"};
+	final String agegroups[] = {"0-19", "20-39", "40-59", "60-79", "80+"};
 	
 	public void printPatientCount () {
 		//ektipwnei ola ta krousmata tis efarmogis
 		System.out.println("The number of covid patients registered in our application are:");
-		System.out.println(getPatientCounter());
+		System.out.println(CovidCases.getPatientCounter());
 	}
 	
 	public void sufficientSample() {
 		//pou tha to kaloume??
 		//elegxei kai proeidopoiei an ta krousmata tis efarmogis mas einai liga
 		// etsi vste na einai aksiopista ta statistika
-		if (getPatientCounter() < 1000) {
+		if (CovidCases.getPatientCounter() < 1000) {
 			System.out.println("Our statistic sample is less than 1000. The results produced may not lead to accurate conclusions.");
 		}	
 	}
@@ -40,56 +41,72 @@ public static class Who {
 	
 	public int deathCount() {
 		//metraei tous nekrous apo covid
-		if (getStatus() == 1) {
-			countDead =+ 1;
+		if (CovidCases.getStatus() == 1) {
+			countDead = + 1;
 			return countDead;
 		}
 	}
 	
 	public int curedCount() {
 		//metraei osous exoun therapeutei apo covid
-		if (getStatus() == 0) {
-			countCured =+1;
+		if (CocvidCases.getStatus() == 0) {
+			countCured = + 1;
 			return countCured;
 		}
 	}
-	
-	public void frequentSymptoms() {
-		//vriskei to pio sixno simptoma pou eixan ta krousmata tis efarmogis mas
-		 int max = Collections.max(Arrays.asList(symptoms_counter()));
-		 System.out.println("The most frequent symptom(s) is/are:")
-		 for (int i=0; i <= symptomsList.length(); i++) {
-			 if (max = symptoms_counter(i)) {
-				 System.out.println(symptomsList(i));
-			 }
-		 }
+	public double symptomsPercentage() {
+		//vriskei to pososto emfanisis tou kathe symptom
+		double perc[];
+		for (int i=0; i<= User.symptomsList.length(); i++) {
+			perc[i] = CovidCases.symptoms_counter(i) / CovidCases.getPatientCounter() * 100; 
+		}
+		return perc;
+	}
+	protected int[][] symptomsFrequency() {
+		
+		double perc = symptomsPercentage();
+		int[] max = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+		for (int i = 0; i < counter.length; i++) {
+			for (int j = i+1; j < perc.length; j++) {
+				if (perc[j] > perc[i]) {
+			            int temp;
+				    temp = perc[i];
+				    perc[i] = perc[j];
+				    perc[j] = temp;
+				    temp = max[i];
+				    max[i] = max[j];
+				    max[j] = temp;
+				}
+			}
+		}
+		int[][] sym = new int {{perc},{max}}
+		return sym; //ftiaxnoume disdiastato pinaka sym me to pososto forwn pou exei 
+		//parousiastei ena symptom kai dipla ton deikti tou symptomatos
 	}
 	
-	public void symptomsPercentage() {
-		//vriskei to pososto emfanisis tou kathe symptom
-		double perc;
-		for (int i=0; i<= symptomsList.length(); i++) {
-			perc = symptoms_counter(i) / getPatientCounter() * 100; 
-			System.out.println(perc + " % of our registered patients have experienced" + symptomsList(i));
-		}
+	public void frequentSymptoms() {
+	 //typwnei thn seira syxnothtas twn symptomatwn 
+		for (i=0; i<=sym.length(); i++) {
+			System.out.println(sym[i][0] + "% of our registered patients have experienced" User.symptomsList[sym[i][1]]);
+		 }
 	}
 	
 	public void deathPercentage() {
 		//vriskei to pososto twn nekrwn apo covid tis efarmogis mas
-		double dperc = countDead / getPatientCounter() * 100;
+		double dperc = countDead / CovidCases.getPatientCounter() * 100;
 		System.out.println(dperc + "% of our registered covid patients have passed away.");
 	}
 	
 	public void curedPercentage() {
 		//vriskei to pososto twn therapeumenwn apo covid tis efarmogis mas
-		double cperc = countCured / getPatientCounter() * 100;
+		double cperc = countCured / CovidCases.getPatientCounter() * 100;
 		System.out.println(cperc + "% of our registered covid patients have been cured.");
 	}
 	
 	public void ageMortality() {
 		//otan kaneis update sto status
 		//kalei tin ageGroups gia tous nekrous tis efarmogis
-		if (getStatus() ==1) {
+		if (CovidCases.getStatus() == 1) {
 			ageGroups(agd);
 		}
 	}
@@ -113,12 +130,12 @@ public static class Who {
 	
 	public double deathPercentage(int num) {
 		//vriskei to pososto twn nekrwn apo covid tis efarmogis mas ana ilikiako group
-		return double dperc_ag = countDead / ageGroups() * 100; //xreiazomaste edw ton pinaka pou tha ftiaxtei apo tin covidcases
+		return double dperc_ag = countDead / CovidCases.ageGroups() * 100; //xreiazomaste edw ton pinaka pou tha ftiaxtei apo tin covidcases
 		}
 	
 	public void deathsPerAge() {
 		// kalei tin deathPercentage gia kathe ilikiako group kai ektypwnei tin thnisimotita tou
-		for (int i=0; i<=4; i++) {
+		for (int i=0; i <= 4; i++) {
 			System.out.println(deathPercentage(agd[i]) + "% of this age group:" + agegroups[i] + "have passed away.");
 		} 
 	}
