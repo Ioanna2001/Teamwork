@@ -1,0 +1,27 @@
+language: java
+script: mvn test -f ./source/pom.xml
+script: gulp travis
+before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+- git lfs pull
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk8
+  addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      os: windows
+  jobs:
+  include:
+    - stage: test
+      script: ./test 1
+    - # stage name not required, will continue to use `test`
+      script: ./test 2
+    - stage: deploy
+      script: ./deploy
+  stages:
+  - compile
+  - test
+  - deploy

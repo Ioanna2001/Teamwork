@@ -1,11 +1,16 @@
 package project_spin;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.ArrayList;
 /* @Ioanna2001
  *@VasilisLazaridis
  */
-public class CovidCases extends User {
+class CovidCases extends User {
+	//san kleidi exei to ssn toy xrhsth 
+	/*h boolean timh einai true an to kroysma exei kanei sign up 
+	kai exei tsekaristei to ssn toy*/
+	private static HashMap<Integer, Boolean> checkedSsn = new HashMap<Integer, Boolean>();
 	private static int cured;
 	private static int deaths;
 	protected static int[] symptoms_counter = new int[13];
@@ -15,19 +20,20 @@ public class CovidCases extends User {
 	//statikes listes gia na kratame dedomena
 	//bash dedomenwn twn amka twn asthenwn
 	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
+	//metraei posa krousmata exei kathe perifereia
 	protected static ArrayList<String> email = new ArrayList<String>();
-	private static ArrayList<String> location = new ArrayList<String>();
+	private static int[] location_counter = new int[13];
 	private static ArrayList<Integer> phone = new ArrayList<Integer>();
 	//pedia
 	private int patientSsn;
-	private String patientLocation;
+	private Location patientLocation;
 	//status=0 patient cured; status=1 patient passed away
 	//gia xeirismo apo eody
 	private int status;
 //kataskeyh kataskeyastwn 
 //kataskeyasths gia osous eisagoyn location
 	
-	public CovidCases(String location, int ssn) {
+	public CovidCases(Location location, int ssn) {
 		//kalesma toy kataskeyasth ths yperklashs
 		CovidCases(ssn);
 		addLocation( location);
@@ -43,9 +49,8 @@ public class CovidCases extends User {
 		//arxikopoiei ta pedia kai tis listes
 		addCase(this);
 		patientSsn = ssn;
-		addSsn(ssn);
+		ssn.add(s);
 		addSymptoms_Counter(super.symptoms);
-		addSsn(ssn);
 		addPhone(super.phone);
 		addEmail(super.email);
 	}
@@ -54,6 +59,7 @@ public class CovidCases extends User {
 	protected boolean checkSsn(int s) {
 		for (int i:ssn) {
 			if (i == s) {
+				checkedSsn.put(s, true);
 				return true;
 			}
 		}
@@ -72,19 +78,24 @@ public class CovidCases extends User {
 	}
 //protected gia na thn xeirizetai kai o eody
 	protected static void addSsn( Integer s) {
-		ssn.add(s);
-	}
-
-//methodoi gia eisagvgh timwn stis listes
-	private static void addLocation( String l) {
-		if (location.contains(l)) {
-			return;
-		} else {
-			location.add(l);
-		}
 		
+		Ssn.writeSsn(s);
+		if (checkedSsn.containsValue(s) == false) {
+			checkedSsn.put(s, false);
+		}
 	}
 
+//methodos gia ayjhsh toy counter twn perioxwn
+	private static void addLocation(Location l) {
+		int i = 0;
+		for (Location loc : Location.values()) {
+			if (loc.equals(l)) {
+				location_counter[i] ++;
+			}
+			i++;
+		}
+	}
+//methodoi gia eisagwgh timwn stis listes
 	private static void addEmail( String e) {
 		email.add(e);
 	}
@@ -156,20 +167,20 @@ public class CovidCases extends User {
 		return patientCounter;
 	}
 
-	protected int casesPerLocation(String l) {
+	protected int casesPerLocation(Location l) {
 		int counter = 0;
 		for (CovidCases cc: cases) {
-			if (cc.patientLocation.contentEquals(l)) {
+			if (cc.patientLocation.equals(l)) {
 				counter++;
 			}
 		}
 		return counter;
 	}
 
-	protected int[] casesFoAllLocations() {
+	protected int[] casesForAllLocations() {
 		int i = 0;
-		int counter[] = new int[location.size()];
-		for (String l:location) {
+		int counter[] = new int[location_counter.length];
+		for (Location l:Location.values()) {
 			counter[i] = casesPerLocation(l);
 			i++;
 		}
@@ -177,11 +188,5 @@ public class CovidCases extends User {
 	}
 
 	
-	
 }
-
-
-
-
-
 
