@@ -1,5 +1,7 @@
 package project_spin;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -17,14 +19,16 @@ class CovidCases extends User {
 	//counter asthenwn
 	protected static int patientCounter = 0;
 	protected static ArrayList<CovidCases> cases = new ArrayList<CovidCases>();
+	//hlikia asthenwn
+	protected static ArrayList<Integer> age = new ArrayList<Integer>();
 	//statikes listes gia na kratame dedomena
 	//bash dedomenwn twn amka twn asthenwn
 	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
 	//metraei posa krousmata exei kathe perifereia
 	protected static ArrayList<String> email = new ArrayList<String>();
 	private static int[] location_counter = new int[13];
-	private static ArrayList<Integer> phone = new ArrayList<Integer>();
 	//pedia
+	private int patientAge;
 	private int patientSsn;
 	private Location patientLocation;
 	//status=0 patient cured; status=1 patient passed away
@@ -33,26 +37,27 @@ class CovidCases extends User {
 //kataskeyh kataskeyastwn 
 //kataskeyasths gia osous eisagoyn location
 	
-	public CovidCases(Location location, int ssn) {
+	public CovidCases(Location location, int s, String password, String name, String email, int age) {
 		//kalesma toy kataskeyasth ths yperklashs
-		CovidCases(ssn);
+		this(s, password, name, email, age);
 		addLocation( location);
 		patientLocation = location;
     }
 //katakseyasths gia osous den ebalan topothesia
 
-	public CovidCases(int ssn) {
+	public CovidCases(int s, String password, String name, String email, int age) {
 		//kalei ton kataskeyasth ths superclass
-		super();
+		super(password, name, email);
 		//aujanei ton arithmo twn asthenwn
 		patientCounter ++;
 		//arxikopoiei ta pedia kai tis listes
 		addCase(this);
-		patientSsn = ssn;
+		patientSsn = s;
 		ssn.add(s);
 		addSymptoms_Counter(super.symptoms);
-		addPhone(super.phone);
-		addEmail(super.email);
+		addEmail(email);
+		patientAge = age;
+		addAge(age);
 	}
 
 	//tsekarei an yparxei to ssn sth bash dedomenwn
@@ -96,27 +101,17 @@ class CovidCases extends User {
 		}
 	}
 //methodoi gia eisagwgh timwn stis listes
-	private static void addEmail( String e) {
+	private static void addEmail(String e) {
 		email.add(e);
 	}
 
-	private static void addPhone(int p) {
-		phone.add(p);
-	}
-
-	private static void addCase( CovidCases c) {
+	private static void addCase(CovidCases c) {
 		cases.add(c);
 	}
-//checking if the user entered email of phone
-	protected boolean checkEmailOrPhone() {
-		if (super.phone == null ) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
 
+	private static void addAge(int a) {
+		age.add(a);
+	}
 //counter sunolikwn symptwmatwn kroysmatwn
 	protected static  void addSymptoms_Counter(int[] s) {
 		for(int i=0;i<13;i++) {
@@ -187,6 +182,75 @@ class CovidCases extends User {
 		return counter;
 	}
 
+	protected double percentageOfDeaths() {
+		double x = 0;
+		try {
+			x = ((double) deaths / (double) patientCounter) * 100;
+		}
+		catch (ArithmeticException e) {
+			System.err.println("0 Cases");
+		}
+		return x;
+	}
+
+	protected double percentageOfCured() {
+		double x = 0;
+		try {
+			x = ((double) cured / (double) patientCounter) * 100;
+		}
+		catch (ArithmeticException e) {
+			System.err.println("0 Cases");
+		}
+		return x;
+	}
+
+	protected int ageAverage() {
+		int x = 0;
+		for (int i : age) {
+			x += i;
+		}
+		try {
+			x = (x / patientCounter);
+		}
+		catch (ArithmeticException e) {
+			System.err.println("0 Cases");
+		}
+		return x;
+	}
+
+	protected int[] ageAveragePerSymptom() {
+		int[] counter = new int[13];
+		for (CovidCases i : cases) {
+			for (int j = 0; j < 13; j++) {
+				if (i.symptoms[j] == 1) {
+					counter[j] += i.patientAge;
+				}
+			}
+		}
+		try {
+			for (int i = 0; i < 13; i++) {
+				counter[i] /= patientCounter;
+			}
+		} catch (ArithmeticException e) {
+			System.err.println("0 Cases");
+		}
+		return counter;
+	}
+//lest squares prediction method
+	protected int casesPrediction() {
+		
+		class Y {
+			long y = 31 /*march*/+ 3 /*april*/ + 31 /*may*/ 
+					+ 30 /*june*/ + 31 /*july*/ +31 /*august*/ + 30 /*september*/
+					+ 31 /*octobre*/ + 30 /*november*/ + 31 /*december*/ + ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
+		}
+
+		class X {
+			long x = 1307 /*march*/ + 1277 /*april*/ + 334 /*may*/ + 500 /*june*/
+					+ 1098 /*july*/ + 5994 /*august*/ + 8222 /*september*/ + 20367 /*octobre*/ +  ;
+		}
+	}
 	
 }
+
 
