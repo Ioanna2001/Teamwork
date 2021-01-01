@@ -3,6 +3,7 @@ package det2020;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 final public class Corona {
 	public static void main(Strings[] args) {
@@ -33,10 +34,18 @@ final public class Corona {
 		}
 		// if you want to sing up
 		Scanner obj= new Scanner(System.in);
-		System.out.print("Please enter your name");
-		String name = obj.nextLine();
-		System.out.println("Please enter your status:/nC for covid patient/nF for first contact");
-		String status = obj.nextLine();
+		try {
+			System.out.print("Please enter your name*");
+			String name = obj.nextLine();
+		} catch (NullPointerException e) {
+			System.out.print("Please make sure the name field is not empty");
+		}
+		try {
+			System.out.println("Please enter your status:/nC for covid patient/nF for first contact*");
+			String status = obj.nextLine();
+		} catch (Exception e) {
+			// ti eksairesh bazw edwww pou thelw mono C kai F
+		}	
 		//date eggrafhs
 		LocalDateTime signupdate = LocalDateTime.now();  
 		
@@ -54,27 +63,43 @@ final public class Corona {
 				addContact();
 			}
 		}
+		symptomsListing(); //katagrafh symptwmatwn (mesa sth methodo h enhmerwsh gia test)
 		if (status == "C") {
 			try {
 				System.out.print("Please enter your SSN *")
 				int ssn = obg.nextInt();
-				System.out.print("Please enter your email or phone *");
+			} catch (NullPointerException e) {
+				System.out.print("Please make sure you entered your SSN. Try again");
+			}
+			try {
+				System.out.print("Please enter your email*");
 				String email = obj.nextLine(); 
-			} catch (NullPointerException e) 
-				System.out.print("Please enter you region");
-				String region = obj.nextLine();
-				if (region = null) {
-					CovidCases patient = new CovidCases(region, ssn);
-				} else {
-					CovidCases patient = new CovidCases(ssn);
-				}
-				symptomsListing(); //katagrafh symptwmatwn
-				//stelnoume password
+			} catch (NullPointerException e) {
+				System.out.print("Please make sure you entered your email. Try again ");
+			}
+			System.out.print("Please enter you region");
+			String region = obj.nextLine();
+			if (region = null) {
+				CovidCases patient = new CovidCases(region, ssn);
+			} else {
+				CovidCases patient = new CovidCases(ssn);
+			}
+			
 		} else if (status == "F") {
-			System.out.print("Please enter your verification code");
-			String ver_code = obj.nextLine();
-			System.out.print("Please enter your email or phone");
-			String email = obj.nextLine();
+			try {
+				System.out.print("Please enter your verification code*");
+				String ver_code = obj.nextLine();
+			} catch (NullPointerException e) {
+				System.out.print("please make sure you entered your verification code");
+			}
+			try{
+				System.out.print("Please enter your email*");
+				String email = obj.nextLine();
+			} catch (NullPointerException e) {
+				System.out.print("please make sure you entered your email");
+			}	
+			System.out.print("Please enter your SSN ")
+			int ssn = obg.nextInt();
 			if (ssn = null) {
 				User us = new User(ver_code, name, name);
 			} else {
