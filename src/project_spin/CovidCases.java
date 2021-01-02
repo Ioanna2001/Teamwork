@@ -237,53 +237,67 @@ class CovidCases extends User {
 		}
 		return counter;
 	}
-//lest squares prediction method
-	protected static long casesPrediction() {
+
+/* **Least Squares Method**
+	static variables*/
+	//prosthesh hmerwn apo 1/3/2020 - 31/12/2020
+	static long sum_y = 31 + 30 + 31 + 30 + 31 +31 + 30+ 31 + 30 + 31;
+	//prosthesh mhniaiwn kroysmatwn apo 1/3/2020 - 31/12/2020
+	static long sum_x = 1307 + 1277 + 334 + 500 + 1098
+						+ 5994 + 8222 + 20367 + 66126 + 33783;
+	static long x_square = 1307 ^ 2 + 1277 ^ 2 + 334 ^ 2 + 500 ^ 2 + 1098 ^ 2
+			+ 5994 ^ 2 + 8222 ^ 2 + 20367 ^ 2 
+			+ 66126 ^ 2 + 33783 ^ 2;
+	static long xy_sum = 1307 * 31 + 1277 * 30 + 334 * 31 + 500 * 30
+						+ 1098 * 31 + 5994 * 31 + 8222 * 30 + 20367 * 31
+						+ 66126 * 30 + 33783 * 31;
+	static long n = 10;
+	static LocalDate date;
+	static LocalDate localDate = LocalDate.of(2020,  12,  31);
+	static LocalDate lastDate;
+
+	//inner class for data manipulation
+	class CasePrediction{
+
+		public CasePrediction(LocalDate date) {
+			lastDate = localDate;
+			localDate = LocalDate.now();
+			CovidCases.date = date;
+		}
+	
+		void updateSumY() {
+			sum_y += ChronoUnit.DAYS.between(lastDate, localDate);
+		}
+
+		void updateSumX() {
+			sum_x +=  + patientCounter;
+		}
+
+		void updateX_square() {
+			x_square += patientCounter ^ 2;
+		}
+
+		void updateXY_sum() {
+			xy_sum += ChronoUnit.DAYS.between(lastDate, localDate) * patientCounter;
+		}
 		
-		class Y {
-			long sum_y = 31 /*march*/+ 30 /*april*/ + 31 /*may*/ 
-					+ 30 /*june*/ + 31 /*july*/ +31 /*august*/ + 30 /*september*/
-					+ 31 /*octobre*/ + 30 /*november*/ + 31 /*december*/;
-
-			void updateSum() {
-				sum_y += ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
-			}
+		void updateN() {
+			n += ChronoUnit.MONTHS.between(lastDate, localDate);
 		}
+	}
 
-		class X {
-			long sum_x = 1307 /*march*/ + 1277 /*april*/ + 334 /*may*/ + 500 /*june*/
-					+ 1098 /*july*/ + 5994 /*august*/ + 8222 /*september*/ + 20367 /*octobre*/
-					+ 66126 /*november*/ + 33783 /*deecember*/;
-			long x_square = 1307 ^ 2 /*march*/ + 1277 ^ 2/*april*/ + 334 ^ 2 /*may*/ + 500 ^ 2 /*june*/
-					+ 1098 ^ 2 /*july*/ + 5994 ^ 2 /*august*/ + 8222 ^ 2 /*september*/ + 20367 ^ 2 /*octobre*/
-					+ 66126 ^ 2 /*november*/ + 33783 ^ 2 /*deecember*/;
-			long xy_sum = 1307 * 31/*march*/ + 1277 * 30/*april*/ + 334 * 31/*may*/ + 500 * 30/*june*/
-					+ 1098 * 31/*july*/ + 5994 * 31/*august*/ + 8222 * 30/*september*/ + 20367 * 31/*octobre*/
-					+ 66126 * 30/*november*/ + 33783 * 31/*deecember*/;
-
-			void updateSum() {
-				sum_x +=  + patientCounter;
-			}
-
-			void updateX_square() {
-				x_square += patientCounter ^ 2;
-			}
-
-			void updateXY_sum() {
-				xy_sum += ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now()) * patientCounter;
-			}
-		}
-
-		X x = new X();
-		x.updateSum();
-		x.updateX_square();
-		x.updateXY_sum();
-		Y y = new Y();
-		y.updateSum();
-		long n = 10 + ChronoUnit.MONTHS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
-		long a = y.sum_y / n;
-		long b = x.xy_sum / x.x_square;
-		return a + b * 
+	//o eody kalei ayth th methodo kai bazei thn hmeromhnia poy thelei na problepsei posa kroysmata ua yparxoyn
+	protected long getMonthlyPredection(int day, int month, int year) {
+		CasePrediction prediction = new CasePrediction(LocalDate.of(day, month, year));
+		prediction.updateN();
+		prediction.updateSumX();
+		prediction.updateSumY();
+		prediction.updateX_square();
+		prediction.updateXY_sum();
+		//math formula
+		long a = (n * xy_sum - (sum_x *sum_y)) / (n * x_square - sum_x);
+		long b = ((x_square * sum_y) - (xy_sum * sum_x)) / (n * x_square - sum_x);
+		return a * (n + ChronoUnit.MONTHS.between(localDate, date)) + b;
 	}
 }
 
