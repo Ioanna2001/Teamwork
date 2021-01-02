@@ -161,7 +161,7 @@ class CovidCases extends User {
 	protected int getPatientCounter() {
 		return patientCounter;
 	}
-
+//deixnei gia thn topothesia pou bazeis ta kroysmata poy exei
 	protected int casesPerLocation(Location l) {
 		int counter = 0;
 		for (CovidCases cc: cases) {
@@ -171,7 +171,8 @@ class CovidCases extends User {
 		}
 		return counter;
 	}
-
+//epistrefei enan pinaka opoy h kathe thesh antistoixei 
+//se mia perioxh kai dexnei th syxnothta twn kroysmatwn gia oles tis perioxes
 	protected int[] casesForAllLocations() {
 		int i = 0;
 		int counter[] = new int[location_counter.length];
@@ -237,20 +238,52 @@ class CovidCases extends User {
 		return counter;
 	}
 //lest squares prediction method
-	protected int casesPrediction() {
+	protected static long casesPrediction() {
 		
 		class Y {
-			long y = 31 /*march*/+ 3 /*april*/ + 31 /*may*/ 
+			long sum_y = 31 /*march*/+ 30 /*april*/ + 31 /*may*/ 
 					+ 30 /*june*/ + 31 /*july*/ +31 /*august*/ + 30 /*september*/
-					+ 31 /*octobre*/ + 30 /*november*/ + 31 /*december*/ + ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
+					+ 31 /*octobre*/ + 30 /*november*/ + 31 /*december*/;
+
+			void updateSum() {
+				sum_y += ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
+			}
 		}
 
 		class X {
-			long x = 1307 /*march*/ + 1277 /*april*/ + 334 /*may*/ + 500 /*june*/
-					+ 1098 /*july*/ + 5994 /*august*/ + 8222 /*september*/ + 20367 /*octobre*/ +  ;
-		}
-	}
-	
-}
+			long sum_x = 1307 /*march*/ + 1277 /*april*/ + 334 /*may*/ + 500 /*june*/
+					+ 1098 /*july*/ + 5994 /*august*/ + 8222 /*september*/ + 20367 /*octobre*/
+					+ 66126 /*november*/ + 33783 /*deecember*/;
+			long x_square = 1307 ^ 2 /*march*/ + 1277 ^ 2/*april*/ + 334 ^ 2 /*may*/ + 500 ^ 2 /*june*/
+					+ 1098 ^ 2 /*july*/ + 5994 ^ 2 /*august*/ + 8222 ^ 2 /*september*/ + 20367 ^ 2 /*octobre*/
+					+ 66126 ^ 2 /*november*/ + 33783 ^ 2 /*deecember*/;
+			long xy_sum = 1307 * 31/*march*/ + 1277 * 30/*april*/ + 334 * 31/*may*/ + 500 * 30/*june*/
+					+ 1098 * 31/*july*/ + 5994 * 31/*august*/ + 8222 * 30/*september*/ + 20367 * 31/*octobre*/
+					+ 66126 * 30/*november*/ + 33783 * 31/*deecember*/;
 
+			void updateSum() {
+				sum_x +=  + patientCounter;
+			}
+
+			void updateX_square() {
+				x_square += patientCounter ^ 2;
+			}
+
+			void updateXY_sum() {
+				xy_sum += ChronoUnit.DAYS.between(LocalDate.of(2020, 12, 31), LocalDate.now()) * patientCounter;
+			}
+		}
+
+		X x = new X();
+		x.updateSum();
+		x.updateX_square();
+		x.updateXY_sum();
+		Y y = new Y();
+		y.updateSum();
+		long n = 10 + ChronoUnit.MONTHS.between(LocalDate.of(2020, 12, 31), LocalDate.now());
+		long a = y.sum_y / n;
+		long b = x.xy_sum / x.x_square;
+		return a + b * 
+	}
+}
 
