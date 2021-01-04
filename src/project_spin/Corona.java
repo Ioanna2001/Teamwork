@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 final public class Corona {
-	public static void main(Strings[] args) {
+	public static void main(String[] args) {
 		// if you want to log in
 		Scanner obj = new Scanner(System.in);
 		System.out.println("Enter your email or phone");

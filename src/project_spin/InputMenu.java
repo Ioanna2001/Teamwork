@@ -1,3 +1,4 @@
+package project_spin;
 import java.util.Scanner;
 
 public class InputMenu {
@@ -14,7 +15,7 @@ public class InputMenu {
 		switch(q.nextInt())
 		{
 			case 0:
-			System.out.printl("Thank you, goodbye.");
+			System.out.println("Thank you, goodbye.");
 			break;
 
 			case 9:
@@ -53,7 +54,8 @@ public class InputMenu {
 		case 4: //Delete account	
 		System.out.println("Are you sure you want to delete? YES/NO");
 		Scanner a = new Scanner(System.in);
-		if (a = 'YES') {
+		String b = a.nextLine();
+		if (b.equals("YES")) {
 			removePatient(cc);
 			break;
 		} else {

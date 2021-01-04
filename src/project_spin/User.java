@@ -41,16 +41,6 @@ public class User {
 	*/
 
 	//constructors
-	public User(String password, String name, String ssn, String username) {
-
-		this.password = password;
-		this.name = name;
-		this.symptoms = new int[13];
-		this.userSsn = ssn;
-		this.username = username;
-
-	}
-
 	public User(String password, String name, String username) {
 
 		this.password = password;
