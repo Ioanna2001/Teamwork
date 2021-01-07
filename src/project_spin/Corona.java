@@ -5,12 +5,29 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-final public class Corona {
-	public static void main(String[] args) {
-		// if you want to log in
+public class Corona {
+	public static void main(Strings[] args) {
+		Scanner obj = new Scanner(System.in);
+		System.out.println("Welcome to EODY Platform");
+		System.out.println("If you want to log in press 1\nIf you want to sing up press 2");
+		System.out.print("Selection: ");
+		switch (in.nextInt()) 
+		{
+		case 1: //log in
+		login();
+		break;
+		case 2: // sing up
+		singup();
+		break;
+		default:
+		System.err.println("Unrecognized option");
+		}
+	}
+	// if you want to log in
+	public static void login() {
 		String status;
 		Scanner obj = new Scanner(System.in);
-		System.out.println("Enter your email or phone");
+		System.out.println("Enter your email");
 		String username = obj.nextLine();
 		System.out.println("Enter your password");
 		String password = obj.nextLine();
@@ -33,7 +50,9 @@ final public class Corona {
 			System.err.println("This mail or phone does not exist");
 			System.err.println("Please try again");
 		}
-		// if you want to sing up
+	}
+	// if you want to sing up
+	public static void singup() {
 		Scanner obg = new Scanner(System.in);
 		try {
 			System.out.print("Please enter your name*");
@@ -97,14 +116,13 @@ final public class Corona {
 			}
 		}
 	}
-			//stelnoume password
-		protected static SendEmail incorrectemail() {​​
-			SendEmail email = new SendEmail();
-			email.email(password);
-			//tzo: sthn metablhth username mpainei to kainoyrio email(isws)
-			}​​
+	//stelnoume password
+	protected static SendEmail incorrectemail() {
+		SendEmail email = new SendEmail();
+		email.email(password);
+		//tzo: sthn metablhth username mpainei to kainoyrio email(isws)
+		}
 }
-	
 
 
 
