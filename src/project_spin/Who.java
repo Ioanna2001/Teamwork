@@ -1,8 +1,11 @@
 package project_spin;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
 import project_spin.*;
+import project_spin.CovidCases.CasePrediction;
 
 public class Who {
 
@@ -151,6 +154,154 @@ public class Who {
 		System.out.println(ageAveragePerSymptom.counter[i] + "is the average age of our registered covid patients who have experienced" + User.symptomsList[i]);
 		}
 	}
-	
-	
-}
+
+	/*STATISTIKA STOIXEIA
+	 * arithmos kroysmatwn
+	 * arithmos kroysmatwn ana perioxh
+	 * pio syxna symptwmata
+	 * pososto thanatwn
+	 * pososto therapeymenwn
+	 */
+		protected int getPatientCounter() {
+			return CovidCases.patientCounter;
+		}
+	//deixnei gia thn topothesia pou bazeis ta kroysmata poy exei
+		protected int casesPerLocation(Location l) {
+			int counter = 0;
+			for (CovidCases cc: CovidCases.cases) {
+				if (cc.getPatientLocation().equals(l)) {
+					counter++;
+				}
+			}
+			return counter;
+		}
+	//epistrefei enan pinaka opoy h kathe thesh antistoixei 
+	//se mia perioxh kai dexnei th syxnothta twn kroysmatwn gia oles tis perioxes
+		protected int[] casesForAllLocations() {
+			int i = 0;
+			int counter[] = new int[CovidCases.location_counter.length];
+			for (Location l:Location.values()) {
+				counter[i] = casesPerLocation(l);
+				i++;
+			}
+			return counter;
+		}
+
+		protected double percentageOfDeaths() {
+			double x = 0;
+			try {
+				x = ((double) CovidCases.getDeaths() / (double) CovidCases.patientCounter) * 100;
+			}
+			catch (ArithmeticException e) {
+				System.err.println("0 Cases");
+			}
+			return x;
+		}
+
+		protected double percentageOfCured() {
+			double x = 0;
+			try {
+				x = ((double) CovidCases.getCured() / (double) CovidCases.patientCounter) * 100;
+			}
+			catch (ArithmeticException e) {
+				System.err.println("0 Cases");
+			}
+			return x;
+		}
+
+		protected int ageAverage() {
+			int x = 0;
+			for (int i : CovidCases.age) {
+				x += i;
+			}
+			try {
+				x = (x / CovidCases.patientCounter);
+			}
+			catch (ArithmeticException e) {
+				System.err.println("0 Cases");
+			}
+			return x;
+		}
+
+		protected int[] ageAveragePerSymptom() {
+			int[] counter = new int[13];
+			for (CovidCases i : CovidCases.cases) {
+				for (int j = 0; j < 13; j++) {
+					if (i.symptoms[j] == 1) {
+						counter[j] += i.getPatientAge();
+					}
+				}
+			}
+			try {
+				for (int i = 0; i < 13; i++) {
+					counter[i] /= CovidCases.patientCounter;
+				}
+			} catch (ArithmeticException e) {
+				System.err.println("0 Cases");
+			}
+			return counter;
+		}
+
+	/* **Least Squares Method**
+		static variables*/
+		//prosthesh hmerwn apo 1/3/2020 - 31/12/2020
+		static long sum_y = 31 + 30 + 31 + 30 + 31 +31 + 30+ 31 + 30 + 31;
+		//prosthesh mhniaiwn kroysmatwn apo 1/3/2020 - 31/12/2020
+		static long sum_x = 1307 + 1277 + 334 + 500 + 1098
+							+ 5994 + 8222 + 20367 + 66126 + 33783;
+		static long x_square = 1307 ^ 2 + 1277 ^ 2 + 334 ^ 2 + 500 ^ 2 + 1098 ^ 2
+				+ 5994 ^ 2 + 8222 ^ 2 + 20367 ^ 2 
+				+ 66126 ^ 2 + 33783 ^ 2;
+		static long xy_sum = 1307 * 31 + 1277 * 30 + 334 * 31 + 500 * 30
+							+ 1098 * 31 + 5994 * 31 + 8222 * 30 + 20367 * 31
+							+ 66126 * 30 + 33783 * 31;
+		static long n = 10;
+		static LocalDate date;
+		static LocalDate localDate = LocalDate.of(2020,  12,  31);
+		static LocalDate lastDate;
+
+		//inner class for data manipulation
+		class CasePrediction{
+
+			public CasePrediction(LocalDate date) {
+				lastDate = localDate;
+				localDate = LocalDate.now();
+				Who.date = date;
+			}
+		
+			void updateSumY() {
+				sum_y += ChronoUnit.DAYS.between(lastDate, localDate);
+			}
+
+			void updateSumX() {
+				sum_x +=  + CovidCases.patientCounter;
+			}
+
+			void updateX_square() {
+				x_square += CovidCases.patientCounter ^ 2;
+			}
+
+			void updateXY_sum() {
+				xy_sum += ChronoUnit.DAYS.between(lastDate, localDate) * CovidCases.patientCounter;
+			}
+			
+			void updateN() {
+				n += ChronoUnit.MONTHS.between(lastDate, localDate);
+			}
+		}
+
+		//o eody kalei ayth th methodo kai bazei thn hmeromhnia poy thelei na problepsei posa kroysmata ua yparxoyn
+		protected long getMonthlyPredection(int day, int month, int year) {
+			CasePrediction prediction = new CasePrediction(LocalDate.of(day, month, year));
+			prediction.updateN();
+			prediction.updateSumX();
+			prediction.updateSumY();
+			prediction.updateX_square();
+			prediction.updateXY_sum();
+			//math formula
+			long a = (n * xy_sum - (sum_x *sum_y)) / (n * x_square - sum_x);
+			long b = ((x_square * sum_y) - (xy_sum * sum_x)) / (n * x_square - sum_x);
+			return a * (n + ChronoUnit.MONTHS.between(localDate, date)) + b;
+		}
+	}
+

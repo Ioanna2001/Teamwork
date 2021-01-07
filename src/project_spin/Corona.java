@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Corona {
-	public static void main(Strings[] args) {
-		Scanner obj = new Scanner(System.in);
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
 		System.out.println("Welcome to EODY Platform");
 		System.out.println("If you want to log in press 1\nIf you want to sing up press 2");
 		System.out.print("Selection: ");
