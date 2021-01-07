@@ -6,9 +6,9 @@ import project_spin.*;
 
 public class Who {
 
-	int countDead; //posoi nekroi sthn efarmogh 
+	int countDead; //posoi nekroi sthn efarmogh
 	int countCured; //posoi therapeumenoi sthn efarmogh
-	int agd[]; // age group dead, nekroi se kathe hlikiakh omada
+	int agd[]; // age group dead, se kathe hlikiaki omada
 	final String agegroups[] = {"0-19", "20-39", "40-59", "60-79", "80+"};
 	
 	public void printPatientCount () {
@@ -139,4 +139,18 @@ public class Who {
 			System.out.println(deathPercentage(agd[i]) + "% of this age group:" + agegroups[i] + "have passed away.");
 		} 
 	}
+	
+	public void printAgeAverage() {
+		//typwnei ton meso oro ilikias twn asthenwn
+		System.out.println(CovidCases.ageAverage() + "is the average age of our registered covid patients.");
+	}
+	
+	public void printAgeAveragePerSymptom() {
+		//typwnei ton meso oro ilikas twn asthenwn ana symptwma
+		for (i=0;i <= User.symptomsList.length(); i++) {
+		System.out.println(ageAveragePerSymptom.counter[i] + "is the average age of our registered covid patients who have experienced" + User.symptomsList[i]);
+		}
+	}
+	
+	
 }
