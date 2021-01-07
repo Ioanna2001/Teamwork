@@ -116,6 +116,7 @@ public class User {
 
 	}
 
+	// ektupwnei tis hdh katagegramenes epafes tou xrhsth
 	public void printContacts() {
 
 		System.out.println("These are your registered contacts");
