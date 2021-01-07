@@ -1,4 +1,4 @@
-package det2020;
+package project_spin;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.Random;
 final public class Corona {
 	public static void main(String[] args) {
 		// if you want to log in
+		String status;
 		Scanner obj = new Scanner(System.in);
 		System.out.println("Enter your email or phone");
 		String username = obj.nextLine();
@@ -33,16 +34,16 @@ final public class Corona {
 			System.err.println("Please try again");
 		}
 		// if you want to sing up
-		Scanner obj= new Scanner(System.in);
+		Scanner obg = new Scanner(System.in);
 		try {
 			System.out.print("Please enter your name*");
-			String name = obj.nextLine();
+			String name = obg.nextLine();
 		} catch (NullPointerException e) {
 			System.out.print("Please make sure the name field is not empty");
 		}
 		try {
 			System.out.println("Please enter your status:/nC for covid patient/nF for first contact*");
-			String status = obj.nextLine();
+			status = obg.nextLine();
 		} catch (Exception e) {
 			// ti eksairesh bazw edwww pou thelw mono C kai F
 		}	
@@ -56,57 +57,52 @@ final public class Corona {
 				" 2) living in the same house or shared accommodation as someone who has COVID-19" +
 				" 3) sitting within 2 seats of someone who has COVID-19 on public transport or an airplane");
 		System.out.print("How many close contacts do you have?");
-		String ccg = obj.nextLine();
-		int ccnum = Integer.parseInt(ccg);
-		if ccnum != 0 {
+		int ccnum = obg.nextInt();
+		if (ccnum != 0) {
 			for (int i = 0; i < ccnum; i++) {
-				addContact();
+				user.addContact();
 			}
 		}
-		symptomsListing(); //katagrafh symptwmatwn (mesa sth methodo h enhmerwsh gia test)
-		if (status == "C") {
+		user.symptomsListing(); //katagrafh symptwmatwn (mesa sth methodo h enhmerwsh gia test)
+		if (status.equals("C")) {
+			//CovidCase object
 			try {
-				System.out.print("Please enter your SSN *")
+				System.out.print("Please enter your SSN *");
 				int ssn = obg.nextInt();
 			} catch (NullPointerException e) {
 				System.out.print("Please make sure you entered your SSN. Try again");
 			}
 			try {
 				System.out.print("Please enter your email*");
-				String email = obj.nextLine(); 
+				String email = obg.nextLine(); 
 			} catch (NullPointerException e) {
 				System.out.print("Please make sure you entered your email. Try again ");
 			}
+			//tzo: Send verification code
+			//tzo: verify code
 			System.out.print("Please enter you region");
-			String region = obj.nextLine();
-			if (region = null) {
+			String region = obg.nextLine();
+			//tzo: ananewsh kataskeyastwn
+			if (region == null) {
 				CovidCases patient = new CovidCases(region, ssn);
 			} else {
 				CovidCases patient = new CovidCases(ssn);
 			}
-			
-		} else if (status == "F") {
+		} else if (status.equals("F")) {
 			try {
 				System.out.print("Please enter your verification code*");
-				String ver_code = obj.nextLine();
+				String ver_code = obg.nextLine();
 			} catch (NullPointerException e) {
 				System.out.print("please make sure you entered your verification code");
 			}
-			try{
-				System.out.print("Please enter your email*");
-				String email = obj.nextLine();
-			} catch (NullPointerException e) {
-				System.out.print("please make sure you entered your email");
-			}	
-			System.out.print("Please enter your SSN ")
-			int ssn = obg.nextInt();
-			if (ssn = null) {
-				User us = new User(ver_code, name, name);
-			} else {
-				User us = new User(ver_code, name, ssn, name);
-			}	
-			//stelnoume password
+		}
 	}
+			//stelnoume password
+		protected static SendEmail incorrectemail() {​​
+			SendEmail email = new SendEmail();
+			email.email(password);
+			//tzo: sthn metablhth username mpainei to kainoyrio email(isws)
+			}​​
 }
 	
 
