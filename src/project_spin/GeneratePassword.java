@@ -1,4 +1,4 @@
-package det2020;
+package project_spin;
 
 import java.util.Random;
 

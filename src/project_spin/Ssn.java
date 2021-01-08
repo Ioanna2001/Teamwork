@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 class Ssn {
-	static private File file = new File("C:\\Users\\Ioanna\\Documents\\Git\\Teamwork\\src\\project_spin\\projectSsn");
+	static private File file = new File("https://github.com/Ioanna2001/Teamwork/tree/main/src/project_spin/projectSsn//");
 //eisagwgh ssn sto arxeio
 	protected static void writeSsn(int ssn) {
 		DataOutputStream output;
