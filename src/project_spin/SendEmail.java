@@ -16,9 +16,8 @@ public class SendEmail {
 	protected String userEmail;
 	Scanner input = new Scanner(System.in);
 
-	protected SendEmail() {
-		System.out.println("Please enter your email");
-		userEmail= input.nextLine();
+	protected SendEmail(String email) {
+		userEmail= email;
 	}
 
 	protected void secondContactMail() {
