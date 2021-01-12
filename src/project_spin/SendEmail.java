@@ -55,7 +55,7 @@ public class SendEmail {
 			message.setText(firstContactMessage());
 		} catch (MessagingException e) {
 			System.err.println("Problem emailing second contacts");
-		}	
+		}
 	}
 
 	protected void covidCaseMail() {

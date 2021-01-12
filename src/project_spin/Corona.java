@@ -142,6 +142,7 @@ public class Corona {
 				System.out.println("Not Valid sign up");
 				return;
 			}
+
 			//o xrhsths eisagei to email
 			String email;
 			try {
