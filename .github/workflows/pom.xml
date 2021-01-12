@@ -46,7 +46,48 @@
     To suppress certain violations please review suppression filters.
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
+  <repositories>
+    <repository>
+      <id>jgit-repository</id>
+      <url>https://repo.eclipse.org/content/groups/releases/</url>
+    </repository>
+  </repositories>
 
+  <!-- Core Library -->
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>5.10.0.202012080955-r</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Smart HTTP Servlet -->
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.http.server</artifactId>
+      <version>5.10.0.202012080955-r</version>
+    </dependency>
+  </dependencies>
+
+  <!-- AWT UI Helpers -->
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.ui</artifactId>
+      <version>5.10.0.202012080955-r</version>
+    </dependency>
+  </dependencies>
+
+  <!-- JUnit Test Support -->
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.junit</artifactId>
+      <version>5.10.0.202012080955-r</version>
+    </dependency>
+  </dependencies>
 <module name = "Checker">
   <property name="charset" value="UTF-8"/>
 
