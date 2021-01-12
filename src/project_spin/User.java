@@ -53,14 +53,22 @@ public class User {
 	//methods
 	Scanner sc = new Scanner(System.in);
 
-	public void addSymptoms () { //to allaksame se void - epestrefe ton pinaka me ta symptoms
+	private void printSymptoms(int [] s) { //pairnei ws orisma enan pinaka me ta codes twn symptwmatwn pou tha typwsei
+
+		int n = s.length;
+		for (int i = 0; i < n; i++) {
+			System.out.println(s[i] + ". " + symptomsList[s[i]-1]);
+		}
+
+	}
+
+	public void addSymptoms () {
 
 		boolean wrongAnswer;
 		do {
 			System.out.println("Do you have any symptoms of the following?");
-			for (int i = 1; i < 14; i++) {
-				System.out.println(i + ". " + symptomsList[i-1]); //emfanizei ta symptwmata apo ton pinaka
-			}
+			int s [] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+			printSymptoms(s);
 			System.out.println("Please write the symptoms' code numbers separated by blank spaces\n" + 
 			"If you you don't have any symptoms press 0");
 			answer = sc.nextLine();
@@ -77,9 +85,7 @@ public class User {
 			}
 			if (answer != "0") {
 				System.out.println("Are you sure you want to register these?");
-				for (int i = 0; i <= codes.length - 1; i++) {
-					System.out.println(symptomsList[codes[i]-1]); //tsekarei oti evale swsta stoixeia
-				}
+				printSymptoms(codes);
 				System.out.print("Press 1 for Yes\n" + "Press 2 for No\n");
 				String ans = sc.next();
 				if (ans == "1") {

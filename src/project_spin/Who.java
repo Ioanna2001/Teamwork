@@ -8,7 +8,7 @@ import java.util.Collections;
 import javax.tools.DocumentationTool.Location;
 
 import project_spin.*;
-import project_spin.CovidCases.CasePrediction;
+import project_spin.CovidCases;
 
 public class Who {
 
@@ -20,14 +20,14 @@ public class Who {
 	public void printPatientCount() {
 		// ektipwnei ola ta krousmata tis efarmogis
 		System.out.println("The number of covid patients registered in our application are:");
-		System.out.println(CovidCases.getPatientCounter());
+		System.out.println(CovidCases.patientCounter);
 	}
 
 	public void sufficientSample() {
 		// pou tha to kaloume??
 		// elegxei kai proeidopoiei an ta krousmata tis efarmogis mas einai liga
 		// etsi vste na einai aksiopista ta statistika
-		if (CovidCases.getPatientCounter() < 1000) {
+		if (CovidCases.patientCounter < 1000) {
 			System.out.println(
 					"Our statistic sample is less than 1000. The results produced may not lead to accurate conclusions.");
 		}
@@ -47,7 +47,7 @@ public class Who {
 
 	public int deathCount() {
 		// metraei tous nekrous apo covid
-		if (CovidCases.getStatus() == 1) {
+		if (CovidCases.getStatus() == 1) { //h get status den einai static - APORIA DHMHTRAS 
 			countDead = +1;
 			return countDead;
 		}
@@ -55,7 +55,7 @@ public class Who {
 
 	public int curedCount() {
 		// metraei osous exoun therapeutei apo covid
-		if (CocvidCases.getStatus() == 0) {
+		if (CovidCases.getStatus() == 0) {
 			countCured = +1;
 			return countCured;
 		}
