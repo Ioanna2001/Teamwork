@@ -59,6 +59,7 @@ class CovidCases extends User {
 		patientAge = age;
 		addAge(age);
 	}
+
 	//tsekarei an yparxei to ssn sth bash dedomenwn
 	protected static boolean checkSsn(int s) {
 		for (int i:ssn) {

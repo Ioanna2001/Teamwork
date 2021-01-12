@@ -132,7 +132,7 @@ public class User {
 
 	}
 
-	private void addContact() {
+	protected void addContact() {
 
 		printContacts();
 		System.out.println("Do you want to add a new contact?\n" + "Press 1 for Yes\n" + "Press 2 for No\n");

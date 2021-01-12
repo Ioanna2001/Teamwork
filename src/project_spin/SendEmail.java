@@ -1,4 +1,5 @@
 package project_spin;
+
 import java.util.Scanner;
 import java.util.Properties;
 
