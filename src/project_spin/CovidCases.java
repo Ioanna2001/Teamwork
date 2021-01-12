@@ -28,7 +28,7 @@ class CovidCases extends User {
 	protected static ArrayList<String> email = new ArrayList<String>();
 	protected static int[] location_counter = new int[13];
 	//pedia
-	private int patientAge;
+	protected int patientAge;
 	private int patientSsn;
 	private Location patientLocation;
 	//status=0 patient cured; status=1 patient passed away
@@ -161,8 +161,8 @@ class CovidCases extends User {
 		} while((status != 0) || (status != 1));
 	}
 
-	protected int getStatus(CovidCases cc) {
-		return status;
+	protected int getStatus() { //evgala to orisma
+		return this.status;
 	}
 }
 
