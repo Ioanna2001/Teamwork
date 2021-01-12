@@ -10,38 +10,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import org.apache.commons.codec.binary.Base64;
 
 class Ssn {
-	URL url;
-	String username = "test2020-2021";
-	String password = "test20202021";
-	String file = "passwords";
-
-    try {
-        url = new URL("https://github.com/Ioanna2001/Teamwork/blob/main/src/project_spin/passwords");
-        URLConnection uc;
-        uc = url.openConnection();
-
-        uc.setRequestProperty("X-Requested-With", "Curl");
-        ArrayList<String> list=new ArrayList<String>();
-        String userpass = username + ":" + password;
-        String basicAuth = "Basic " + new String(new Base64().encode(userpass.getBytes()));//needs Base64 encoder, apache.commons.codec
-        uc.setRequestProperty("Authorization", basicAuth);
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-        String line = null;
-        while ((line = reader.readLine()) != null) 
-            file=file+line+"\n";
-        System.out.println(file);
-       // return file;
-
-    } catch (IOException e) {
-        System.out.println("Wrong username and password");
-       // return null;
-
-    }
-
+	
 	static private File f = new File("https://github.com/Ioanna2001/Teamwork/tree/main/src/project_spin/projectSsn//");
 //eisagwgh ssn sto arxeio
 	protected static void writeSsn(int ssn) {
