@@ -10,8 +10,10 @@ public class Tester {
 
 	public static void main(String[] args) {
 
-		Date date = new Date();
-		System.out.println(date);
+		//Date date = new Date();
+		//System.out.println(date);
+		Ssn.writeSsn(897546);
+		System.out.println(Ssn.readSsn());
 
 	}
 
