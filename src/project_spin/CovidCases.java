@@ -61,11 +61,15 @@ class CovidCases extends User {
 	}
 
 	//tsekarei an yparxei to ssn sth bash dedomenwn
-	protected boolean checkSsn(int s) {
+	protected static boolean checkSsn(int s) {
 		for (int i:ssn) {
 			if (i == s) {
-				checkedSsn.put(s, true);
-				return true;
+				if (checkedSsn.get(s) == true) {
+					return false;
+				} else {
+					checkedSsn.put(s, true);
+					return true;
+				}
 			}
 		}
 		return false;
