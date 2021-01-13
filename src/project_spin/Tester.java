@@ -16,7 +16,7 @@ public class Tester {
 	//	Ssn.writeSsn(897546);
 		//System.out.println(GeneratePassword.generatePassword(5));
 SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
-email.firstContactMail();
+email.secondContactMail();
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -12,6 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 	String from = "teamwork.covid.tracker@gmail.com";
+	String fromPassword = "teamwork20202021";
 	protected String password;
 	protected String userEmail;
 	Scanner input = new Scanner(System.in);
@@ -28,12 +30,21 @@ public class SendEmail {
 			System.err.println("Problem with second contact internet address");
 		}
 		Properties properties = new Properties();
-		Session session = Session.getDefaultInstance(properties, null);
+		properties.put("mail.smtp.socketfactory.port", "465");
+		properties.put("mail.smtp.port", "465");
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.auth", "true");
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {  
+		      protected PasswordAuthentication getPasswordAuthentication() {  
+		    	    return new PasswordAuthentication(from, fromPassword);  
+		    	      }  
+		    	    });
 		MimeMessage message = new MimeMessage(session);
 		try {
 			message.setFrom(from);
 			message.addRecipient( Message.RecipientType.TO, address);
 			message.setText(secondContactMessage());
+			message.setSubject("Covid Warning");
 		} catch (MessagingException e) {
 			System.err.println("Problem emailing second contacts");
 		}	
