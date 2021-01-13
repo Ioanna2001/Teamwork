@@ -1,8 +1,7 @@
 package project_spin;
-
+import javax.activation.DataHandler;
 import java.util.Scanner;
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -86,14 +85,14 @@ public class SendEmail {
 	}
 
 	protected String firstContactMessage() {
-		password = GeneratePassword.generatePassword(5);
+		password = String.valueOf(GeneratePassword.generatePassword(5));
 		//tsekarei pws o kwdikos den yparxei hdh
-		boolean flag = Passwords.checkPassword(password);
-		while (flag == false) {
-			password = GeneratePassword.generatePassword(5);
-			flag = Passwords.checkPassword(password);
-		}
-		Passwords.writePassword(password);
+		//boolean flag = Passwords.checkPassword(password);
+	//	while (flag == false) {
+	//		password = String.valueOf(GeneratePassword.generatePassword(5));
+	//		flag = Passwords.checkPassword(password);
+	//	}
+	//	Passwords.writePassword(password);
 		return "You have been in close contact with a Covid-19 patient. "
 				+ "Please follow the country's virus prevention protoco:\n"
 				+ "**1** You are required carantine in your house for 14 days"
@@ -111,11 +110,11 @@ public class SendEmail {
 	}
 
 	protected String covidCaseMessage() {
-		password = GeneratePassword.generatePassword(5);
+		password = String.valueOf(GeneratePassword.generatePassword(5));
 		//tsekarei pws o kwdikos den yparxei hdh
 		boolean flag = Passwords.checkPassword(password);
 		while (flag == false) {
-			password = GeneratePassword.generatePassword(5);
+			password = String.valueOf(GeneratePassword.generatePassword(5));
 			flag = Passwords.checkPassword(password);
 		}
 		Passwords.writePassword(password);

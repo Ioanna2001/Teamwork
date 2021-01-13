@@ -1,6 +1,7 @@
 package project_spin;
 
 import java.util.*;
+import javax.activation.DataHandler;
 import java.util.Date;
 import project_spin.User;
 
@@ -12,9 +13,10 @@ public class Tester {
 
 		//Date date = new Date();
 		//System.out.println(date);
-		Ssn.writeSsn(897546);
-		System.out.println(Ssn.readSsn());
-
+	//	Ssn.writeSsn(897546);
+		//System.out.println(GeneratePassword.generatePassword(5));
+SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
+email.firstContactMail();
 	}
 
 }
