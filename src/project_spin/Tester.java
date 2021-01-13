@@ -11,12 +11,31 @@ public class Tester {
 
 	public static void main(String[] args) {
 
-		//Date date = new Date();
-		//System.out.println(date);
-	//	Ssn.writeSsn(897546);
-		//System.out.println(GeneratePassword.generatePassword(5));
-SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
-email.secondContactMail();
+		
+		
+	}
+
+	private static void testWho() {
+		
+	}
+
+	private static void testUser() {
+		Date date = new Date();
+		System.out.println(date);
+	}
+
+	private static void testCc() {
+		
+	}
+
+	private static void testMail() {
+		SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
+		email.secondContactMail();
+	}
+
+	private static void testSsn() {
+		Ssn.writeSsn(897546);
+		System.out.println(GeneratePassword.generatePassword(5));
 	}
 
 }
