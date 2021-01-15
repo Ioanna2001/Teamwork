@@ -12,7 +12,30 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 class Ssn {
-	
+	/*
+	 * protected static ArrayList<Integer> ssnInitiator(ArrayList<Integer> ssn) {
+	 * 	ssn.put(123456);
+	 * ssn.put(789012);
+	 * ssn.put(738910);
+	 * ssn.put(739200);
+	 * ssn.put(111222);
+	 * ssn.put(222333);
+	 * ssn.put(333444);
+	 * ssn.put(555666);
+	 * ssn.put(777888);
+	 * ssn.put(999000);
+	 * ssn.put(111111);
+	 * ssn.put(222222);
+	 * ssn.put(3333330;
+	 * ssn.put(444444);
+	 * ssn.put(555555);
+	 * ssn.put(777777);
+	 * ssn.put(888888);
+	 * ssn.put(999999);
+	 * ssn.put(000000);
+	 * return ssn;
+	 * }
+	 */
 	static private File f = new File("https://github.com/Ioanna2001/Teamwork/tree/main/src/project_spin/projectSsn//");
 //eisagwgh ssn sto arxeio
 	protected static void writeSsn(int ssn) {

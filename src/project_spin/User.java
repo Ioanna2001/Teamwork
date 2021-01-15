@@ -6,15 +6,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class User {
-
+//tzo: Guyz an mporeite sbste thn hmeromhnia twn epafwn giati de blepw na th xrhsimopoioyme
+	//kai kante mia methodo poy apothikeyei toys kwdikoys twn user sthn passwords
+	//mesa apo ton kataskeyasth :D
 	//attributes
-	String password; //kwdikos gia eisodo sthn efarmogh
-	String name; 
-	String userSsn;
-	String username; //einai to email
-	ArrayList<String> contactName; //lista me tis epafes kathe user (deuteres epafes)
-	ArrayList<String> contactEmail; //lista me ta emails twn epafwn kathe user
-	ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
+	protected static ArrayList<String> passwords = new ArrayList<String>();
+	private String password; //kwdikos gia eisodo sthn efarmogh
+	private String name; 
+	private String userSsn;
+	private String username; //einai to email
+	protected ArrayList<String> contactName; //lista me tis epafes kathe user (deuteres epafes)
+	protected ArrayList<String> contactEmail; //lista me ta emails twn epafwn kathe user
+ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
 	protected int [] symptoms; //pinakas 0-1 me ta symptoms
 	protected static final String[] symptomsList = {"Fever", "Dry cough", "Tiredness", "Aches and pains", "Sore throat", 
 			"Diarrhoea", "Conjuctivitis", "Headache", "Loss of taste or smell", 

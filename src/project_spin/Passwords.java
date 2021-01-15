@@ -11,6 +11,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 class Passwords {
+	/*private static ArrayList<String> passwords = new ArrayList<String>();
+	 * protected static void addPassword(String pw){
+	 * passwords.add(pw);
+	 * }
+	 */
 	private static File file = new File("\"https://github.com/Ioanna2001/Teamwork/tree/main/src/project_spin/passwords//");
 
 	protected static void writePassword(String password) {
@@ -39,6 +44,16 @@ class Passwords {
 			return null;
 		}
 	}
+	/*
+	 * protected static boolean checkPassword(String pw){
+	 * for (String i : Passwords) {
+	 * if (i == pw){
+	 * return false;
+	 * }
+	 * }
+	 * return true; 
+	 * }
+	 */
 
 	protected static boolean checkPassword(String pw) {
 		boolean flag = false;

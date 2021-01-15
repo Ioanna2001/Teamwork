@@ -2,10 +2,13 @@ package project_spin;
 import javax.activation.DataHandler;
 import java.util.Scanner;
 import java.util.Properties;
+
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -13,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 	String from = "teamwork.covid.tracker@gmail.com";
-	String fromPassword = "teamwork20202021";
+	String fromPassword = "test20202021";
 	protected String password;
 	protected String userEmail;
 	Scanner input = new Scanner(System.in);
@@ -29,25 +32,42 @@ public class SendEmail {
 		} catch (AddressException e) {
 			System.err.println("Problem with second contact internet address");
 		}
-		Properties properties = new Properties();
-		properties.put("mail.smtp.socketfactory.port", "465");
-		properties.put("mail.smtp.port", "465");
-		properties.put("mail.smtp.host", "smtp.gmail.com");
-		properties.put("mail.smtp.auth", "true");
-		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {  
-		      protected PasswordAuthentication getPasswordAuthentication() {  
-		    	    return new PasswordAuthentication(from, fromPassword);  
-		    	      }  
-		    	    });
+		Properties props = new Properties();
+	/*	props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "465");
+		props.put("mail.transport.protocol","smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.ssl.enable", "true");
+		props.put("mail.smtp.starttls.enable", "false");
+		props.put("mail.smtp.tls", "true");
+		props.put("mail.smtp.ssl.checkserveridentity", "true");
+		props.put("mail.smtp.user", "teamwork.covid.tracker@gmail.com");
+		props.put("mail.smtp.password", "test20202021"); */
+
+	    props.put("mail.smtp.host", "smtp.gmail.com");
+	    props.put("mail.smtp.starttls.enable", "true");
+	    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(
+                   "teamwork.covid.tracker@gmail.com", "test20202021");
+             }
+          });
 		MimeMessage message = new MimeMessage(session);
 		try {
-			message.setFrom(from);
+			message.addHeader("Content-type", "text/HTML; charset=UTF-8");
+			message.addHeader("format", "flowed");
+			message.addHeader("Content-Transfer-Encoding", "8bit");
+			message.setFrom(new InternetAddress(from));
 			message.addRecipient( Message.RecipientType.TO, address);
 			message.setText(secondContactMessage());
-			message.setSubject("Covid Warning");
+			message.setReplyTo(InternetAddress.parse("teamwork.covid.tracker@gmail.com", false));
+			message.saveChanges();
+			Transport.send(message);
+			System.out.println("Mail sent!");
 		} catch (MessagingException e) {
 			System.err.println("Problem emailing second contacts");
-		}	
+			e.printStackTrace();
+		}
 	}
 
 	protected void firstContactMail() {
@@ -55,7 +75,7 @@ public class SendEmail {
 		try {
 			address = new InternetAddress(userEmail);
 		} catch (AddressException e) {
-			System.err.println("Problem with second contact internet address");
+			System.err.println("Problem with second first internet address");
 		}
 		Properties properties = new Properties();
 		Session session = Session.getDefaultInstance(properties, null);
@@ -65,7 +85,7 @@ public class SendEmail {
 			message.addRecipient( Message.RecipientType.TO, address);
 			message.setText(firstContactMessage());
 		} catch (MessagingException e) {
-			System.err.println("Problem emailing second contacts");
+			System.err.println("Problem emailing first contacts");
 		}
 	}
 
