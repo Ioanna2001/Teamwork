@@ -33,9 +33,6 @@ public class Tester {
 		email.secondContactMail();
 	} */
 
-	private static void testSsn() {
-		Ssn.writeSsn(897546);
-		System.out.println(GeneratePassword.generatePassword(5));
-	}
+	
 
 }

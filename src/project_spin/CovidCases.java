@@ -12,7 +12,6 @@ class CovidCases extends User {
 	//san kleidi exei to ssn toy xrhsth 
 	/*h boolean timh einai true an to kroysma exei kanei sign up 
 	kai exei tsekaristei to ssn toy*/
-	private static HashMap<Integer, Boolean> checkedSsn = new HashMap<Integer, Boolean>();
 	private static int cured;
 	private static int deaths;
 	protected static int[] symptoms_counter = new int[13];
@@ -22,8 +21,6 @@ class CovidCases extends User {
 	//hlikia asthenwn
 	protected static ArrayList<Integer> age = new ArrayList<Integer>();
 	//statikes listes gia na kratame dedomena
-	//bash dedomenwn twn amka twn asthenwn
-	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
 	//metraei posa krousmata exei kathe perifereia
 	protected static ArrayList<String> email = new ArrayList<String>();
 	protected static int[] location_counter = new int[13];
@@ -31,7 +28,7 @@ class CovidCases extends User {
 	protected int patientAge;
 	private int patientSsn;
 	private Location patientLocation;
-	//status=0 patient cured; status=1 patient passed away
+	//status=1 patient cured; status=2 patient passed away
 	//gia xeirismo apo eody
 	private int status;
 //kataskeyh kataskeyastwn 
@@ -53,46 +50,13 @@ class CovidCases extends User {
 		//arxikopoiei ta pedia kai tis listes
 		addCase(this);
 		patientSsn = s;
-		ssn.add(s);
 		addSymptoms_Counter(super.symptoms);
 		addEmail(email);
 		patientAge = age;
 		addAge(age);
 	}
 
-	//tsekarei an yparxei to ssn sth bash dedomenwn
-	protected static boolean checkSsn(int s) {
-		for (int i:ssn) {
-			if (i == s) {
-				if (checkedSsn.get(s) == true) {
-					return false;
-				} else {
-					checkedSsn.put(s, true);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	//afairesh ssn asthenh an giatreytei
-	protected void removePatient(CovidCases cc) {
-		cured ++;
-		for(int i:ssn) {
-			if (i == patientSsn) {
-				ssn.remove(ssn.indexOf(patientSsn));
-				break;
-			}
-		}
-	}
 //protected gia na thn xeirizetai kai o eody
-	protected static void addSsn( Integer s) {
-		
-		Ssn.writeSsn(s);
-		if (checkedSsn.containsValue(s) == false) {
-			checkedSsn.put(s, false);
-		}
-	}
 
 //methodos gia ayjhsh toy counter twn perioxwn
 	private static void addLocation(Location l) {
@@ -151,18 +115,23 @@ class CovidCases extends User {
 	//gia xeirismo apo eody
 	protected void setStatus() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter 0 if patient is cured or 1 if patient passed away:");
+		System.out.println("Enter 1 if your symptoms has stopped for more than 15 days:");
 		do {
 		 status = sc.nextInt();
-		 if ((status != 0) || (status != 1)) {
-			 System.out.println("Invalid input. Enter 0 if patient is cured"
-			 						+ " or 1 if patient passed away:");
+		 if (status != 1 && status != 0) {
+			 System.out.println("Invalid input. Enter 1 if patient is cured");
 		 }
-		} while((status != 0) || (status != 1));
+		} while((status != 0) && (status != 1));
+		sc.close();
+	}
+
+	protected void setStatusDead() {
+		this.status = 2;
 	}
 
 	protected int getStatus() { //evgala to orisma
 		return this.status;
 	}
+
 }
 

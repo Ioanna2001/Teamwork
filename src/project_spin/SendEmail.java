@@ -1,6 +1,7 @@
 package project_spin;
 import javax.activation.DataHandler;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -121,4 +122,16 @@ public class SendEmail {
 		return "For further questions on the Covid-19 protocol please visit the WHO website:\n"
 				+ " https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAiA_9r_BRBZEiwAHZ_v11O4yqh06VEnOb2W5zrKipeeccXTDoBYTLrZU0Iv1IJlbeSQYkNyGxoCbtsQAvD_BwE";
 	}
+
+	protected static boolean isValid(String email) { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    }
 }

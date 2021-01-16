@@ -2,12 +2,13 @@ package project_spin;
 import java.util.Scanner;
 
 public class InputMenu {
-	public void display_menu() {
-	System.out.println("Enter 1 for update symptom list\nEnter 2 for update contact List\nEnter 3 for update status\nEnter 4 for delete account");
+
+	protected static void display_menu() {
+	System.out.println("Enter 1 for update symptom list\nEnter 2 for update contact List\nEnter 3 for update status");
 	System.out.print("Selection: ");
 	}
 
-	public void question() {
+	protected static void question(User user) {
 		System.out.println("Would you like to proceed or quit?");
 		System.out.println("To proceed enter 9");
 		System.out.println("If you wish to quit enter 0");
@@ -20,47 +21,45 @@ public class InputMenu {
 
 			case 9:
 			System.out.println("Please proceed.");
-			new InputMenu();
+			inputMenu(user);
 			break;
 
 			default:
 			System.err.println("Unrecognized option");
 			break;
 		}
-
+		q.close();
 	}
 
-	public InputMenu() {			
+	protected static void inputMenu(User user) {			
 		display_menu();
 		Scanner in = new Scanner(System.in);		
 		switch (in.nextInt()) {
 		case 1: //Update symptom list
-		symptomsListing(); 
+		user.addSymptoms(); 
 		break;
 		case 2: //Update contact list
-		editContactList(); 
-		printContacts();
+		user.printContacts();
+		user.editContactList(); 
 		break;
 		case 3: //A user becomes a Covid case
-		System.out.println("Please enter your location to continue");
-		String location = in.nextLine(); 
-		System.out.println("Please enter your SSN");
-		int c = in.nextInt();
-		CovidCases cc = new CovidCases(location, c);
-		symptomsListing();
-		editContactList();
-		printContacts();
-		break; 
-		case 4: //Delete account	
-		System.out.println("Are you sure you want to delete? YES/NO");
-		Scanner a = new Scanner(System.in);
-		String b = a.nextLine();
-		if (b.equals("YES")) {
-			removePatient(cc);
-			break;
+		if (user instanceof CovidCases) {
+			((CovidCases) user).setStatus();
 		} else {
-			break;
+			System.out.println("To register as a Covid-19 patient please fill in the followin fields.");
+			System.out.println("Please enter your location to continue");
+			Location location = Corona.checkLocation();
+			int age = Corona.checkAge();
+			int ssn = Corona.checkSsn();
+			CovidCases cc = new CovidCases(location, ssn, user.password, user.name, user.username, age);
+			user.printContacts();
+			System.out.println("Enter 1 if you would like to add more contacts:");
+			int answer = in.nextInt();
+			if (answer == 1) {
+				cc.editContactList();
+			}
 		}
+		break; 
 		default:
 		System.err.println("Unrecognized option");
 		break;

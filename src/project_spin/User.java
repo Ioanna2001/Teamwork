@@ -6,15 +6,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class User {
-//tzo: Guyz an mporeite sbste thn hmeromhnia twn epafwn giati de blepw na th xrhsimopoioyme
-	//kai kante mia methodo poy apothikeyei toys kwdikoys twn user sthn passwords
-	//mesa apo ton kataskeyasth :D
 	//attributes
-	protected static ArrayList<String> passwords = new ArrayList<String>();
-	private String password; //kwdikos gia eisodo sthn efarmogh
-	private String name; 
-	private String userSsn;
-	private String username; //einai to email
+	protected static ArrayList<String> userPasswords = new ArrayList<String>();
+	protected static ArrayList<User> users = new ArrayList<User>();
+	protected String password; //kwdikos gia eisodo sthn efarmogh
+	protected String name; 
+	protected String username; //einai to email
 	protected ArrayList<String> contactName; //lista me tis epafes kathe user (deuteres epafes)
 	protected ArrayList<String> contactEmail; //lista me ta emails twn epafwn kathe user
 ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
@@ -46,9 +43,11 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 	public User(String password, String name, String username) {
 
 		this.password = password;
+		userPasswords.add(password);
 		this.name = name;
 		this.symptoms = new int[13];
 		this.username = username;
+		users.add(this);
 
 	}
 

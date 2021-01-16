@@ -12,19 +12,23 @@ import project_spin.CovidCases;
 
 public class Who {
 
+	protected void addSsn(int ssn) {
+		Ssn.addSsn(ssn);
+	}
+
 	static int countDead; // posoi nekroi sthn efarmogh
 	static int countCured; // posoi therapeumenoi sthn efarmogh
 	static int agd[]; // age group dead, se kathe hlikiaki omada
 	static final String agegroups[] = { "0-19", "20-39", "40-59", "60-79", "80+" };
 	static int ag[]; //age group, plhthysmos se kathe hlikiakh omada
 
-	public void printPatientCount() {
+	protected void printPatientCount() {
 		// ektipwnei ola ta krousmata tis efarmogis
 		System.out.println("The number of covid patients registered in our application are:");
 		System.out.println(CovidCases.patientCounter);
 	}
 
-	public void sufficientSample() {
+	protected void sufficientSample() {
 		// pou tha to kaloume??
 		// elegxei kai proeidopoiei an ta krousmata tis efarmogis mas einai liga
 		// etsi vste na einai aksiopista ta statistika
@@ -34,19 +38,19 @@ public class Who {
 		}
 	}
 
-	public void printDeaths() {
+	protected void printDeaths() {
 		// ektipwnei oloys toys nekrous apo covid apo tin efarmogi mas
 		System.out.println("The number of deaths due to covid in our application are:");
 		System.out.println(countDead);
 	}
 
-	public void printCured() {
+	protected void printCured() {
 		// ektipwnei oloys osous exoun anarrwsei apo covid apo tin efarmogi
 		System.out.println("The number of cured covid patients in our application are:");
 		System.out.println(countCured);
 	}
 
-	public void deathCount() {
+	protected void deathCount() {
 		// metraei tous nekrous apo covid
 		for (CovidCases i : CovidCases.cases) {
 			if (i.getStatus() == 1) {
@@ -55,7 +59,7 @@ public class Who {
 		}
 	}
 
-	public void curedCount() {
+	protected void curedCount() {
 		// metraei osous exoun therapeutei apo covid
 		for (CovidCases i : CovidCases.cases) {
 			if (i.getStatus() == 0) {
@@ -64,7 +68,7 @@ public class Who {
 		}
 	}
 
-	public double[] symptomsPercentage() {
+	protected double[] symptomsPercentage() {
 		// vriskei to pososto emfanisis tou kathe symptom
 		double perc[] = new double[13];
 		for (int i = 0; i <= User.symptomsList.length; i++) {
@@ -95,7 +99,7 @@ public class Who {
 		//parousiastei ena symptom kai dipla ton deikti tou symptomatos
 	}
 
-	public void frequentSymptoms() {
+	protected void frequentSymptoms() {
 	 //typwnei thn seira syxnothtas twn symptomatwn
 		double sym[][] = symptomsFrequency();
 		for (int i = 0; i < sym.length; i++) {
@@ -104,7 +108,7 @@ public class Who {
 		 }
 	}
 
-	public void ageMortality() {
+	protected void ageMortality() {
 		// otan kaneis update sto status
 		// kalei tin ageGroups gia tous nekrous tis efarmogis
 		for (CovidCases i : CovidCases.cases) {
@@ -114,7 +118,7 @@ public class Who {
 		}
 	}
 
-	public void ccInAgeGroup() {
+	protected void ccInAgeGroup() {
 
 		for (CovidCases i : CovidCases.cases) {
 			ag = ageGroups(i, ag);
@@ -122,7 +126,7 @@ public class Who {
 
 	}
 
-	public static int[] ageGroups(CovidCases cc, int a[]) {
+	protected static int[] ageGroups(CovidCases cc, int a[]) {
 		if (cc.patientAge >= 0 && cc.patientAge <= 19) {
 			a[0] =+ 1;
 		} else if (cc.patientAge >= 20 && cc.patientAge <= 39) {
@@ -137,7 +141,7 @@ public class Who {
 		return a;
 	}
 
-	public double[] deathPercentagePerAge () {
+	protected double[] deathPercentagePerAge () {
 		//vriskei to pososto twn nekrwn apo covid tis efarmogis mas ana ilikiako group
 		ageMortality();
 		ccInAgeGroup();
@@ -148,7 +152,7 @@ public class Who {
 		return dperc_ag;
 	}
 
-	public void deathsPerAge() {
+	protected void deathsPerAge() {
 		// kalei tin deathPercentage gia kathe ilikiako group kai ektypwnei tin
 		// thnisimotita tou
 		double[] dper_ag = deathPercentagePerAge();
@@ -188,11 +192,11 @@ public class Who {
 		return counter;
 	}
 
-	public void printCasesPerLocation(Location i) {
+	protected void printCasesPerLocation(Location i) {
 		System.out.println(casesPerLocation(i) + " exist in " + i);
 	}
 
-	public void printCasesForAllLocations() {
+	protected void printCasesForAllLocations() {
 		int counter[] = casesForAllLocations();
 		for (int i = 1; i <= 13; i++) {
 			System.out.println(Location.values()[i] + " has " + counter[i] + " cases.");
