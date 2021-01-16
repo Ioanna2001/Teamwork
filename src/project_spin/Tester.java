@@ -9,7 +9,7 @@ public class Tester {
 
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		
 		
@@ -28,10 +28,10 @@ public class Tester {
 		
 	}
 
-	private static void testMail() {
-		SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
+/*	private static void testMail() throws Exception {
+		SendEmail email = new SendEmail("popiroussi@icloud.com");
 		email.secondContactMail();
-	}
+	} */
 
 	private static void testSsn() {
 		Ssn.writeSsn(897546);

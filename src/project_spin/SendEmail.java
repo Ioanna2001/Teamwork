@@ -15,115 +15,69 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
-	String from = "teamwork.covid.tracker@gmail.com";
-	String fromPassword = "test20202021";
-	protected String password;
-	protected String userEmail;
+	String from = "teamwork.covid.tracker@gmail.com";//sender
+	String fromPassword = "teamwork20202021";
+	protected String password;//verification code sent by email
+	protected String userEmail;//recipient
 	Scanner input = new Scanner(System.in);
 
 	protected SendEmail(String email) {
 		userEmail= email;
 	}
-
-	protected void secondContactMail() {
-		InternetAddress address = null;
+//method that sends the email
+	private void email(String mess) throws Exception{
+		Properties properties = new Properties();
+		properties.put("mail.smtp.auth", true);
+		properties.put("mail.smtp.starttls.enable", true);
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "587");
+		Session session = Session.getInstance(properties, new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, fromPassword);
+			}
+		});
+		Message message = new MimeMessage(session);
 		try {
-			address = new InternetAddress(userEmail);
-		} catch (AddressException e) {
-			System.err.println("Problem with second contact internet address");
-		}
-		Properties props = new Properties();
-	/*	props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "465");
-		props.put("mail.transport.protocol","smtp");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.ssl.enable", "true");
-		props.put("mail.smtp.starttls.enable", "false");
-		props.put("mail.smtp.tls", "true");
-		props.put("mail.smtp.ssl.checkserveridentity", "true");
-		props.put("mail.smtp.user", "teamwork.covid.tracker@gmail.com");
-		props.put("mail.smtp.password", "test20202021"); */
-
-	    props.put("mail.smtp.host", "smtp.gmail.com");
-	    props.put("mail.smtp.starttls.enable", "true");
-	    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(
-                   "teamwork.covid.tracker@gmail.com", "test20202021");
-             }
-          });
-		MimeMessage message = new MimeMessage(session);
-		try {
-			message.addHeader("Content-type", "text/HTML; charset=UTF-8");
-			message.addHeader("format", "flowed");
-			message.addHeader("Content-Transfer-Encoding", "8bit");
 			message.setFrom(new InternetAddress(from));
-			message.addRecipient( Message.RecipientType.TO, address);
-			message.setText(secondContactMessage());
-			message.setReplyTo(InternetAddress.parse("teamwork.covid.tracker@gmail.com", false));
-			message.saveChanges();
+			message.setRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+			message.setSubject("Covid Alert");
+			message.setText(mess);
 			Transport.send(message);
-			System.out.println("Mail sent!");
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (MessagingException e) {
-			System.err.println("Problem emailing second contacts");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	protected void firstContactMail() {
-		InternetAddress address = null;
-		try {
-			address = new InternetAddress(userEmail);
-		} catch (AddressException e) {
-			System.err.println("Problem with second first internet address");
-		}
-		Properties properties = new Properties();
-		Session session = Session.getDefaultInstance(properties, null);
-		MimeMessage message = new MimeMessage(session);
-		try {
-			message.setFrom(from);
-			message.addRecipient( Message.RecipientType.TO, address);
-			message.setText(firstContactMessage());
-		} catch (MessagingException e) {
-			System.err.println("Problem emailing first contacts");
-		}
+	protected void secondContactEmail() throws Exception {
+		email(secondContactMessage());
 	}
 
-	protected void covidCaseMail() {
-		InternetAddress address = null;
-		try {
-			address = new InternetAddress(userEmail);
-		} catch (AddressException e) {
-			System.err.println("Problem with second contact internet address");
-		}
-		Properties properties = new Properties();
-		Session session = Session.getDefaultInstance(properties, null);
-		MimeMessage message = new MimeMessage(session);
-		try {
-			message.setFrom(from);
-			message.addRecipient( Message.RecipientType.TO, address);
-			message.setText(covidCaseMessage());
-		} catch (MessagingException e) {
-			System.err.println("Problem emailing second contacts");
-		}	
+	protected void firstContactMail() throws Exception {
+		email(firstContactMessage());
 	}
 
+	protected void covidCaseMail() throws Exception {
+		email(covidCaseMessage());
+	}
+//custom messages
 	protected String secondContactMessage() {
 		return "You have been in contact with o Covid-19 close contact.\n"
-				+ "/t>Please avoid unnecessary interactions\n"
-				+ "/t>Wash your hands regularly\n"
-				+ "/t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
+				+ "%t>Please avoid unnecessary interactions\n"
+				+ "%t>Wash your hands regularly\n"
+				+ "%t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
 	}
 
 	protected String firstContactMessage() {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
-		//tsekarei pws o kwdikos den yparxei hdh
-		//boolean flag = Passwords.checkPassword(password);
-	//	while (flag == false) {
-	//		password = String.valueOf(GeneratePassword.generatePassword(5));
-	//		flag = Passwords.checkPassword(password);
-	//	}
-	//	Passwords.writePassword(password);
+		while (Passwords.checkPassword(password) == false) {
+			password = String.valueOf(GeneratePassword.generatePassword(5));
+		}
+		Passwords.addPassword(password);
 		return "You have been in close contact with a Covid-19 patient. "
 				+ "Please follow the country's virus prevention protoco:\n"
 				+ "**1** You are required carantine in your house for 14 days"
@@ -142,13 +96,10 @@ public class SendEmail {
 
 	protected String covidCaseMessage() {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
-		//tsekarei pws o kwdikos den yparxei hdh
-		boolean flag = Passwords.checkPassword(password);
-		while (flag == false) {
+		while (Passwords.checkPassword(password) == false) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
-			flag = Passwords.checkPassword(password);
 		}
-		Passwords.writePassword(password);
+		Passwords.addPassword(password);
 		return "You have been tested positive for Covid-19."
 				+ "Please follow the country's virus prevention protocol:\n"
 				+ "**1** You are required to carantine in you house for all t"
