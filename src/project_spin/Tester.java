@@ -11,7 +11,7 @@ public class Tester {
 
 	public static void main(String[] args) throws Exception {
 
-		
+		testMail();
 		
 	}
 
@@ -28,10 +28,10 @@ public class Tester {
 		
 	}
 
-/*	private static void testMail() throws Exception {
-		SendEmail email = new SendEmail("popiroussi@icloud.com");
-		email.secondContactMail();
-	} */
+	private static void testMail() throws Exception {
+		SendEmail email = new SendEmail("joannamoraiti1@gmail.com");
+		email.firstContactMail();
+	} 
 
 	
 
