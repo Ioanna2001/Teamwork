@@ -59,26 +59,31 @@ public class SendEmail {
 	}
 
 	protected void firstContactMail() throws Exception {
+		password = String.valueOf(GeneratePassword.generatePassword(5));
+		while (!Passwords.checkPasswordExistence(password)) {
+			password = String.valueOf(GeneratePassword.generatePassword(5));
+		}
+		Passwords.addPassword(password);
 		email(firstContactMessage());
 	}
 
 	protected void covidCaseMail() throws Exception {
+		password = String.valueOf(GeneratePassword.generatePassword(5));
+		while (!Passwords.checkPasswordExistence(password)) {
+			password = String.valueOf(GeneratePassword.generatePassword(5));
+		}
+		Passwords.addPassword(password);
 		email(covidCaseMessage());
 	}
 //custom messages
 	protected String secondContactMessage() {
 		return "You have been in contact with o Covid-19 close contact.\n"
-				+ "%t>Please avoid unnecessary interactions\n"
-				+ "%t>Wash your hands regularly\n"
-				+ "%t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
+				+ "\t>Please avoid unnecessary interactions\n"
+				+ "\t>Wash your hands regularly\n"
+				+ "\t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
 	}
 
 	protected String firstContactMessage() {
-		password = String.valueOf(GeneratePassword.generatePassword(5));
-		while (Passwords.checkPassword(password) == false) {
-			password = String.valueOf(GeneratePassword.generatePassword(5));
-		}
-		Passwords.addPassword(password);
 		return "You have been in close contact with a Covid-19 patient. "
 				+ "Please follow the country's virus prevention protoco:\n"
 				+ "**1** You are required carantine in your house for 14 days"
@@ -96,17 +101,12 @@ public class SendEmail {
 	}
 
 	protected String covidCaseMessage() {
-		password = String.valueOf(GeneratePassword.generatePassword(5));
-		while (Passwords.checkPassword(password) == false) {
-			password = String.valueOf(GeneratePassword.generatePassword(5));
-		}
-		Passwords.addPassword(password);
 		return "You have been tested positive for Covid-19."
 				+ "Please follow the country's virus prevention protocol:\n"
 				+ "**1** You are required to carantine in you house for all t"
 				+ "he time that you are experiencing Covid-19 symptoms "
 				+ "and 14 days after the symptoms have stopped\n"
-				+ "**2** Please avoid coming in contact with people in inside your leaving space. "
+				+ "**2** Please avoid coming in contact with people in inside your living space. "
 				+ "If contact is necessary please wear a protective face mask\n"
 				+ "**3** Wash and sterilize your personal objects seperataly\n"
 				+ "**4** Please download the Covid Tracker\n"

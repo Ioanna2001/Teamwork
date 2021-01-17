@@ -121,12 +121,12 @@ public final class Corona {
 		System.out.println("Please enter your verification code:");
 		password = obg.nextLine();
 		int tries = 1;//the user can enter the code 5 times
-		while (tries <= 5 && (Passwords.checkPassword(password) == false)) {
+		while (tries <= 5 && (Passwords.checkPasswordVerification(password) == false)) {
 			System.out.println("Wrong code. Please enter a valid code. You have " + (5 - tries) +" tries");
 			password = obg.nextLine();
 			tries ++;
 		}
-		if (Passwords.checkPassword(password) == false) {
+		if (Passwords.checkPasswordVerification(password) == false) {
 			System.out.println("Invalid code.");
 			System.exit(0);
 		}

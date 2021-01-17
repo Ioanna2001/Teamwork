@@ -9,7 +9,14 @@ class Passwords {
 		passwords.put(pw, false);
 	}
 
-	protected static boolean checkPassword(String pw){
+	protected static boolean checkPasswordExistence(String pw) {
+		if (passwords.containsKey(pw) ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	protected static boolean checkPasswordVerification(String pw){
 		if (passwords.containsKey(pw)) {
 			if (passwords.get(pw) == false) {
 				passwords.put(pw, true);
