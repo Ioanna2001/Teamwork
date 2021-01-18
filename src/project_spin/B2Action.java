@@ -13,7 +13,7 @@ public class B2Action implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Corona.status = "F";
+		Corona.setStatus("F");
 		GUI.gui2();
 	}
 }

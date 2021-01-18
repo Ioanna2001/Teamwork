@@ -14,13 +14,14 @@ public class GUI {
 	static JFrame frame;
 	static JFrame frame1;
 	static JFrame frame2;
-	public static String name;
-	public static String email;
+	static JFrame frame3;
+	static JTextField nameText;
+	static JTextField emailText;
+	static JTextField ssnText;
+	static JButton next = new JButton("Next");
+	static JFrame frame4;
 
 	static void gui() {
-		
-		JPanel panel = new JPanel();
-		Scanner in = new Scanner(System.in);
 		frame = new JFrame("Welcome to the WHO Platform Covid Tracker");
 		frame.setBounds(0, 0, 300, 200);
 		FlowLayout layout = new FlowLayout();
@@ -49,42 +50,18 @@ public class GUI {
 		JLabel nameLabel = new JLabel("Name");
 		nameLabel.setBounds(10, 20, 80, 25);
 		panel.add(nameLabel);
-		JTextField nameText = new JTextField(100);
+		nameText = new JTextField(100);
 		nameText.setBounds(100, 20, 165, 25);
 		panel.add(nameText);
 		JLabel emailLabel = new JLabel("Email");
 		emailLabel.setBounds(10, 50, 80, 25);
 		panel.add(emailLabel);
-		JTextField emailText = new JTextField(100);
+		emailText = new JTextField(100);
 		emailText.setBounds(100, 50, 165, 25);
 		panel.add(emailText);
-		JButton button = new JButton("Next");
-		button.setBounds(10, 80, 80, 25);
-		panel.add(button);
-		name = nameText.getText();
-		email = emailText.getText();
-		while (name == null && email == null && SendEmail.isValid(email)) {
-			frame1 = new JFrame("Personal Information");
-			frame1.setSize(350, 200);
-			frame1.setResizable(false);
-			frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame1.add(panel);
-			panel.setLayout(null);
-			nameLabel.setBounds(10, 20, 80, 25);
-			panel.add(nameLabel);
-			nameText.setBounds(100, 20, 165, 25);
-			panel.add(nameText);
-			emailLabel.setBounds(10, 50, 80, 25);
-			panel.add(emailLabel);
-			emailText.setBounds(100, 50, 165, 25);
-			panel.add(emailText);
-			button.setBounds(10, 80, 80, 25);
-			panel.add(button);
-			name = nameText.getText();
-			email = emailText.getText();
-		}
-		Corona.name = name;
-		Corona.email = email;
+		next.setBounds(10, 80, 80, 25);
+		panel.add(next);
+		next.addActionListener(new NextActionAlert());
 		frame1.setVisible(true);
 	}
 
@@ -106,4 +83,40 @@ public class GUI {
 		b2.addActionListener(new B2Action(frame2));
 		frame2.setVisible(true);
 		}
+//DEN TELEIWSAN!!!!!!
+	static void gui4() {
+		frame1.setVisible(false);
+		frame3 = new JFrame("SSN");
+		frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		frame3.add(panel);
+		frame3.setSize(350, 200);
+		panel.setLayout(null);
+		JLabel ssnLabel = new JLabel("SSN");
+		ssnLabel.setBounds(10, 20, 80, 25);
+		panel.add(ssnLabel);
+		ssnText = new JTextField(6);
+		ssnText.setBounds(100, 20, 165, 25);
+		panel.add(ssnText);
+		next.addActionListener(new NextActionAlert2());
+		frame3.setVisible(true);
+	}
+
+	static void gui5() {
+		frame3.setVisible(false);
+		frame4 = new JFrame("Verify Code");
+		frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame4.setSize(350, 200);
+		JPanel panel = new JPanel();
+		frame4.add(panel);
+		panel.setLayout(null);
+		JLabel l = new JLabel("Please enter the verification code that was sent in your email");
+		l.setBounds(10, 20, 80, 25);
+		panel.add(l);
+		JTextField codeText = new JTextField(5);
+		codeText.setBounds(100, 20, 165, 25);
+		panel.add(codeText);
+		next.addActionListener(new NextActionAlert3(codeText));
+		frame4.setVisible(true);
+	}
 }

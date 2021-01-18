@@ -23,6 +23,7 @@ public final class Corona {
 	static String email;
 	static String name;
 	static String password;
+	static int ssn = 0;
 	public static void main(String[] args) throws Exception {
 		if (Ssn.i == 0) {
 			Ssn.ssnInitiator();
@@ -84,17 +85,9 @@ public final class Corona {
 	// if you want to sing up
 	public static void signup() throws Exception {
 		GUI.gui3();
-		//sing up covid case user
-		if (status.equals("C")) {
-			//CovidCase object
-			covidCase(name);
-		} else if (status.equals("F")) {
-			//User object
-			firstContact(name);
-		}
 	}
 
-	private static void firstContact(String name) throws Exception {
+	static void firstContact() throws Exception {
 
 		User firstContact = new User(password, name, email);
 		//eisagwgh prwtwn epafwn
@@ -184,13 +177,13 @@ public final class Corona {
 		return ssn;
 	}
 
-	private static void covidCase(String name) throws Exception {
-		int ssn = checkSsn();
-		//o xrhsths eisagei to email
-		//stelnetai to mail ston xrhsth
+	static void covidCase() throws Exception {
+		//user enters ssn
+		GUI.gui4();
+		//email sent with verification code
 		SendEmail sendEmail = new SendEmail(email);
 		sendEmail.covidCaseMail();
-		//afoy stalei o xrhsths bazei to verification code
+		GUI.gui5();
 		
 		//Eisagwgh perioxhs
 		Location location = checkLocation();
@@ -211,6 +204,36 @@ public final class Corona {
 		}
 		patient.addSymptoms();
 		InputMenu.question(patient);
+	}
+	protected static String getStatus() {
+		return status;
+	}
+	protected static void setStatus(String status) {
+		Corona.status = status;
+	}
+	protected static String getEmail() {
+		return email;
+	}
+	protected static void setEmail(String email) {
+		Corona.email = email;
+	}
+	protected static String getName() {
+		return name;
+	}
+	protected static void setName(String name) {
+		Corona.name = name;
+	}
+	protected static String getPassword() {
+		return password;
+	}
+	protected static void setPassword(String password) {
+		Corona.password = password;
+	}
+	protected static int getSsn() {
+		return ssn;
+	}
+	protected static void setSsn(int ssn) {
+		Corona.ssn = ssn;
 	}
 
 }
