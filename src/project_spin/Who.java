@@ -22,7 +22,7 @@ public class Who {
 	static final String agegroups[] = { "0-19", "20-39", "40-59", "60-79", "80+" };
 	static int ag[]; //age group, plhthysmos se kathe hlikiakh omada
 
-	protected void printPatientCount() {
+	protected static void printPatientCount() {
 		// ektipwnei ola ta krousmata tis efarmogis
 		System.out.println("The number of covid patients registered in our application are:");
 		System.out.println(CovidCases.patientCounter);
@@ -152,7 +152,7 @@ public class Who {
 		return dperc_ag;
 	}
 
-	protected void deathsPerAge() {
+	protected static void deathsPerAge() {
 		// kalei tin deathPercentage gia kathe ilikiako group kai ektypwnei tin
 		// thnisimotita tou
 		double[] dper_ag = deathPercentagePerAge();
