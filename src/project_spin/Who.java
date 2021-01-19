@@ -28,7 +28,7 @@ public class Who {
 		System.out.println(CovidCases.patientCounter);
 	}
 
-	protected void sufficientSample() {
+	protected static void sufficientSample() {
 		// pou tha to kaloume??
 		// elegxei kai proeidopoiei an ta krousmata tis efarmogis mas einai liga
 		// etsi vste na einai aksiopista ta statistika
@@ -38,19 +38,19 @@ public class Who {
 		}
 	}
 
-	protected void printDeaths() {
+	protected static void printDeaths() {
 		// ektipwnei oloys toys nekrous apo covid apo tin efarmogi mas
 		System.out.println("The number of deaths due to covid in our application are:");
 		System.out.println(countDead);
 	}
 
-	protected void printCured() {
+	protected static void printCured() {
 		// ektipwnei oloys osous exoun anarrwsei apo covid apo tin efarmogi
 		System.out.println("The number of cured covid patients in our application are:");
 		System.out.println(countCured);
 	}
 
-	protected void deathCount() {
+	protected static void deathCount() {
 		// metraei tous nekrous apo covid
 		for (CovidCases i : CovidCases.cases) {
 			if (i.getStatus() == 1) {
@@ -59,7 +59,7 @@ public class Who {
 		}
 	}
 
-	protected void curedCount() {
+	protected static void curedCount() {
 		// metraei osous exoun therapeutei apo covid
 		for (CovidCases i : CovidCases.cases) {
 			if (i.getStatus() == 0) {
@@ -68,7 +68,7 @@ public class Who {
 		}
 	}
 
-	protected double[] symptomsPercentage() {
+	protected static double[] symptomsPercentage() {
 		// vriskei to pososto emfanisis tou kathe symptom
 		double perc[] = new double[13];
 		for (int i = 0; i <= User.symptomsList.length; i++) {
@@ -77,7 +77,7 @@ public class Who {
 		return perc;
 	}
 
-	protected double[][] symptomsFrequency() {
+	protected static double[][] symptomsFrequency() {
 
 		double[] perc = symptomsPercentage();
 		double[] max = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
@@ -99,7 +99,7 @@ public class Who {
 		//parousiastei ena symptom kai dipla ton deikti tou symptomatos
 	}
 
-	protected void frequentSymptoms() {
+	protected static void frequentSymptoms() {
 	 //typwnei thn seira syxnothtas twn symptomatwn
 		double sym[][] = symptomsFrequency();
 		for (int i = 0; i < sym.length; i++) {
@@ -108,7 +108,7 @@ public class Who {
 		 }
 	}
 
-	protected void ageMortality() {
+	protected static void ageMortality() {
 		// otan kaneis update sto status
 		// kalei tin ageGroups gia tous nekrous tis efarmogis
 		for (CovidCases i : CovidCases.cases) {
@@ -118,7 +118,7 @@ public class Who {
 		}
 	}
 
-	protected void ccInAgeGroup() {
+	protected static void ccInAgeGroup() {
 
 		for (CovidCases i : CovidCases.cases) {
 			ag = ageGroups(i, ag);
@@ -141,7 +141,7 @@ public class Who {
 		return a;
 	}
 
-	protected double[] deathPercentagePerAge () {
+	protected static double[] deathPercentagePerAge () {
 		//vriskei to pososto twn nekrwn apo covid tis efarmogis mas ana ilikiako group
 		ageMortality();
 		ccInAgeGroup();
@@ -165,12 +165,12 @@ public class Who {
 	 * STATISTIKA STOIXEIA arithmos kroysmatwn, arithmos kroysmatwn ana perioxh, pio
 	 * syxna symptwmata, pososto thanatwn, pososto therapeymenwn
 	 */
-	protected int getPatientCounter() {
+	protected static int getPatientCounter() {
 		return CovidCases.patientCounter;
 	}
 
 	// deixnei gia thn topothesia pou bazeis ta kroysmata poy exei
-	protected int casesPerLocation(Location l) {
+	protected static int casesPerLocation(Location l) {
 		int counter = 0;
 		for (CovidCases cc : CovidCases.cases) {
 			if (cc.getPatientLocation().equals(l)) {
@@ -182,7 +182,7 @@ public class Who {
 
 	// epistrefei enan pinaka opoy h kathe thesh antistoixei
 	// se mia perioxh kai dexnei th syxnothta twn kroysmatwn gia oles tis perioxes
-	protected int[] casesForAllLocations() {
+	protected static int[] casesForAllLocations() {
 		int i = 0;
 		int counter[] = new int[CovidCases.location_counter.length];
 		for (Location l : Location.values()) {
@@ -192,18 +192,18 @@ public class Who {
 		return counter;
 	}
 
-	protected void printCasesPerLocation(Location i) {
+	protected static void printCasesPerLocation(Location i) {
 		System.out.println(casesPerLocation(i) + " exist in " + i);
 	}
 
-	protected void printCasesForAllLocations() {
+	protected static void printCasesForAllLocations() {
 		int counter[] = casesForAllLocations();
 		for (int i = 1; i <= 13; i++) {
 			System.out.println(Location.values()[i] + " has " + counter[i] + " cases.");
 		}
 	}
 
-	protected void percentageOfDeaths() {
+	protected static void percentageOfDeaths() {
 		double x = 0;
 		try {
 			x = ((double) CovidCases.getDeaths() / (double) CovidCases.patientCounter) * 100;
@@ -213,7 +213,7 @@ public class Who {
 		}
 	}
 
-	protected void percentageOfCured() {
+	protected static void percentageOfCured() {
 		double x = 0;
 		try {
 			x = ((double) CovidCases.getCured() / (double) CovidCases.patientCounter) * 100;
@@ -223,7 +223,7 @@ public class Who {
 		}
 	}
 
-	protected void ageAverage() {
+	protected static void ageAverage() {
 		int x = 0;
 		for (int i : CovidCases.age) {
 			x += i;
@@ -236,7 +236,7 @@ public class Who {
 		}
 	}
 
-	protected void ageAveragePerSymptom() {
+	protected static void ageAveragePerSymptom() {
 		int[] counter = new int[13];
 		for (CovidCases i : CovidCases.cases) {
 			for (int j = 0; j < 13; j++) {
@@ -303,7 +303,7 @@ public class Who {
 
 	// o eody kalei ayth th methodo kai bazei thn hmeromhnia poy thelei na
 	// problepsei posa kroysmata ua yparxoyn
-	protected long getMonthlyPredection(int day, int month, int year) {
+	protected long getMonthlyPrediction(int day, int month, int year) {
 		CasePrediction prediction = new CasePrediction(LocalDate.of(day, month, year));
 		prediction.updateN();
 		prediction.updateSumX();
