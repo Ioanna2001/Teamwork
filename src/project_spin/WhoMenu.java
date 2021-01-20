@@ -7,7 +7,7 @@ import project_spin.*;
 
 public class WhoMenu {
 //Guyz tzo edw tsekarete kai sthn CovidCases mhn einai kamia methodos gia edw
-	// nomizw pws oxi, apla mas menei gia simera na bazoume tous nekrous pou eipes
+	// nomizw pws oxi, apla mas menei gia simera na bazoume tous nekrous pou eipes //
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
