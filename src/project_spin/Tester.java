@@ -1,7 +1,7 @@
 package project_spin;
 
 import java.util.*;
-import javax.activation.DataHandler;
+//import javax.activation.DataHandler;
 import java.util.Date;
 import project_spin.User;
 
@@ -9,9 +9,16 @@ public class Tester {
 
 	Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args){
+
 	
+	
+
+	public static void main(String[] args) throws Exception {
+
+		testWhoMenu();
+		
 	}
+	
 	private static void testWho() {
 		
 	}
@@ -26,8 +33,12 @@ public class Tester {
 	}
 
 
-	} 
 
+
+	private static void testWhoMenu() {
+		WhoMenu.main(null);
+	}
+}
 	
 
 
