@@ -62,12 +62,7 @@ class Ssn {
 	protected static boolean checkSsn(int s) {
 		for (int i:ssn) {
 			if (i == s) {
-				if (checkedSsn.get(s) == true) {
-					return false;
-				} else {
-					checkedSsn.put(s, true);
-					return true;
-				}
+				return !checkedSsn.get(s);
 			}
 		}
 		return false;

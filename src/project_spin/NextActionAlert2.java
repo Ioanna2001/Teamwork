@@ -8,20 +8,36 @@ class NextActionAlert2 implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		String temp = GUI.ssnText.getText();
 		int ssn = 0;
-		try {
-			ssn = Integer.parseInt(GUI.ssnText.getText());
-		} catch (Exception ex) {
-			if (i < 5) {//the user has 5 tries
-				GUI.frame3.setVisible(false);
-				i ++;
-				GUI.gui4();
+		if (temp.matches("\\d+") && i < 5) {
+			ssn = Integer.parseInt(temp);
+			if (Ssn.checkSsn(ssn) == true) {
+				Corona.setSsn(ssn);
+				SendEmail sendEmail = new SendEmail(Corona.email);
+				GUI.gui5();
+				try {
+					sendEmail.covidCaseMail();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			} else {
+				i ++;
+				GUI.frame3.setVisible(false);
+				GUI.gui4();
+			}
+		} else {
+			i ++;
+			GUI.frame3.setVisible(false);
+			GUI.gui4();
+		}
+		if (i == 4) {
+			if (Ssn.checkSsn(ssn) == false) {
 				System.exit(0);
 			}
-			
+		} else if (i > 4) {
+			System.exit(0);
 		}
-		Corona.setSsn(ssn);
 	}
 
 }

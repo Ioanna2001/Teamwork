@@ -6,7 +6,7 @@ import java.text.DateFormatSymbols;
 import project_spin.*;
 
 public class WhoMenu {
-
+//Guyz tzo edw tsekarete kai sthn CovidCases mhn einai kamia methodos gia edw
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {

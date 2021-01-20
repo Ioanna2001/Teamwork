@@ -7,14 +7,11 @@ import project_spin.User;
 
 public class Tester {
 
-	static Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) throws Exception {
-
-		
-		
+	public static void main(String[] args){
+	
 	}
-
 	private static void testWho() {
 		
 	}
@@ -28,12 +25,9 @@ public class Tester {
 		
 	}
 
-/*	private static void testMail() throws Exception {
-		SendEmail email = new SendEmail("basileslazarides@gmail.com");
-		email.covidCaseMail();
-		System.out.print("Succes");
-	} */ 
+
+	} 
 
 	
 
-}
+

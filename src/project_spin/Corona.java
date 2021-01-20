@@ -24,6 +24,9 @@ public final class Corona {
 	static String name;
 	static String password;
 	static int ssn = 0;
+	static Location location;
+	static int age;
+	static CovidCases cc = null;
 	public static void main(String[] args) throws Exception {
 		if (Ssn.i == 0) {
 			Ssn.ssnInitiator();
@@ -110,92 +113,9 @@ public final class Corona {
 		user.editContactList();
 	}
 
-	private static void passwordCheck() {
-		System.out.println("Please enter your verification code:");
-		password = obg.nextLine();
-		int tries = 1;//the user can enter the code 5 times
-		while (tries <= 5 && (Passwords.checkPasswordVerification(password) == false)) {
-			System.out.println("Wrong code. Please enter a valid code. You have " + (5 - tries) +" tries");
-			password = obg.nextLine();
-			tries ++;
-		}
-		if (Passwords.checkPasswordVerification(password) == false) {
-			System.out.println("Invalid code.");
-			System.exit(0);
-		}
-	}
-
-	protected static int checkAge() {
-		int age;
-		System.out.println("Please enter your age:");
-		age = obg.nextInt();
-		while (age == 0) {
-			System.out.println("Please enter your age:");
-			age = obg.nextInt();
-		}
-		return age;
-	}
-
-	protected static Location checkLocation() {
-		Location location = null;
-		System.out.print("Please enter your location");
-		for (Location i : Location.values()) {
-			System.out.println(i);
-		}
-		try {
-			location = Location.valueOf(obg.nextLine());
-		} catch (Exception e) {
-			System.out.println("Invalid location");
-		}
-		return location;
-	}
-
-	protected static int checkSsn() {
-		int ssn = 0;
-		try {
-			//an to ssn exei ligotera apo 6 pshfia petaei exception
-			System.out.print("Please enter your SSN:");
-			ssn = obg.nextInt();
-			if (String.valueOf(ssn).length() != 6) {
-				throw new WrongAnswerException();
-			}
-		} catch (Exception exc) {
-			System.out.print("Please make sure the SSN field is filled in correctly");
-			int times = 1;//o xrhsths exei 3 prospatheies na balei swsta to ssn
-			while (String.valueOf(ssn).length() != 6 && times <= 3) {
-				System.out.print("Please enter your SSN. You have " + (3 - times) + " tries");
-				ssn = obg.nextInt();
-				times ++;
-			}
-		}
-		//tsekarei pws to ssn poy edwse o xrhsths yparxei sth bash dedomenwn
-		//kai pws den exei hdh kanei sign up (CovidCases.ckeckSsn method)
-		if (Ssn.checkSsn(ssn) == false) {
-			System.out.println("Invalid sign up ssn");
-			System.exit(0);
-		}
-		return ssn;
-	}
-
 	static void covidCase() throws Exception {
-		//user enters ssn
 		GUI.gui4();
-		//email sent with verification code
-		SendEmail sendEmail = new SendEmail(email);
-		sendEmail.covidCaseMail();
-		GUI.gui5();
-		
-		//Eisagwgh perioxhs
-		Location location = checkLocation();
-		//eisagwgh age
-		int age = checkAge();
-		CovidCases patient = null;
-		//dhmiourgia antikeimenou CovidCase
-		if (location == null) {
-			patient = new CovidCases(ssn, password, name, email, age);
-		} else {
-			patient = new CovidCases(location, ssn, password, name, email, age);
-		}
+		/*
 		//eisagwgh prwtwn epafwn
 		contacts(patient);
 		for (String i : patient.contactEmail) {
@@ -203,7 +123,7 @@ public final class Corona {
 			firstContacts.firstContactMail();
 		}
 		patient.addSymptoms();
-		InputMenu.question(patient);
+		InputMenu.question(patient); */
 	}
 	protected static String getStatus() {
 		return status;
