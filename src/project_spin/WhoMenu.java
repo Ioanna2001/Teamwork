@@ -13,68 +13,77 @@ public class WhoMenu {
 	public static void main(String[] args) {
 		Who who = new Who();
 
-		String answer = menu();
-		do {
-			switch (answer) {
-			case "1": {
-				Who.printPatientCount();
-			}
-			case "2": {
-				Who.printDeaths();
-			}
-			case "3": {
-				Who.printCured();
-			}
-			case "4": {
-				Who.frequentSymptoms();
-			}
-			case "5": {
-				Who.deathsPerAge();
-			}
-			case "6": {
-				System.out.println("Insert the location you want to see the Covid Cases of\n" + 
-				"These are the locations:\n");
-				int i = 1;
-				for (Location l : Location.values()) {
-					System.out.println(i + ". " + l);
-					i++;
-				}
-				int loc = sc.nextInt();
-				Who.printCasesPerLocation(Location.values()[loc]);
-			}
-			case "7": {
-				Who.printCasesForAllLocations();
-			}
-			case "8": {
-				Who.percentageOfDeaths();
-			}
-			case "9": {
-				Who.percentageOfCured();
-			}
-			case "10": {
-				Who.ageAverage();
-			}
-			case "11": {
-				Who.ageAveragePerSymptom();
-			}
-			case "12": {
-				System.out.println("Enter the month you want to predict the cases of");
-				int month = sc.nextInt();
-				String monthString = new DateFormatSymbols().getMonths()[month-1];
-				System.out.println("Enter the year you want to predict the cases of");
-				int year = sc.nextInt();
-				long pr = who.getMonthlyPrediction(28, month, year);
-				System.out.println("In " + monthString + " of " + year + 
-						" there will probably be" + pr + "covid patients.\n");
-			}
+		System.out.println("Do you wish to:\n" + "1. See our application's statistics\n" + 
+		"2. Alter a patient's status\n" + "Please enter the corresponding number.");
+		int fAnswer = sc.nextInt();
+		if (fAnswer == 1) {
+			int sAnswer = menu();
 
-			}
-			answer = menu();
-		} while (answer != "0");
+			do {
+				switch (sAnswer) {
+				case 1: {
+					Who.printPatientCount();
+				}
+				case 2: {
+					Who.printDeaths();
+				}
+				case 3: {
+					Who.printCured();
+				}
+				case 4: {
+					Who.frequentSymptoms();
+				}
+				case 5: {
+					Who.deathsPerAge();
+				}
+				case 6: {
+					System.out.println("Insert the location you want to see the Covid Cases of\n" + 
+					"These are the locations:\n");
+					int i = 1;
+					for (Location l : Location.values()) {
+						System.out.println(i + ". " + l);
+						i++;
+					}
+					int loc = sc.nextInt();
+					Who.printCasesPerLocation(Location.values()[loc]);
+				}
+				case 7: {
+					Who.printCasesForAllLocations();
+				}
+				case 8: {
+					Who.percentageOfDeaths();
+				}
+				case 9: {
+					Who.percentageOfCured();
+				}
+				case 10: {
+					Who.ageAverage();
+				}
+				case 11: {
+					Who.ageAveragePerSymptom();
+				}
+				case 12: {
+					System.out.println("Enter the month you want to predict the cases of");
+					int month = sc.nextInt();
+					String monthString = new DateFormatSymbols().getMonths()[month-1];
+					System.out.println("Enter the year you want to predict the cases of");
+					int year = sc.nextInt();
+					long pr = who.getMonthlyPrediction(28, month, year);
+					System.out.println("In " + monthString + " of " + year + 
+							" there will probably be" + pr + "covid patients.\n");
+				}
+
+				}
+				sAnswer = menu();
+			} while (sAnswer != 0);
+
+		} else {
+			deadPatients();
+		}
 
 	}
 
-	private static String menu() {
+	private static int menu() {
 		Who.sufficientSample();
 
 		System.out.println("1. Print the number of the Covid Cases in our app\n" + 
@@ -92,9 +101,29 @@ public class WhoMenu {
 		"Enter the number for the information you are interested in.\n" + 
 		"If you wish to exit press 0.");
 
-		String answer = sc.nextLine();
+		int answer = sc.nextInt();
 		return answer;
 
+	}
+
+	private static void deadPatients() {
+		//pairnei apo ton diaxeiristi ena ssn nekrou astheni kai thetei to status autou analogws
+		int an;
+		do {
+			System.out.println("As the administrator, enter the ssn of the patient you wish to "
+					+ "declare dead based on medical records.");
+			int ans = sc.nextInt();
+			for (CovidCases i : CovidCases.cases) {
+				int ssn = i.getPatientSsn();
+				if (ssn == ans) {
+					i.setStatusDead();
+					break;
+				}
+			}
+			System.out.println("Do you wish to continue the procedure for more patients? \n "
+					+ "If so, please enter 1 or else enter 0.");
+			an = sc.nextInt();
+		} while (an == 1);
 	}
 
 }
