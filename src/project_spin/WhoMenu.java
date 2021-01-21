@@ -13,9 +13,13 @@ public class WhoMenu {
 	public static void main(String[] args) {
 		Who who = new Who();
 
+		int fAnswer;
+		do {
 		System.out.println("Do you wish to:\n" + "1. See our application's statistics\n" + 
 		"2. Alter a patient's status\n" + "Please enter the corresponding number.");
-		int fAnswer = sc.nextInt();
+		fAnswer = sc.nextInt();
+		} while (fAnswer != 1 && fAnswer !=2 );
+
 		if (fAnswer == 1) {
 			int sAnswer = menu();
 
