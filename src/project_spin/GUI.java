@@ -307,4 +307,22 @@ public class GUI {
 				+ " Please consider getting tested for Covid-19");
 		frame8.setVisible(true);
 	}
+		static void guiFc() {
+		frame2.setVisible(false);
+		frameFc = new JFrame("Please assign the password you recenied in youw e-mail");
+		frameFc.setSize(350, 200);
+		frameFc.setResizable(false);
+		frameFc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panelFc = new JPanel();
+		frameFc.add(panelFc);
+		panelFc.setLayout(null);
+		JLabel FcLabel = new JLabel("Password");
+		FcLabel.setBounds(10, 20, 80, 25);
+		panel.add(FcLabel);
+		FcText = new JTextField(10000);
+		Fc.setBounds(100, 20, 165, 25);
+		panel.add(FcText);
+		next.addActionListener(new NextActionAlertFc());//πρέπει να κατασκευαστεί
+		frameFc.setVisible(true);
+	}
 }
