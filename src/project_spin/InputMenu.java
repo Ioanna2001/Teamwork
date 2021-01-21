@@ -48,9 +48,9 @@ public class InputMenu {
 		} else {
 			System.out.println("To register as a Covid-19 patient please fill in the followin fields.");
 			System.out.println("Please enter your location to continue");
-			Location location = Corona.checkLocation();
-			int age = Corona.checkAge();
-			int ssn = Corona.checkSsn();
+			Location location = Corona.location;
+			int age = Corona.age;
+			int ssn = Corona.ssn;
 			CovidCases cc = new CovidCases(location, ssn, user.password, user.name, user.username, age);
 			user.printContacts();
 			System.out.println("Enter 1 if you would like to add more contacts:");

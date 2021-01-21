@@ -9,13 +9,12 @@ public class Tester {
 
 	Scanner sc = new Scanner(System.in);
 
-
 	
 	
 
 	public static void main(String[] args) throws Exception {
 
-		testWhoMenu();
+	
 		
 	}
 	

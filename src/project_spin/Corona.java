@@ -24,6 +24,7 @@ public final class Corona {
 	static String name;
 	static String password;
 	static int ssn = 0;
+	static User fc;
 	static Location location;
 	static int age;
 	static CovidCases cc = null;

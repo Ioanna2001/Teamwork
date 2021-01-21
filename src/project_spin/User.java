@@ -67,7 +67,8 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 
 	//thn kalei h main gia na prosthesei o xrhsths symptwmata
 	public void addSymptoms () {
-
+		GUI.gui8();
+/*
 		boolean wrongAnswer;
 		do {
 			System.out.println("Do you have any symptoms of the following?");
@@ -105,7 +106,7 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 					wrongAnswer = true; //o xrhsths den epivevaiwse opote pame sthn arxh tou loop
 				}
 			}
-		} while (wrongAnswer) ;
+		} while (wrongAnswer) ; */
 
 	}
 

@@ -15,6 +15,7 @@ class NextActionAlert5 implements ActionListener {
 			Corona.cc = new CovidCases(Corona.location, Corona.ssn, Corona.password,
 					Corona.name, Corona.email, Corona.age);
 		}
+		GUI.frame6.setVisible(false);
+		Corona.cc.addSymptoms();
 	}
-
 }

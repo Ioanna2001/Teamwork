@@ -13,13 +13,13 @@ class NextActionAlert3 implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Corona.setPassword(GUI.codeText.getText());
-		if (Passwords.checkPasswordVerification(Corona.getPassword()) == false && i < 5) {
+		if (Passwords.checkPasswordVerification(Corona.getPassword()) && i < 5) {
+			GUI.gui6();
+		} else if (Passwords.checkPasswordVerification(Corona.getPassword()) == false && i < 5) {
 			i ++;
 			GUI.frame4.setVisible(false);
 			GUI.gui5();
-		} else if (Passwords.checkPasswordVerification(Corona.getPassword()) == true && i < 5) {
-			GUI.gui6();
-		} else {
+		} else if (i >= 5){
 			System.exit(0);
 		}
 	}
