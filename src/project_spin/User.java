@@ -12,9 +12,10 @@ public class User {
 	protected String password; //kwdikos gia eisodo sthn efarmogh
 	protected String name; 
 	protected String username; //einai to email
-	protected ArrayList<String> contactName; //lista me tis epafes kathe user (deuteres epafes)
-	protected ArrayList<String> contactEmail; //lista me ta emails twn epafwn kathe user
-ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
+	protected ArrayList<String> contactName = new ArrayList<String>(); //lista me tis epafes kathe user (deuteres epafes)
+	protected ArrayList<String> contactEmail = new ArrayList<String>();; //lista me ta emails twn epafwn kathe user
+	//mallon oxi
+	ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
 	protected int [] symptoms; //pinakas 0-1 me ta symptoms
 	protected static final String[] symptomsList = {"Fever", "Dry cough", "Tiredness", "Aches and pains", "Sore throat", 
 			"Diarrhoea", "Conjuctivitis", "Headache", "Loss of taste or smell", 
@@ -134,7 +135,7 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 	public void editContactList() {
 
 		addContact();
-		deleteContact();
+	//	deleteContact();
 
 	}
 
@@ -212,9 +213,9 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 
 	//diagrafei mia epafh tou user
 	//thn kalei h editContactList
-	private void deleteContact() {
+	protected void deleteContact(int i) {
 
-		System.out.println("These are your registered contacts");
+	/*	System.out.println("These are your registered contacts");
 		printContacts(); //typwnei tis katagegrammenes epafes
 		System.out.println("Do you want to delete an existing contact?");
 		answer = sc.next();
@@ -229,20 +230,20 @@ ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kath
 				//epivevaiwnei th diagrafh - proeidopoihsh
 				System.out.println("This contact will be permanently deleted. Are you sure you want to proceed?\n" + 
 				"Press 1 for Yes\n" + "Press 2 No\n");
-				if (sc.next() == "1") {
+				if (sc.next() == "1") { */
 					//diagrafei thn epafh
 					contactName.remove(i);
 					contactEmail.remove(i);
 					contactDate.remove(i);
-					System.out.println("This contact has been deleted."); //enhmerwtiko mhnyma
+				/*	System.out.println("This contact has been deleted."); //enhmerwtiko mhnyma
 				}
 			} else {
 				System.out.println("There is no contact with this name.");
 			}
 			System.out.println("Do you want to delete another contact?");
-			answer = sc.next(); //synexizei to loop h teleiwnei analogws
+			answer = sc.next(); //synexizei to loop h teleiwnei analogws */
 		}
 
 	}
 
-}
+

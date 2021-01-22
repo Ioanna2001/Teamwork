@@ -9,13 +9,13 @@ class NextActionAlert5 implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Corona.age = (Integer) GUI.spinner.getValue();
 		if (Corona.location == null) {
-			Corona.cc = new CovidCases(Corona.ssn, Corona.password, Corona.name,
+			Corona.user = new CovidCases(Corona.ssn, Corona.password, Corona.name,
 					Corona.email, Corona.age);
 		} else {
-			Corona.cc = new CovidCases(Corona.location, Corona.ssn, Corona.password,
+			Corona.user = new CovidCases(Corona.location, Corona.ssn, Corona.password,
 					Corona.name, Corona.email, Corona.age);
 		}
 		GUI.frame6.setVisible(false);
-		Corona.cc.addSymptoms();
+		Corona.user.addSymptoms();
 	}
 }

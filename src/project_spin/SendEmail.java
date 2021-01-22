@@ -60,7 +60,7 @@ public class SendEmail {
 
 	protected void firstContactMail() throws Exception {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
-		while (!Passwords.checkPasswordExistence(password)) {
+		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
 		}
 		Passwords.addPassword(password);
@@ -69,7 +69,7 @@ public class SendEmail {
 
 	protected void covidCaseMail() throws Exception {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
-		while (!Passwords.checkPasswordExistence(password)) {
+		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
 		}
 		Passwords.addPassword(password);

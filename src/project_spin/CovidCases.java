@@ -113,16 +113,8 @@ class CovidCases extends User {
 	}
 
 	//gia xeirismo apo eody
-	protected void setStatus() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter 0 if your symptoms have stopped for more than 15 days:"); //allaksame apo 1 se 0
-		do {
-		 status = sc.nextInt();
-		 if (status != 1 && status != 0) {
-			 System.out.println("Invalid input. Enter 0 if patient is cured"); //allaksame apo 1 se 0
-		 }
-		} while((status != 0) && (status != 1));
-		sc.close();
+	protected static void setStatus(CovidCases cc, int s) {
+		cc.status = s;//0 if cured, 1 if dead
 	}
 
 	protected void setStatusDead() {

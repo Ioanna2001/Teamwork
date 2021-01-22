@@ -24,16 +24,14 @@ public final class Corona {
 	static String name;
 	static String password;
 	static int ssn = 0;
-	static User fc;
+	static User user = null;
 	static Location location;
 	static int age;
-	static CovidCases cc = null;
 	public static void main(String[] args) throws Exception {
 		if (Ssn.i == 0) {
 			Ssn.ssnInitiator();
 		}
 		GUI.gui();
-		
 		obg.close();
 	}
 	// if you want to log in
@@ -92,8 +90,8 @@ public final class Corona {
 	}
 
 	static void firstContact() throws Exception {
-
-		User firstContact = new User(password, name, email);
+		GUI.guiFc();
+	/*	User firstContact = new User(password, name, email);
 		//eisagwgh prwtwn epafwn
 		contacts(firstContact);
 		for (String i : firstContact.contactEmail) {
@@ -101,7 +99,7 @@ public final class Corona {
 			secondContacts.secondContactEmail();
 		}
 		firstContact.addSymptoms();
-		InputMenu.question(firstContact);
+		InputMenu.question(firstContact); */
 	}
 
 	private static void contacts(User user) {

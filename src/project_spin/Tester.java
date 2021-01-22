@@ -13,9 +13,8 @@ public class Tester {
 	
 
 	public static void main(String[] args) throws Exception {
-
-	
-		
+Corona.setStatus("C");
+GUI.guiMenu();		
 	}
 	
 	private static void testWho() {

@@ -20,20 +20,28 @@ import javax.swing.SwingConstants;
 
 public class GUI {
 	static 		JRadioButton c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,c11, c12, c13;
-	static JFrame frame;
-	static JFrame frame1;
-	static JFrame frame2;
-	static JFrame frame3;
+	static JFrame frame = null;
+	static JFrame frame1 = null;
+	static JFrame frame2 = null;
+	static JFrame frame3 = null;
 	static JTextField nameText;
 	static JTextField emailText;
 	static JTextField ssnText;
-	static JFrame frame4;
+	static JTextField fcText;
+	static JFrame frame4 = null;
 	static JTextField codeText;
-	static JFrame frame5;
-	static JFrame frame6;
+	static JFrame frame5 = null;
+	static JFrame frame6 = null;
 	static JSpinner spinner;
-	static JFrame frame7;
-	static JFrame frame8;
+	static JFrame frame7 = null;
+	static JFrame frame8 = null;
+	static JFrame frameFc = null;
+	static JFrame frameC = null;
+	static JTextField contactName;
+	static JTextField contactEmail;
+	static JButton finish;
+	static JButton add;
+	static JFrame frameM =null;
 
 	static void gui() {
 		frame = new JFrame("Welcome to the WHO Platform Covid Tracker");
@@ -53,7 +61,8 @@ public class GUI {
 		frame.setVisible(true);
 	}
 	static void gui3() {
-		frame.setVisible(false);
+		if (frame != null)
+			frame.setVisible(false);
 		frame2 = new JFrame("Set Status");
 		frame2.setSize(700, 400);
 		frame.setResizable(true);
@@ -73,7 +82,8 @@ public class GUI {
 		}
 
 	static void gui2() {
-		frame2.setVisible(false);
+		if (frame2 != null)
+			frame2.setVisible(false);
 		frame1 = new JFrame("Personal Information");
 		frame1.setSize(350, 200);
 		frame1.setResizable(false);
@@ -101,7 +111,8 @@ public class GUI {
 	}
 //DEN TELEIWSAN!!!!!!
 	static void gui4() {
-		frame1.setVisible(false);
+		if (frame1 != null)
+			frame1.setVisible(false);
 		frame3 = new JFrame("SSN");
 		frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
@@ -122,7 +133,8 @@ public class GUI {
 	}
 
 	static void gui5() {
-		frame3.setVisible(false);
+		if (frame3 != null)
+			frame3.setVisible(false);
 		frame4 = new JFrame("Verify Code");
 		frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame4.setSize(350, 200);
@@ -147,7 +159,8 @@ public class GUI {
 	}
 
 	static void gui6() {
-		frame4.setVisible(false);
+		if (frame4 != null)
+			frame4.setVisible(false);
 		frame5 = new JFrame("Location");
 		frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame5.setSize(600, 800);
@@ -219,7 +232,8 @@ public class GUI {
 	}
 
 	static void gui7() {
-		frame5.setVisible(false);
+		if (frame5 != null)
+			frame5.setVisible(false);
 		frame6 = new JFrame("Age");
 		frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame6.setSize(350, 200);
@@ -300,7 +314,6 @@ public class GUI {
 	static void warning() {
 		frame7.setVisible(false);
 		frame8 = new JFrame("Warning!");
-		frame8 = new JFrame("Verify Code");
 		frame8.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame8.setSize(350, 200);
 		JOptionPane.showMessageDialog(frame8, "Your symptoms are alarming."
@@ -308,8 +321,8 @@ public class GUI {
 		frame8.setVisible(true);
 	}
 		static void guiFc() {
-		frame2.setVisible(false);
-		frameFc = new JFrame("Please assign the password you recenied in youw e-mail");
+		frame1.setVisible(false);
+		frameFc = new JFrame("Please assign the password you recenied in your e-mail");
 		frameFc.setSize(350, 200);
 		frameFc.setResizable(false);
 		frameFc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -318,11 +331,99 @@ public class GUI {
 		panelFc.setLayout(null);
 		JLabel FcLabel = new JLabel("Password");
 		FcLabel.setBounds(10, 20, 80, 25);
-		panel.add(FcLabel);
-		FcText = new JTextField(10000);
-		Fc.setBounds(100, 20, 165, 25);
-		panel.add(FcText);
-		next.addActionListener(new NextActionAlertFc());//πρέπει να κατασκευαστεί
+		panelFc.add(FcLabel);
+		fcText = new JTextField(10000);
+		fcText.setBounds(100, 20, 165, 25);
+		panelFc.add(fcText);
+		JButton next = new JButton("Next");
+		next.setBounds(10, 80, 80, 25);
+		panelFc.add(next);
+		next.addActionListener(new NextActionAlertFc());
 		frameFc.setVisible(true);
+	}
+
+		static void guiAddContacts() {
+			if (frameFc != null) {
+				frameFc.setVisible(false);
+			}
+			if (frame8 != null) {
+				frame8.setVisible(false);
+			}
+			if (frame7 != null) {
+				frame7.setVisible(false);
+			}
+			if (AddAlert.frame != null) {
+				AddAlert.frame.setVisible(false);
+			}
+			frameC = new JFrame("Add Contacts");
+			frameC.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frameC.setSize(500, 400);
+			frameC.setResizable(true);
+			JPanel panel = new JPanel();
+			panel.setLayout(null);
+			frameC.add(panel);
+			JLabel l1 = new JLabel("Add the email and name of your close contacts:");
+			JLabel l2 = new JLabel("-People you have been fifteen or less meters apart");
+			JLabel l3 = new JLabel("-People you have been in the same room for two hours or more");
+			l1.setBounds(10, 10, 800, 50);
+			l2.setBounds(10, 60, 800, 50);
+			l3.setBounds(10, 110, 800, 50);
+			panel.add(l1);
+			panel.add(l2);
+			panel.add(l3);
+			contactName = new JTextField(100);
+			contactName.setBounds(100, 200, 165, 25);
+			contactEmail = new JTextField(100);
+			contactEmail.setBounds(100, 250, 165, 25);
+			JLabel emailLabel = new JLabel("Email");
+			emailLabel.setBounds(10, 250, 300, 25);
+			panel.add(emailLabel);
+			JLabel nameLabel = new JLabel("Name");
+			nameLabel.setBounds(10, 200, 300, 25);
+			panel.add(nameLabel);
+			panel.add(contactEmail);
+			panel.add(contactName);
+			add = new JButton("Add Contact");
+			add.setBounds(200, 300, 150, 25);
+			finish = new JButton("Finish");
+			finish.setBounds(100, 300, 80, 25);
+			panel.add(finish);
+			panel.add(add);
+			add.addActionListener(new AddAlert());
+			finish.addActionListener(new AddAlert());
+			frameC.setVisible(true);
+		}
+
+	static void guiMenu() {
+	//	frameC.setVisible(false);
+		frameM = new JFrame("Option Menu");
+		frameM.setSize(450, 200);
+		frameM.setResizable(true);
+		frameM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		frameM.add(panel);
+		panel.setLayout(null);
+		JLabel label = new JLabel("Select one of the options to edit your information or Finish to exit:");
+		label.setBounds(10, 10,800, 50);
+		panel.add(label);
+		JButton option1 = new JButton("Edit Contacts");
+		option1.setBounds(10, 45, 150, 25);
+		panel.add(option1);
+		JButton option2 = new JButton("Edit Symptoms");
+		option2.setBounds(10, 80, 150, 25);
+		panel.add(option2);
+		if (Corona.getStatus().equals("C")) {
+			JButton option3 = new JButton("Set status to cured");
+			option3.setBounds(10, 115, 150, 25);
+			panel.add(option3);
+			option3.addActionListener(new Option3Alert());
+		}
+		JButton finish = new JButton("Finish");
+		finish.setBounds(200, 115, 80, 25);
+		panel.add(finish);
+		option1.addActionListener(new Option1Alert());
+		option2.addActionListener(new Option2Alert());
+		finish.addActionListener(new ExitAlert());
+		frameM.setVisible(true);
 	}
 }
