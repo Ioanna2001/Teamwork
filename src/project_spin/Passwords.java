@@ -6,8 +6,9 @@ class Passwords {
 	private static HashMap<String, Boolean> passwords = new HashMap<String, Boolean>();
 	private static HashMap<String, String> emailPasswords = new HashMap<String, String>();
 
-	protected static void addPassword(String pw){
+	protected static void addPassword(String pw, String email){
 		passwords.put(pw, false);
+		emailPasswords.put(pw, email);
 	}
 
 	protected static boolean checkPasswordExistence(String pw, String email) {
@@ -25,6 +26,15 @@ class Passwords {
 					passwords.put(pw, true);
 					return true;
 				}
+			}
+		}
+		return false;
+	}
+	
+	protected static boolean emailMatchesPassword(String pw, String email) {
+		if (emailPasswords.containsKey(pw)) {
+			if (emailPasswords.get(pw).equals(email)) {
+				return true;
 			}
 		}
 		return false;

@@ -15,7 +15,7 @@ public class User {
 	protected ArrayList<String> contactName = new ArrayList<String>(); //lista me tis epafes kathe user (deuteres epafes)
 	protected ArrayList<String> contactEmail = new ArrayList<String>();; //lista me ta emails twn epafwn kathe user
 	//mallon oxi
-	ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
+//	ArrayList<Date> contactDate; //lista - hmeromhnia epafhs me thn kathe epafh kathe user
 	protected int [] symptoms; //pinakas 0-1 me ta symptoms
 	protected static final String[] symptomsList = {"Fever", "Dry cough", "Tiredness", "Aches and pains", "Sore throat", 
 			"Diarrhoea", "Conjuctivitis", "Headache", "Loss of taste or smell", 
@@ -171,7 +171,7 @@ public class User {
 			//prosthetei ta inputs stis listes tou user
 			contactName.add(name);
 			contactEmail.add(email);
-			contactDate.add(date);
+		//	contactDate.add(date);
 
 			System.out.println("Do you have any more contacts you want to register?\n" + "Press 1 for yes\n" + 
 			"Press 2 for no");
@@ -234,7 +234,7 @@ public class User {
 					//diagrafei thn epafh
 					contactName.remove(i);
 					contactEmail.remove(i);
-					contactDate.remove(i);
+				//	contactDate.remove(i);
 				/*	System.out.println("This contact has been deleted."); //enhmerwtiko mhnyma
 				}
 			} else {

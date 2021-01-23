@@ -63,7 +63,7 @@ public class SendEmail {
 		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
 		}
-		Passwords.addPassword(password);
+		Passwords.addPassword(password, userEmail);
 		email(firstContactMessage());
 	}
 
@@ -72,7 +72,7 @@ public class SendEmail {
 		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
 		}
-		Passwords.addPassword(password);
+		Passwords.addPassword(password, userEmail);
 		email(covidCaseMessage());
 	}
 //custom messages

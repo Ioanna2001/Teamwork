@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 class Option2Alert implements ActionListener {
 	static JButton finish;
 	static JFrame frame;
+	static JRadioButton c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -25,33 +26,33 @@ class Option2Alert implements ActionListener {
 		frame.add(panel);
 		panel.setLayout(null);
 		int[] symptoms = Corona.user.symptoms;
-		JLabel l=new JLabel("Peak your sympotoms:");  
-		l.setBounds(20, 30, 150, 50);  
-		JRadioButton c1 = new JRadioButton("Fever");
+		JLabel l=new JLabel("Pick your sympotoms:");  
+		l.setBounds(20, 30, 150, 50);
+		c1 = new JRadioButton("Fever");
 		c1.setBounds(150, 30, 500, 50);
-		JRadioButton c2 = new JRadioButton("Dry cough");
+		c2 = new JRadioButton("Dry cough");
 		c2.setBounds(150, 70, 500, 50);
-		JRadioButton c3 = new JRadioButton("Tiredness");
+		c3 = new JRadioButton("Tiredness");
 		c3.setBounds(150, 110, 500, 50);
-		JRadioButton c4 = new JRadioButton("Aches and pains");
+		c4 = new JRadioButton("Aches and pains");
 		c4.setBounds(150, 150, 500, 50);
-		JRadioButton c5 = new JRadioButton("Sore throat");
+		c5 = new JRadioButton("Sore throat");
 		c5.setBounds(150, 190, 500, 50);
-		JRadioButton c6 = new JRadioButton("Diarrhoea");
+		c6 = new JRadioButton("Diarrhoea");
 		c6.setBounds(150, 230, 500, 50);
-		JRadioButton c7 = new JRadioButton("Conjuctivitis");
+		c7 = new JRadioButton("Conjuctivitis");
 		c7.setBounds(150, 270, 500, 50);
-		JRadioButton c8 = new JRadioButton("Headache");
+		c8 = new JRadioButton("Headache");
 		c8.setBounds(150, 310, 500, 50);
-		JRadioButton c9 = new JRadioButton("Loss of taste or smell");
+		c9 = new JRadioButton("Loss of taste or smell");
 		c9.setBounds(150, 350, 500, 50);
-		JRadioButton c10 = new JRadioButton("A rash on skin, or discolouration of fingers or toes");
+		c10 = new JRadioButton("A rash on skin, or discolouration of fingers or toes");
 		c10.setBounds(150, 390, 500, 50);
-		JRadioButton c11 = new JRadioButton("Difficulty breathing or shortness of breath");
+		c11 = new JRadioButton("Difficulty breathing or shortness of breath");
 		c11.setBounds(150, 430, 500, 50);
-		JRadioButton c12 = new JRadioButton("Cheast pain or pressure");
+		c12 = new JRadioButton("Cheast pain or pressure");
 		c12.setBounds(150, 470, 500, 50);
-		JRadioButton c13 = new JRadioButton("Loss of speech or movement");
+		c13 = new JRadioButton("Loss of speech or movement");
 		c13.setBounds(150, 510, 500, 50);
 		if (symptoms[0] == 1) {
 			c1.setSelected(true);

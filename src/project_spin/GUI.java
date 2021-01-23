@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -19,7 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
 public class GUI {
-	static 		JRadioButton c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,c11, c12, c13;
+	static JRadioButton c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,c11, c12, c13;
 	static JFrame frame = null;
 	static JFrame frame1 = null;
 	static JFrame frame2 = null;
@@ -42,6 +43,13 @@ public class GUI {
 	static JButton finish;
 	static JButton add;
 	static JFrame frameM =null;
+	static JFrame frameL;
+	static JList contacts;
+	static JFrame frameE;
+	static JButton button1;
+	static JButton button2;
+	static JTextField passwordText;
+	static JTextField emailText2;
 
 	static void gui() {
 		frame = new JFrame("Welcome to the WHO Platform Covid Tracker");
@@ -52,8 +60,8 @@ public class GUI {
 		frame.setLayout(layout);
 		JLabel label = new JLabel();
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
-		JButton button1 = new JButton("Sign Up");
-		JButton button2 = new JButton("Log in");
+		button1 = new JButton("Sign Up");
+		button2 = new JButton("Log in");
 		frame.add(button1);
 		frame.add(button2);
 		button1.addActionListener(new AlertSignUp(frame));
@@ -109,7 +117,7 @@ public class GUI {
 		next.addActionListener(new NextActionAlert());
 		frame1.setVisible(true);
 	}
-//DEN TELEIWSAN!!!!!!
+
 	static void gui4() {
 		if (frame1 != null)
 			frame1.setVisible(false);
@@ -262,7 +270,7 @@ public class GUI {
 		JPanel panel = new JPanel();
 		frame7.add(panel);
 		panel.setLayout(null);
-		JLabel l=new JLabel("Peak your sympotoms:");  
+		JLabel l=new JLabel("Pick your sympotoms:");  
 		l.setBounds(20, 30, 150, 50);  
 		c1 = new JRadioButton("Fever");
 		c1.setBounds(150, 30, 500, 50);
@@ -322,7 +330,7 @@ public class GUI {
 	}
 		static void guiFc() {
 		frame1.setVisible(false);
-		frameFc = new JFrame("Please assign the password you recenied in your e-mail");
+		frameFc = new JFrame("Please assign the password you received in your e-mail");
 		frameFc.setSize(350, 200);
 		frameFc.setResizable(false);
 		frameFc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -355,6 +363,8 @@ public class GUI {
 			if (AddAlert.frame != null) {
 				AddAlert.frame.setVisible(false);
 			}
+			if (frameE != null)
+				frameM.setVisible(false);
 			frameC = new JFrame("Add Contacts");
 			frameC.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frameC.setSize(500, 400);
@@ -390,7 +400,7 @@ public class GUI {
 			panel.add(finish);
 			panel.add(add);
 			add.addActionListener(new AddAlert());
-			finish.addActionListener(new AddAlert());
+			finish.addActionListener(new FAlert());
 			frameC.setVisible(true);
 		}
 
@@ -425,5 +435,63 @@ public class GUI {
 		option2.addActionListener(new Option2Alert());
 		finish.addActionListener(new ExitAlert());
 		frameM.setVisible(true);
+	}
+
+	static void guiEditContacts() {
+		String[] array = new String[Corona.user.contactName.size()];
+		for (int i = 0; i < Corona.user.contactName.size(); i++) {
+			array[i] = Corona.user.contactName.get(i);
+		}
+		contacts = new JList(array);
+		contacts.setBounds(105, 10, 200,200); 
+		frameE = new JFrame("Edit Contacts");
+		frameE.setSize(600, 400);
+		frameE.setResizable(true);
+		frameE.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		frameE.add(panel);
+		panel.setLayout(null);
+		panel.add(contacts);
+		JButton add = new JButton("Add Contact");
+		add.setBounds(10, 300, 150,25);
+		JButton delete = new JButton("Delete Contact");
+		delete.setBounds(200, 300, 150, 25);
+		JButton finish = new JButton("Finish");
+		finish.setBounds(400, 150, 150, 25);
+		panel.add(delete);
+		panel.add(add);
+		panel.add(finish);
+		delete.addActionListener(new DeleteContactAlert());
+		add.addActionListener(new AddContactAlert());
+		finish.addActionListener(new FinishAlert());
+		frameE.setVisible(true);
+	}
+
+	static void guiLogIn() {
+		frame.setVisible(false);
+		frameL = new JFrame("Log In");
+		frameL.setSize(350, 200);
+		frameL.setResizable(false);
+		frameL.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel panel = new JPanel();
+		frameL.add(panel);
+		panel.setLayout(null);
+		JLabel nameLabel = new JLabel("Password");
+		nameLabel.setBounds(10, 20, 80, 25);
+		panel.add(nameLabel);
+		passwordText = new JTextField(100);
+		passwordText.setBounds(100, 20, 165, 25);
+		panel.add(passwordText);
+		JLabel emailLabel = new JLabel("Email");
+		emailLabel.setBounds(10, 50, 80, 25);
+		panel.add(emailLabel);
+		emailText2 = new JTextField(100);
+		emailText2.setBounds(100, 50, 165, 25);
+		panel.add(emailText2);
+		JButton next = new JButton("Next");
+		next.setBounds(10, 80, 80, 25);
+		panel.add(next);
+		next.addActionListener(new NextActionAlertLogIn());
+		frameL.setVisible(true);
 	}
 }

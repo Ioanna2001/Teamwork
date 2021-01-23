@@ -4,12 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class AddAlert implements ActionListener {
+class FAlert implements ActionListener {
 	String email;
 	static JFrame frame = null;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		GUI.frameC.setVisible(false);
@@ -36,7 +36,14 @@ public class AddAlert implements ActionListener {
 			frame = new JFrame("Warning");
 			JOptionPane.showMessageDialog(frame , "Please enter a valid email. "
 					+ "Your contact has not been added");
+			GUI.guiAddContacts();
 		}
-		GUI.guiAddContacts();
+		GUI.frameC.setVisible(false);
+		if (GUI.frameM != null) {
+			GUI.guiEditContacts();
+		} else {
+			GUI.guiMenu();
+		}
 	}
 }
+

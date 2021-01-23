@@ -9,12 +9,14 @@ class DeleteContactAlert implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		List<String> contactName = Option1Alert.contacts.getSelectedValuesList();
+		GUI.frameE.setVisible(false);
+		List<String> contactName = GUI.contacts.getSelectedValuesList();
 		for (String i:contactName) {
 			if (Corona.user.contactName.contains(i)) {
 				Corona.user.deleteContact(Corona.user.contactName.indexOf(i));
 			}
 		}
+		GUI.guiEditContacts();
 	}
 
 }

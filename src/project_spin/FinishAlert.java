@@ -7,7 +7,7 @@ class FinishAlert implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Option1Alert.frame.setVisible(false);
+		GUI.frameE.setVisible(false);
 		GUI.guiMenu();
 	}
 
