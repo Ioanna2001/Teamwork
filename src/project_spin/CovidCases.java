@@ -1,14 +1,10 @@
 package project_spin;
-import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.ArrayList;
 /* @Ioanna2001
  *@VasilisLazaridis
  */
-class CovidCases extends User {
+public class CovidCases extends User {
 	//san kleidi exei to ssn toy xrhsth 
 	/*h boolean timh einai true an to kroysma exei kanei sign up 
 	kai exei tsekaristei to ssn toy*/
@@ -17,7 +13,7 @@ class CovidCases extends User {
 	protected static int[] symptoms_counter = new int[13];
 	//counter asthenwn
 	protected static int patientCounter = 0;
-	protected static ArrayList<CovidCases> cases = new ArrayList<CovidCases>();
+	public static ArrayList<CovidCases> cases = new ArrayList<CovidCases>();
 	//hlikia asthenwn
 	protected static ArrayList<Integer> age = new ArrayList<Integer>();
 	//statikes listes gia na kratame dedomena
@@ -81,7 +77,7 @@ class CovidCases extends User {
 		age.add(a);
 	}
 //counter sunolikwn symptwmatwn kroysmatwn
-	protected static  void addSymptoms_Counter(int[] s) {
+	public static  void addSymptoms_Counter(int[] s) {
 		for(int i=0;i<13;i++) {
 			symptoms_counter[i] += s[i];
 		}
@@ -113,11 +109,11 @@ class CovidCases extends User {
 	}
 
 	//gia xeirismo apo eody
-	protected static void setStatus(CovidCases cc, int s) {
+	public static void setStatus(CovidCases cc, int s) {
 		cc.status = s;//0 if cured, 1 if dead
 	}
 
-	protected void setStatusDead() {
+	public void setStatusDead() {
 		this.status = 1; //allaksame apo 2 se 1 - dhm
 	}
 
@@ -125,7 +121,7 @@ class CovidCases extends User {
 		return this.status;
 	}
 
-	protected int getPatientSsn() {
+	public int getPatientSsn() {
 		return this.patientSsn;
 	}
 

@@ -1,16 +1,12 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+public class B1Action implements ActionListener{
 
-class B1Action implements ActionListener{
-	private JFrame parent;
-
-	B1Action(JFrame parent) {
-		this.parent = parent;
-	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Corona.setStatus("C");

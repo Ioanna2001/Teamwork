@@ -1,28 +1,26 @@
 package project_spin;
-import javax.activation.DataHandler;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.Properties;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendEmail {
+public final class SendEmail {
 	String from = "teamwork.covid.tracker@gmail.com";//sender
 	String fromPassword = "teamwork20202021";
 	protected String password;//verification code sent by email
 	protected String userEmail;//recipient
 	Scanner input = new Scanner(System.in);
 
-	protected SendEmail(String email) {
+	public SendEmail(String email) {
 		userEmail= email;
 	}
 //method that sends the email
@@ -54,11 +52,11 @@ public class SendEmail {
 		}
 	}
 
-	protected void secondContactEmail() throws Exception {
+	public void secondContactEmail() throws Exception {
 		email(secondContactMessage());
 	}
 
-	protected void firstContactMail() throws Exception {
+	public void firstContactMail() throws Exception {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
 		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
@@ -67,7 +65,7 @@ public class SendEmail {
 		email(firstContactMessage());
 	}
 
-	protected void covidCaseMail() throws Exception {
+	public void covidCaseMail() throws Exception {
 		password = String.valueOf(GeneratePassword.generatePassword(5));
 		while (!Passwords.checkPasswordExistence(password, userEmail)) {
 			password = String.valueOf(GeneratePassword.generatePassword(5));
@@ -75,15 +73,15 @@ public class SendEmail {
 		Passwords.addPassword(password, userEmail);
 		email(covidCaseMessage());
 	}
-//custom messages
-	protected String secondContactMessage() {
+	//custom messages
+	private String secondContactMessage() {
 		return "You have been in contact with o Covid-19 close contact.\n"
 				+ "\t>Please avoid unnecessary interactions\n"
 				+ "\t>Wash your hands regularly\n"
 				+ "\t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
 	}
 
-	protected String firstContactMessage() {
+	private String firstContactMessage() {
 		return "You have been in close contact with a Covid-19 patient. "
 				+ "Please follow the country's virus prevention protoco:\n"
 				+ "**1** You are required carantine in your house for 14 days"
@@ -100,7 +98,7 @@ public class SendEmail {
 				+ "**Verification code:**" + password + "\n" + infoMessage();
 	}
 
-	protected String covidCaseMessage() {
+	private String covidCaseMessage() {
 		return "You have been tested positive for Covid-19."
 				+ "Please follow the country's virus prevention protocol:\n"
 				+ "**1** You are required to carantine in you house for all t"
@@ -118,12 +116,12 @@ public class SendEmail {
 				+ "**Verification code:**" + password + "\n" + infoMessage();
 	}
 
-	protected String infoMessage() {
+	private String infoMessage() {
 		return "For further questions on the Covid-19 protocol please visit the WHO website:\n"
 				+ " https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAiA_9r_BRBZEiwAHZ_v11O4yqh06VEnOb2W5zrKipeeccXTDoBYTLrZU0Iv1IJlbeSQYkNyGxoCbtsQAvD_BwE";
 	}
 
-	protected static boolean isValid(String email) { 
+	public static boolean isValid(String email) { 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
                             "[a-zA-Z0-9_+&*-]+)*@" + 
                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 

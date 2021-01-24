@@ -2,13 +2,13 @@ package project_spin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-class Ssn {
+//"bash dedomenwn" ssn apo nosokomeia
+public class Ssn {
 	protected static ArrayList<Integer> ssn = new ArrayList<Integer>();
 	protected static HashMap<Integer, Boolean> checkedSsn = new HashMap<Integer, Boolean>();
 	protected static int i;//indicates if the ArrayList is initialized
-
-	protected static void ssnInitiator() {
+//test times gia ssn
+	public static void ssnInitiator() {
 		ssn.add(123456);
 		checkedSsn.put(123456, false);
 		ssn.add(789012);
@@ -50,7 +50,7 @@ class Ssn {
 		i = 1;
 	}
 
-	protected static void addSsn(int ssn) {
+	public static void addSsn(int ssn) {
 		if(i == 0) {
 			ssnInitiator();
 		}
@@ -59,7 +59,7 @@ class Ssn {
 	}
 
 	//tsekarei an yparxei to ssn sth bash dedomenwn
-	protected static boolean checkSsn(int s) {
+	public static boolean checkSsn(int s) {
 		for (int i:ssn) {
 			if (i == s) {
 				return !checkedSsn.get(s);

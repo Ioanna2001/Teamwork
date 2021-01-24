@@ -2,11 +2,12 @@ package project_spin;
 
 import java.util.HashMap;
 //class for storing and checking passwords
-class Passwords {
+public class Passwords {
 	private static HashMap<String, Boolean> passwords = new HashMap<String, Boolean>();
+	//matches passwords with email
 	private static HashMap<String, String> emailPasswords = new HashMap<String, String>();
 
-	protected static void addPassword(String pw, String email){
+	public static void addPassword(String pw, String email){
 		passwords.put(pw, false);
 		emailPasswords.put(pw, email);
 	}
@@ -19,7 +20,7 @@ class Passwords {
 			return true;
 		}
 	}
-	protected static boolean checkPasswordVerification(String pw, String email){
+	public static boolean checkPasswordVerification(String pw, String email){
 		if (passwords.containsKey(pw)) {
 			if (passwords.get(pw) == false) {
 				if (emailPasswords.get(pw).equals(email)) {
@@ -31,7 +32,7 @@ class Passwords {
 		return false;
 	}
 	
-	protected static boolean emailMatchesPassword(String pw, String email) {
+	public static boolean emailMatchesPassword(String pw, String email) {
 		if (emailPasswords.containsKey(pw)) {
 			if (emailPasswords.get(pw).equals(email)) {
 				return true;

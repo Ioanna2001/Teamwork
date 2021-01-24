@@ -1,16 +1,16 @@
-package project_spin;
+package project_spin.gui;
 
-import java.awt.Component;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-class Option2Alert implements ActionListener {
+public class Option2Alert implements ActionListener {
 	static JButton finish;
 	static JFrame frame;
 	static JRadioButton c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13;
@@ -25,7 +25,7 @@ class Option2Alert implements ActionListener {
 		JPanel panel = new JPanel();
 		frame.add(panel);
 		panel.setLayout(null);
-		int[] symptoms = Corona.user.symptoms;
+		int[] symptoms = Corona.user.getSymptoms();
 		JLabel l=new JLabel("Pick your sympotoms:");  
 		l.setBounds(20, 30, 150, 50);
 		c1 = new JRadioButton("Fever");

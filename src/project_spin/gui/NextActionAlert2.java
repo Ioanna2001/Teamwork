@@ -1,9 +1,11 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionListener;
 
-class NextActionAlert2 implements ActionListener {
+public class NextActionAlert2 implements ActionListener {
 	static int i = 0;
 
 	@Override
@@ -14,7 +16,7 @@ class NextActionAlert2 implements ActionListener {
 			ssn = Integer.parseInt(temp);
 			if (Ssn.checkSsn(ssn) == true) {
 				Corona.setSsn(ssn);
-				SendEmail sendEmail = new SendEmail(Corona.email);
+				SendEmail sendEmail = new SendEmail(Corona.getEmail());
 				GUI.gui5();
 				try {
 					sendEmail.covidCaseMail();

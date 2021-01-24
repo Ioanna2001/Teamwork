@@ -1,9 +1,9 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class ExitAlert implements ActionListener {
+public class ExitAlert implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

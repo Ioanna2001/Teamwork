@@ -1,6 +1,6 @@
 package project_spin;
 
-enum Location {
+public enum Location {
 ANATOLIKI_MAKEDONIA_KAI_THRAKI,
 KEDRIKH_MAKEDONIA,
 DYTIKH_MAKEDONIA,

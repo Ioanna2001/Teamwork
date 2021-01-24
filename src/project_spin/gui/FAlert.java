@@ -1,12 +1,14 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-class FAlert implements ActionListener {
+public class FAlert implements ActionListener {
 	String email;
 	static JFrame frame = null;
 
@@ -15,10 +17,10 @@ class FAlert implements ActionListener {
 		GUI.frameC.setVisible(false);
 		email = GUI.contactEmail.getText();
 		if (SendEmail.isValid(email)) {
-			Corona.user.contactName.add(email);
-			Corona.user.contactEmail.add(GUI.contactEmail.getText());
+			Corona.user.getContactName().add(email);
+			Corona.user.getContactEmail().add(GUI.contactEmail.getText());
 			SendEmail fc = new SendEmail(GUI.contactEmail.getText());
-			if (Corona.status.equals("C")) {
+			if (Corona.getStatus().equals("C")) {
 				try {
 					fc.firstContactMail();
 				} catch (Exception e1) {

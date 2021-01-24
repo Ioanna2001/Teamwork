@@ -1,9 +1,11 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionListener;
 
-class NextActionAlertLogIn implements ActionListener {
+public class NextActionAlertLogIn implements ActionListener {
 	static int i = 0;
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -12,7 +14,7 @@ class NextActionAlertLogIn implements ActionListener {
 		String email = GUI.emailText2.getText();
 		if (Passwords.emailMatchesPassword(password, email) && i < 5) {
 			for (User u:User.users) {
-				if (u.password.equals(password)) {
+				if (u.getPassword().equals(password)) {
 					Corona.user = u;
 					if (u instanceof CovidCases) {
 						Corona.setStatus("C");

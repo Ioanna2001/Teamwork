@@ -1,15 +1,17 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.event.ActionEvent;
+import project_spin.exe.Corona;
+import project_spin.*;
 import java.awt.event.ActionListener;
 
-class NextActionAlert implements ActionListener {
+public class NextActionAlert implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Corona.setName(GUI.nameText.getText());
 		Corona.setEmail(GUI.emailText.getText());
-		if (Corona.email.equals("") || Corona.name.equals("") || SendEmail.isValid(Corona.email) == false) {
+		if (Corona.getEmail().equals("") || Corona.getName().equals("") || SendEmail.isValid(Corona.getEmail()) == false) {
 			GUI.frame1.setVisible(false);
 			GUI.gui2();
 		} else {

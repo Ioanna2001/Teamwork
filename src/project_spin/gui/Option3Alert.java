@@ -1,16 +1,14 @@
-package project_spin;
+package project_spin.gui;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-class Option3Alert implements ActionListener {
+public class Option3Alert implements ActionListener {
 	static JFrame frame;
 	@Override
 	public void actionPerformed(ActionEvent e) {
