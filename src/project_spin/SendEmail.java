@@ -75,7 +75,7 @@ public final class SendEmail {
 	}
 	//custom messages
 	private String secondContactMessage() {
-		return "You have been in contact with o Covid-19 close contact.\n"
+		return "You have been in contact with a Covid-19 close contact.\n"
 				+ "\t>Please avoid unnecessary interactions\n"
 				+ "\t>Wash your hands regularly\n"
 				+ "\t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
