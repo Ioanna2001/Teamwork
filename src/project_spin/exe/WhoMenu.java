@@ -25,44 +25,55 @@ public final class WhoMenu {
 				switch (sAnswer) {
 				case 1: {
 					Who.printPatientCount();
+					break;
 				}
 				case 2: {
 					Who.printDeaths();
+					break;
 				}
 				case 3: {
 					Who.printCured();
+					break;
 				}
 				case 4: {
 					Who.frequentSymptoms();
+					break;
 				}
 				case 5: {
 					Who.deathsPerAge();
+					break;
 				}
 				case 6: {
 					System.out.println("Insert the location you want to see the Covid Cases of\n" + 
 					"These are the locations:\n");
 					int i = 1;
-					for (Location l : Location.values()) {
+					for (project_spin.Location l : project_spin.Location.values()) {
 						System.out.println(i + ". " + l);
 						i++;
 					}
 					int loc = sc.nextInt();
-					Who.printCasesPerLocation(Location.values()[loc]);
+					Who.printCasesPerLocation(project_spin.Location.values()[loc - 1]);
+					break;
 				}
 				case 7: {
 					Who.printCasesForAllLocations();
+					break;
 				}
 				case 8: {
 					Who.percentageOfDeaths();
+					break;
 				}
 				case 9: {
 					Who.percentageOfCured();
+					break;
 				}
 				case 10: {
 					Who.ageAverage();
+					break;
 				}
 				case 11: {
 					Who.ageAveragePerSymptom();
+					break;
 				}
 				case 12: {
 					System.out.println("Enter the month you want to predict the cases of");
@@ -70,11 +81,11 @@ public final class WhoMenu {
 					String monthString = new DateFormatSymbols().getMonths()[month-1];
 					System.out.println("Enter the year you want to predict the cases of");
 					int year = sc.nextInt();
-					long pr = who.getMonthlyPrediction(28, month, year);
+					long pr = who.getMonthlyPrediction(1, month, year);
 					System.out.println("In " + monthString + " of " + year + 
 							" there will probably be" + pr + "covid patients.\n");
+					break;
 				}
-
 				}
 				sAnswer = menu();
 			} while (sAnswer != 0);

@@ -16,9 +16,9 @@ public class NextActionAlert4 implements ActionListener {
 		} else if (GUI.c3.isSelected()) {
 			Corona.setLocation(Location.DYTIKH_MAKEDONIA);
 		} else if (GUI.c4.isSelected()) {
-			Corona.setLocation(Location.HPEIROS);
+			Corona.setLocation(Location.IPEIROS);
 		} else if (GUI.c5.isSelected()) {
-			Corona.setLocation(Location.UESSALIA);
+			Corona.setLocation(Location.THESSALIA);
 		} else if (GUI.c6.isSelected()) {
 			Corona.setLocation(Location.IONIOI_NHSOI);
 		} else if (GUI.c7.isSelected()) {
@@ -34,7 +34,7 @@ public class NextActionAlert4 implements ActionListener {
 		} else if (GUI.c12.isSelected()) {
 			Corona.setLocation(Location.NOTIO_AIGAIO);
 		} else if (GUI.c13.isSelected()) {
-			Corona.setLocation(Location.KRHTH);
+			Corona.setLocation(Location.KRITI);
 		} else {
 			Corona.setLocation(null);
 		}

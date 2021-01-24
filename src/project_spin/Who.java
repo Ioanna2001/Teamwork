@@ -63,12 +63,17 @@ public final class Who {
 	}
 
 	protected static double[] symptomsPercentage() {
+		try {
 		// vriskei to pososto emfanisis tou kathe symptom
-		double perc[] = new double[13];
-		for (int i = 0; i <= User.symptomsList.length; i++) {
-			perc[i] = CovidCases.symptoms_counter[i] / CovidCases.patientCounter * 100;
+			double perc[] = new double[13];
+			for (int i = 0; i <= User.symptomsList.length; i++) {
+				perc[i] = CovidCases.symptoms_counter[i] / CovidCases.patientCounter * 100;
+			}
+			return perc;
+		} catch (ArithmeticException e) {
+			System.out.println("We have 0 patients in our application.");
 		}
-		return perc;
+		return null;
 	}
 
 	protected static double[][] symptomsFrequency() {
@@ -95,11 +100,15 @@ public final class Who {
 
 	public static void frequentSymptoms() {
 	 //typwnei thn seira syxnothtas twn symptomatwn
-		double sym[][] = symptomsFrequency();
-		for (int i = 0; i < sym.length; i++) {
-			System.out.println(sym[i][0] + "% of our registered patients have experienced" + 
-			User.symptomsList[(int) sym[i][1]]);
-		 }
+		try {
+			double sym[][] = symptomsFrequency();
+			for (int i = 0; i < sym.length; i++) {
+				System.out.println(sym[i][0] + "% of our registered patients have experienced" + 
+						User.symptomsList[(int) sym[i][1]]);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("We have 0 patients in our application.");
+		}
 	}
 
 	protected static void ageMortality() {
@@ -137,21 +146,30 @@ public final class Who {
 
 	protected static double[] deathPercentagePerAge () {
 		//vriskei to pososto twn nekrwn apo covid tis efarmogis mas ana ilikiako group
-		ageMortality();
-		ccInAgeGroup();
-		double[] dperc_ag = new double[4];
-		for (int i = 0; i < 4; i++) {
-			dperc_ag[i] = agd[i] / ag[i] * 100;
+		try {
+			ageMortality();
+			ccInAgeGroup();
+			double[] dperc_ag = new double[4];
+			for (int i = 0; i < 4; i++) {
+				dperc_ag[i] = agd[i] / ag[i] * 100;
+			}
+			return dperc_ag;
+		} catch (Exception e) {
+			System.out.println("We have 0 patients in our application.");
 		}
-		return dperc_ag;
+		return null;
 	}
 
 	public static void deathsPerAge() {
 		// kalei tin deathPercentage gia kathe ilikiako group kai ektypwnei tin
 		// thnisimotita tou
+		try {
 		double[] dper_ag = deathPercentagePerAge();
 		for (int i = 0; i <= 4; i++) {
 			System.out.println(dper_ag[i] + "% of this age group:" + AGE_GROUPS[i] + " have passed away.");
+		}
+		} catch (NullPointerException e) {
+			System.out.println("We have 0 patients in our application.");
 		}
 	}
 
@@ -164,7 +182,7 @@ public final class Who {
 	}
 
 	// deixnei gia thn topothesia pou bazeis ta kroysmata poy exei
-	protected static int casesPerLocation(Location l) {
+	protected static int casesPerLocation(project_spin.Location l) {
 		int counter = 0;
 		for (CovidCases cc : CovidCases.cases) {
 			if (cc.getPatientLocation().equals(l)) {
@@ -179,21 +197,21 @@ public final class Who {
 	protected static int[] casesForAllLocations() {
 		int i = 0;
 		int counter[] = new int[CovidCases.location_counter.length];
-		for (Location l : Location.values()) {
+		for (project_spin.Location l : project_spin.Location.values()) {
 			counter[i] = casesPerLocation(l);
 			i++;
 		}
 		return counter;
 	}
 
-	public static void printCasesPerLocation(Location i) {
-		System.out.println(casesPerLocation(i) + " exist in " + i);
+	public static void printCasesPerLocation(project_spin.Location location) {
+		System.out.println(casesPerLocation(location) + " exist in " + location);
 	}
 
 	public static void printCasesForAllLocations() {
 		int counter[] = casesForAllLocations();
-		for (int i = 1; i <= 13; i++) {
-			System.out.println(Location.values()[i] + " has " + counter[i] + " cases.");
+		for (int i = 1; i < 13; i++) {
+			System.out.println(project_spin.Location.values()[i] + " has " + counter[i] + " cases.");
 		}
 	}
 
@@ -298,7 +316,7 @@ public final class Who {
 	// o eody kalei ayth th methodo kai bazei thn hmeromhnia poy thelei na
 	// problepsei posa kroysmata ua yparxoyn
 	public long getMonthlyPrediction(int day, int month, int year) {
-		CasePrediction prediction = new CasePrediction(LocalDate.of(day, month, year));
+		CasePrediction prediction = new CasePrediction(LocalDate.of(year, month, day));
 		prediction.updateN();
 		prediction.updateSumX();
 		prediction.updateSumY();
