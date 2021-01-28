@@ -9,89 +9,106 @@ public final class WhoMenu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Who who = new Who();
+		try {
+			Who who = new Who();
 
-		int fAnswer;
-		do {
-		System.out.println("Do you wish to:\n" + "1. See our application's statistics\n" + 
-		"2. Alter a patient's status\n" + "Please enter the corresponding number.");
-		fAnswer = sc.nextInt();
-		} while (fAnswer != 1 && fAnswer !=2 );
-
-		if (fAnswer == 1) {
-			int sAnswer = menu();
-
+			int fAnswer;
 			do {
-				switch (sAnswer) {
-				case 1: {
-					Who.printPatientCount();
-					break;
+				System.out.println("Do you wish to:\n" + "1. See our application's statistics\n" + 
+				"2. Alter a patient's status\n" + "Please enter the corresponding number.");
+				fAnswer = sc.nextInt();
+				if (fAnswer != 1 || fAnswer != 2) {
+					System.out.println("Please enter 0 for exiting or 1 to continue.");
 				}
-				case 2: {
-					Who.printDeaths();
-					break;
-				}
-				case 3: {
-					Who.printCured();
-					break;
-				}
-				case 4: {
-					Who.frequentSymptoms();
-					break;
-				}
-				case 5: {
-					Who.deathsPerAge();
-					break;
-				}
-				case 6: {
-					System.out.println("Insert the location you want to see the Covid Cases of\n" + 
-					"These are the locations:\n");
-					int i = 1;
-					for (project_spin.Location l : project_spin.Location.values()) {
-						System.out.println(i + ". " + l);
-						i++;
-					}
-					int loc = sc.nextInt();
-					Who.printCasesPerLocation(project_spin.Location.values()[loc - 1]);
-					break;
-				}
-				case 7: {
-					Who.printCasesForAllLocations();
-					break;
-				}
-				case 8: {
-					Who.percentageOfDeaths();
-					break;
-				}
-				case 9: {
-					Who.percentageOfCured();
-					break;
-				}
-				case 10: {
-					Who.ageAverage();
-					break;
-				}
-				case 11: {
-					Who.ageAveragePerSymptom();
-					break;
-				}
-				case 12: {
-					System.out.println("Enter the month you want to predict the cases of");
-					int month = sc.nextInt();
-					String monthString = new DateFormatSymbols().getMonths()[month-1];
-					System.out.println("Enter the year you want to predict the cases of");
-					int year = sc.nextInt();
-					long pr = who.getMonthlyPrediction(1, month, year);
-					System.out.println("In " + monthString + " of " + year + 
-							" there will probably be" + pr + "covid patients.\n");
-					break;
-				}
-				}
-				sAnswer = menu();
-			} while (sAnswer != 0);
+			} while (fAnswer != 1 && fAnswer !=2 );
 
-		} else {
-			deadPatients();
+			int sAnswer;
+			if (fAnswer == 1) {
+				do {
+					sAnswer = menu();
+				} while (sAnswer > 12 || sAnswer <1) ;
+
+				do {
+					switch (sAnswer) {
+					case 1: {
+						Who.printPatientCount();
+						break;
+					}
+					case 2: {
+						Who.printDeaths();
+						break;
+					}
+					case 3: {
+						Who.printCured();
+						break;
+					}
+					case 4: {
+						Who.frequentSymptoms();
+						break;
+					}
+					case 5: {
+						Who.deathsPerAge();
+						break;
+					}
+					case 6: {
+						System.out.println("Insert the location you want to see the Covid Cases of\n" + 
+						"These are the locations:\n");
+						int i = 1;
+						for (project_spin.Location l : project_spin.Location.values()) {
+							System.out.println(i + ". " + l);
+							i++;
+						}
+						int loc; 
+						do {
+							loc = sc.nextInt();
+							if (loc < 1 || loc > 13) {
+								System.out.println("Please enter an integer number between 1 and 13.");
+							}
+						} while (loc < 1 || loc > 13) ;
+						Who.printCasesPerLocation(project_spin.Location.values()[loc - 1]);
+						break;
+					}
+					case 7: {
+						Who.printCasesForAllLocations();
+						break;
+					}
+					case 8: {
+						Who.percentageOfDeaths();
+						break;
+					}
+					case 9: {
+						Who.percentageOfCured();
+						break;
+					}
+					case 10: {
+						Who.ageAverage();
+						break;
+					}
+					case 11: {
+						Who.ageAveragePerSymptom();
+						break;
+					}
+					case 12: {
+						System.out.println("Enter the month you want to predict the cases of");
+						int month = sc.nextInt();
+						String monthString = new DateFormatSymbols().getMonths()[month-1];
+						System.out.println("Enter the year you want to predict the cases of");
+						int year = sc.nextInt();
+						long pr = who.getMonthlyPrediction(1, month, year);
+						System.out.println("In " + monthString + " of " + year + 
+								" there will probably be" + pr + "covid patients.\n");
+						break;
+					}
+					}
+					sAnswer = menu();
+				} while (sAnswer != 0);
+
+			} else {
+				deadPatients();
+			}
+		} catch (Exception e) {
+			System.out.println("Your answer was not valid.");
+			main(null);
 		}
 
 	}
@@ -126,16 +143,26 @@ public final class WhoMenu {
 			System.out.println("As the administrator, enter the ssn of the patient you wish to "
 					+ "declare dead based on medical records.");
 			int ans = sc.nextInt();
-			for (CovidCases i : CovidCases.cases) {
-				int ssn = i.getPatientSsn();
-				if (ssn == ans) {
-					i.setStatusDead();
-					break;
+			if (Ssn.checkSsn(ans)) {
+				for (CovidCases i : CovidCases.cases) {
+					int ssn = i.getPatientSsn();
+					if (ssn == ans) {
+						i.setStatusDead();
+						System.out.println("Do you wish to continue the procedure for more patients? \n "
+						+ "If so, please enter 1 or else enter 0.");
+						break;
+					}
 				}
+			} else {
+				System.out.println("The ssn you entered is not valid." + 
+				"Please enter 1 if you want to retry or 0 if you want to exit.");
 			}
-			System.out.println("Do you wish to continue the procedure for more patients? \n "
-					+ "If so, please enter 1 or else enter 0.");
-			an = sc.nextInt();
+			do {
+				an = sc.nextInt();
+				if (an != 1 || an != 0) {
+					System.out.println("Please enter 0 for exiting or 1 to continue.");
+				}
+			} while (an != 1 || an != 0);
 		} while (an == 1);
 	}
 
