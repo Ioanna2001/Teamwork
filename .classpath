@@ -6,9 +6,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Ioann/Downloads/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ioann/Downloads/commons-codec-1.15-bin.zip"/>
-	<classpathentry kind="lib" path="C:/Users/Ioann/Downloads/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ioann/Downloads/cli-module-6.0.0-standalone-cli.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Ioann/OneDrive/Έγγραφα/Programming II/teamwork jars/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ioann/OneDrive/Έγγραφα/Programming II/teamwork jars/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,7 +9,8 @@ public class NextActionAlert6 implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Option2Alert.frame.setVisible(false);
+		if (Option2Alert.frame != null)
+			Option2Alert.frame.setVisible(false);
 		int i = 0;
 		if (Option2Alert.c1.isSelected()) {
 			Corona.user.getSymptoms()[0] = 1;

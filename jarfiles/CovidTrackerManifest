@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: project_spin.exe.Corona
+Class-Path: javax.mail.jar activation-1.1.1.jar
+Created-By: 15.0.2 (Oracle Corporation)
+
+

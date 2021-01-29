@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="Cp1253" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/Ioann/OneDrive/Έγγραφα/Programming II/teamwork jars/CovidTracker.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Teamwork_2020project/jarfiles/descriptiocovidtracker.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" mainClassHandleIdentifier="=Teamwork_2020project/src&lt;project_spin.exe{Corona.java[Corona" manifestLocation="/Teamwork_2020project/jarfiles/CovidTrackerManifest" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+        <sealing sealJar="true">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=Teamwork_2020project"/>
+    </selectedElements>
+</jardesc>
