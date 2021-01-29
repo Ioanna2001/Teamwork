@@ -268,7 +268,7 @@ public class GUI {
 		JPanel panel = new JPanel();
 		frame7.add(panel);
 		panel.setLayout(null);
-		JLabel l=new JLabel("Pick your sympotoms:");  
+		JLabel l=new JLabel("Pick your symptoms:");  
 		l.setBounds(20, 30, 150, 50);  
 		c1 = new JRadioButton("Fever");
 		c1.setBounds(150, 30, 500, 50);
