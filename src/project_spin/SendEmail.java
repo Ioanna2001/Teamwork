@@ -78,16 +78,16 @@ public final class SendEmail {
 		return "You have been in contact with a Covid-19 close contact.\n"
 				+ "\t>Please avoid unnecessary interactions\n"
 				+ "\t>Wash your hands regularly\n"
-				+ "\t>Use a protective face mask when contacting others\n" + "\n" + infoMessage();
+				+ "\t>Use a protective face mask when interacting with others\n" + "\n" + infoMessage();
 	}
 
 	private String firstContactMessage() {
 		return "You have been in close contact with a Covid-19 patient. "
 				+ "Please follow the country's virus prevention protoco:\n"
-				+ "**1** You are required carantine in your house for 14 days"
+				+ "**1** You are required to carantine in your house for 14 days"
 				+ ". Please avoid complete contact with anyone outside your house"
-				+ "**2** Wash your hands regularly and try sterilizing your personal items seperataly\n"
-				+ "**3** If any of the following symptoms occur please take a Covid-19 test immediatly:\n"
+				+ "**2** Wash your hands regularly and try sterilizing your personal items separately\n"
+				+ "**3** If any of the following symptoms occur please take a Covid-19 test as soon as possible:\n"
 				+ User.symptomsList + "\n"
 				+ "**4** Please download the Covid Tracker application\n"
 				+ "**5** Sign up as a first contact\n"
@@ -104,10 +104,10 @@ public final class SendEmail {
 				+ "**1** You are required to carantine in you house for all t"
 				+ "he time that you are experiencing Covid-19 symptoms "
 				+ "and 14 days after the symptoms have stopped\n"
-				+ "**2** Please avoid coming in contact with people in inside your living space. "
+				+ "**2** Please avoid getting in touch with people inside your living space. "
 				+ "If contact is necessary please wear a protective face mask\n"
-				+ "**3** Wash and sterilize your personal objects seperataly\n"
-				+ "**4** Please download the Covid Tracker\n"
+				+ "**3** Wash and sterilize your personal objects separately\n"
+				+ "**4** Please download the Covid Tracker app\n"
 				+ "**5** Sign up as a Covid patient\n"
 				+ "**6** Enter the verification code shown below\n"
 				+ "**7** Enter the contact details of the people you have been in close contact with.\n"
