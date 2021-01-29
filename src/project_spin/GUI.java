@@ -70,7 +70,7 @@ public class GUI {
 		if (frame != null)
 			frame.setVisible(false);
 		frame2 = new JFrame("Set Status");
-		frame2.setSize(700, 400);
+		frame2.setSize(800, 200);
 		frame.setResizable(true);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
