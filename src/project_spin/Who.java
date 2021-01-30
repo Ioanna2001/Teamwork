@@ -106,7 +106,7 @@ public final class Who {
 				System.out.println(sym[i][0] + "% of our registered patients have experienced" + 
 						User.symptomsList[(int) sym[i][1]]);
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			System.out.println("We have 0 patients in our application.");
 		}
 	}
@@ -184,10 +184,14 @@ public final class Who {
 	// deixnei gia thn topothesia pou bazeis ta kroysmata poy exei
 	protected static int casesPerLocation(project_spin.Location l) {
 		int counter = 0;
-		for (CovidCases cc : CovidCases.cases) {
-			if (cc.getPatientLocation().equals(l)) {
-				counter++;
+		try {
+			for (CovidCases cc : CovidCases.cases) {
+				if (cc.getPatientLocation().equals(l)) {
+					counter++;
+				}
 			}
+		} catch (NullPointerException e) {
+			System.out.println("The location" + l + "has 0 cases");
 		}
 		return counter;
 	}
@@ -221,7 +225,7 @@ public final class Who {
 			x = ((double) CovidCases.getDeaths() / (double) CovidCases.patientCounter) * 100;
 			System.out.println(x + "% of our registered covid patients have passed away.");
 		} catch (ArithmeticException e) {
-			System.err.println("We have 0 patients in our application.");
+			System.out.println("We have 0 patients in our application.");
 		}
 	}
 
@@ -231,7 +235,7 @@ public final class Who {
 			x = ((double) CovidCases.getCured() / (double) CovidCases.patientCounter) * 100;
 			System.out.println(x + "% of our registered covid patients have been cured.");
 		} catch (ArithmeticException e) {
-			System.err.println("We have 0 patients in our application.");
+			System.out.println("We have 0 patients in our application.");
 		}
 	}
 

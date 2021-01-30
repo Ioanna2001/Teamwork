@@ -11,10 +11,6 @@ public final class WhoMenu {
 	public static void main(String[] args) {
 		try {
 				int fAnswer;
-				//test account if you want to test the deadPatients method
-				Passwords.addPassword("12345", "t8190121@aueb.gr");
-				Ssn.ssnInitiator();
-				CovidCases cc = new CovidCases(123456, "12345", "name", "t8190121@aueb.gr", 25);
 				do {
 					System.out.println("Do you wish to:\n" + "1. See our application's statistics\n" + 
 					"2. Alter a patient's status\n" + "Please enter the corresponding number.");
@@ -26,6 +22,10 @@ public final class WhoMenu {
 				if (fAnswer == 1) {
 					statistics();
 				} else {
+					//test account if you want to test the deadPatients method
+					Passwords.addPassword("12345", "t8190121@aueb.gr");
+					Ssn.ssnInitiator();
+					CovidCases cc = new CovidCases(123456, "12345", "name", "t8190121@aueb.gr", 25);
 					deadPatients();
 				}
 		} catch (Exception e) {
@@ -173,6 +173,8 @@ public final class WhoMenu {
 					System.out.println("In " + monthString + " of " + year + 
 							" there will probably be" + pr + "covid patients.\n");
 					break;
+				} case 0: {
+					System.exit(0);
 				}
 				}
 				sAnswer = menu();
